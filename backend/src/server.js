@@ -1,13 +1,24 @@
 const path = require('path');
-const envPath = path.join(__dirname, '..', '.env');
-console.log('Loading .env from:', envPath);
-const dotenvResult = require('dotenv').config({ path: envPath });
-if (dotenvResult.error) {
-  console.error('Error loading .env file:', dotenvResult.error);
-} else {
-  console.log('✅ .env file loaded successfully');
-  console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
+
+// Load .env file only in development (for local environment)
+// In production (Render), environment variables are set via dashboard
+if (process.env.NODE_ENV !== 'production') {
+  const envPath = path.join(__dirname, '..', '.env');
+  const dotenvResult = require('dotenv').config({ path: envPath });
+  if (dotenvResult.error) {
+    console.log('⚠️  .env file not found, using system environment variables');
+  } else {
+    console.log('✅ .env file loaded from:', envPath);
+  }
 }
+
+// Verify required environment variables
+if (!process.env.MONGODB_URI) {
+  console.error('❌ MONGODB_URI environment variable is not set!');
+  console.log('Please set MONGODB_URI in your environment or .env file');
+  process.exit(1);
+}
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
