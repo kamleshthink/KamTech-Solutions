@@ -57,31 +57,32 @@ const UrgencyBanner: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 text-white relative z-50"
         >
-          <div className="container-custom py-3">
-            <div className="flex items-center justify-between gap-4">
+          <div className="container-custom py-2 sm:py-3">
+            <div className="flex items-center justify-between gap-2 sm:gap-4">
               {/* Left side - Main message */}
-              <div className="flex flex-col md:flex-row items-center gap-3 flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl animate-pulse">🔥</span>
-                  <span className="font-bold text-sm md:text-base">
-                    LIMITED SLOTS: Only 3 Projects This Month!
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <span className="text-lg sm:text-2xl animate-pulse">🔥</span>
+                  <span className="font-bold text-xs sm:text-sm md:text-base">
+                    <span className="hidden sm:inline">LIMITED SLOTS: Only 3 Projects This Month!</span>
+                    <span className="sm:hidden">3 Slots Left This Month!</span>
                   </span>
                 </div>
 
                 {/* Countdown Timer */}
-                <div className="flex items-center gap-2 text-xs md:text-sm">
+                <div className="flex items-center gap-1 sm:gap-2 text-xs md:text-sm">
                   <span className="hidden md:inline">⏰</span>
-                  <div className="flex gap-2">
-                    <div className="bg-white/20 backdrop-blur-sm px-2 py-1 rounded">
+                  <div className="flex gap-1 sm:gap-2">
+                    <div className="bg-white/20 backdrop-blur-sm px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-[10px] sm:text-xs">
                       <span className="font-bold">{timeLeft.days}d</span>
                     </div>
-                    <div className="bg-white/20 backdrop-blur-sm px-2 py-1 rounded">
+                    <div className="bg-white/20 backdrop-blur-sm px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-[10px] sm:text-xs">
                       <span className="font-bold">{timeLeft.hours}h</span>
                     </div>
-                    <div className="bg-white/20 backdrop-blur-sm px-2 py-1 rounded">
+                    <div className="bg-white/20 backdrop-blur-sm px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-[10px] sm:text-xs">
                       <span className="font-bold">{timeLeft.minutes}m</span>
                     </div>
-                    <div className="bg-white/20 backdrop-blur-sm px-2 py-1 rounded hidden md:block">
+                    <div className="bg-white/20 backdrop-blur-sm px-1.5 py-0.5 sm:px-2 sm:py-1 rounded hidden md:block">
                       <span className="font-bold">{timeLeft.seconds}s</span>
                     </div>
                   </div>
@@ -89,20 +90,20 @@ const UrgencyBanner: React.FC = () => {
               </div>
 
               {/* Right side - CTA and Close */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                 <a
                   href="#contact"
-                  className="bg-white text-primary-600 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap hidden md:block"
+                  className="bg-white text-primary-600 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-semibold text-xs sm:text-sm hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap hidden md:block"
                 >
                   Book Now →
                 </a>
 
                 <button
                   onClick={handleClose}
-                  className="p-1 hover:bg-white/20 rounded transition-colors duration-200"
+                  className="p-0.5 sm:p-1 hover:bg-white/20 rounded transition-colors duration-200 flex-shrink-0"
                   aria-label="Close banner"
                 >
-                  <XMarkIcon className="w-5 h-5" />
+                  <XMarkIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             </div>

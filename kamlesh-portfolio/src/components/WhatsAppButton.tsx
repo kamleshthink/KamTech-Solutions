@@ -14,7 +14,7 @@ const WhatsAppButton: React.FC = () => {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 2, duration: 0.5, type: "spring" }}
-      className="fixed bottom-6 right-6 z-50"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999]"
     >
       <motion.a
         href={whatsappUrl}
@@ -24,11 +24,11 @@ const WhatsAppButton: React.FC = () => {
         onMouseLeave={() => setIsHovered(false)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="relative flex items-center justify-center w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl cursor-pointer group"
+        className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl cursor-pointer group"
       >
         {/* WhatsApp Icon */}
         <svg
-          className="w-8 h-8 text-white"
+          className="w-7 h-7 sm:w-8 sm:h-8 text-white"
           fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -62,9 +62,9 @@ const WhatsAppButton: React.FC = () => {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 2.5 }}
-        className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center"
+        className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 rounded-full flex items-center justify-center"
       >
-        <span className="text-white text-xs font-bold">1</span>
+        <span className="text-white text-[10px] sm:text-xs font-bold">1</span>
       </motion.div>
     </motion.div>
   );

@@ -90,14 +90,14 @@ const Hero: React.FC = () => {
               className="mb-6"
             >
               <div className="mb-3">
-                <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-semibold">
+                <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-xs sm:text-sm font-semibold">
                   🏆 Top Rated Development Agency
                 </span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                 <span className="gradient-text">KamTech Solutions</span>
               </h1>
-              <p className="text-xl md:text-2xl font-medium text-gray-600 dark:text-gray-400">
+              <p className="text-lg sm:text-xl md:text-2xl font-medium text-gray-600 dark:text-gray-400">
                 Led by <span className="text-primary-600 dark:text-primary-400 font-semibold">Kamlesh Sharma</span>
               </p>
             </motion.div>
@@ -106,27 +106,27 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="mb-8"
+              className="mb-6 sm:mb-8"
             >
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4 min-h-[2rem] sm:min-h-[2.5rem]">
                 <span className="text-primary-600 dark:text-primary-400">
                   {text}
                   <span className="animate-pulse">|</span>
                 </span>
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-4">
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-3 sm:mb-4">
                 We deliver world-class web & mobile applications that drive real business results.
                 From AgriTech platforms serving <strong>1000+ users</strong> to AI systems with <strong>94% accuracy</strong> -
                 we transform ambitious ideas into market-ready solutions.
               </p>
-              <div className="flex flex-wrap gap-3 mb-4">
-                <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-xs sm:text-sm font-medium">
                   ✅ Available on Fiverr
                 </span>
-                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
+                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-xs sm:text-sm font-medium">
                   ✅ Available on Upwork
                 </span>
-                <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">
+                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-full text-xs sm:text-sm font-medium">
                   ⚡ 24-48hr Turnaround
                 </span>
               </div>
