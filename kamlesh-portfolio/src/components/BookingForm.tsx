@@ -343,43 +343,43 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
           />
 
           {/* Modal */}
-          <div className="flex min-h-full items-center justify-center p-4">
+          <div className="flex min-h-full items-center justify-center p-2 sm:p-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
+              className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden my-4"
             >
               {/* Header */}
-              <div className="bg-gradient-to-r from-primary-600 to-purple-600 p-6 text-white">
+              <div className="bg-gradient-to-r from-primary-600 to-purple-600 p-4 sm:p-6 text-white">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-bold">Start Your Project</h2>
-                    <p className="text-white/90 text-sm mt-1">Tell us about your project in detail</p>
+                    <h2 className="text-xl sm:text-2xl font-bold">Start Your Project</h2>
+                    <p className="text-white/90 text-xs sm:text-sm mt-1">Tell us about your project in detail</p>
                   </div>
                   <button
                     onClick={onClose}
-                    className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                    className="p-1.5 sm:p-2 hover:bg-white/20 rounded-lg transition-colors flex-shrink-0"
                   >
-                    <XMarkIcon className="w-6 h-6" />
+                    <XMarkIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
                 {/* Progress Steps */}
-                <div className="mt-6 flex items-center justify-between">
+                <div className="mt-4 sm:mt-6 flex items-center justify-between">
                   {[1, 2, 3, 4, 5].map((step) => (
                     <div key={step} className="flex items-center flex-1">
-                      <div className={`flex items-center justify-center w-8 h-8 rounded-full border-2 ${
+                      <div className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 ${
                         currentStep >= step ? 'bg-white text-primary-600 border-white' : 'border-white/50 text-white/50'
                       }`}>
                         {currentStep > step ? (
-                          <CheckCircleIcon className="w-5 h-5" />
+                          <CheckCircleIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                         ) : (
-                          <span className="text-sm font-bold">{step}</span>
+                          <span className="text-xs sm:text-sm font-bold">{step}</span>
                         )}
                       </div>
                       {step < 5 && (
-                        <div className={`flex-1 h-0.5 mx-2 ${
+                        <div className={`flex-1 h-0.5 mx-1 sm:mx-2 ${
                           currentStep > step ? 'bg-white' : 'bg-white/30'
                         }`} />
                       )}
@@ -388,17 +388,17 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Step Labels */}
-                <div className="mt-2 flex justify-between text-xs text-white/80">
-                  <span>Basic Info</span>
-                  <span>Project</span>
-                  <span>Technical</span>
-                  <span>Details</span>
-                  <span>Assets</span>
+                <div className="mt-2 flex justify-between text-xs sm:text-xs text-white/80 px-1">
+                  <span className="text-center">Basic</span>
+                  <span className="text-center">Project</span>
+                  <span className="text-center">Tech</span>
+                  <span className="text-center">Details</span>
+                  <span className="text-center">Assets</span>
                 </div>
               </div>
 
               {/* Form Content */}
-              <form onSubmit={handleSubmit} className="p-6 max-h-[60vh] overflow-y-auto custom-scrollbar">
+              <form onSubmit={handleSubmit} className="p-4 sm:p-6 max-h-[60vh] overflow-y-auto custom-scrollbar">
                 {submitSuccess ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -878,13 +878,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
 
               {/* Footer with Navigation */}
               {!submitSuccess && (
-                <div className="border-t border-gray-200 dark:border-gray-700 p-6 bg-gray-50 dark:bg-gray-800/50">
-                  <div className="flex justify-between items-center">
+                <div className="border-t border-gray-200 dark:border-gray-700 p-4 sm:p-6 bg-gray-50 dark:bg-gray-800/50">
+                  <div className="flex justify-between items-center gap-2">
                     <button
                       type="button"
                       onClick={prevStep}
                       disabled={currentStep === 1}
-                      className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+                      className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                         currentStep === 1
                           ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
                           : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
@@ -893,7 +893,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                       Previous
                     </button>
 
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                       Step {currentStep} of 5
                     </div>
 
@@ -902,7 +902,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                         type="button"
                         onClick={nextStep}
                         disabled={!validateStep(currentStep)}
-                        className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+                        className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                           validateStep(currentStep)
                             ? 'bg-primary-600 text-white hover:bg-primary-700'
                             : 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
@@ -915,13 +915,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                         type="button"
                         onClick={handleSubmit}
                         disabled={isSubmitting || !validateStep(4)}
-                        className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+                        className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                           isSubmitting || !validateStep(4)
                             ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
                             : 'bg-gradient-to-r from-primary-600 to-purple-600 text-white hover:from-primary-700 hover:to-purple-700'
                         }`}
                       >
-                        {isSubmitting ? 'Submitting...' : 'Submit Booking'}
+                        {isSubmitting ? 'Submitting...' : 'Submit'}
                       </button>
                     )}
                   </div>

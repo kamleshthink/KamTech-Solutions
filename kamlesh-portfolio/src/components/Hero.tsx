@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowDownIcon,
-  PlayIcon,
-  DocumentArrowDownIcon
+  RocketLaunchIcon,
+  EyeIcon,
+  DocumentTextIcon
 } from '@heroicons/react/24/outline';
 import BookingForm from './BookingForm';
 
@@ -65,12 +66,12 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden pt-32">
+    <section id="home" className="min-h-screen flex items-center justify-center paper-texture-blue relative overflow-hidden pt-32">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 dark:bg-primary-800 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-bounce-gentle"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 dark:bg-purple-800 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-bounce-gentle" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-200 dark:bg-pink-800 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-bounce-gentle" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 dark:bg-primary-800 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-bounce-gentle"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 dark:bg-purple-800 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-bounce-gentle" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-200 dark:bg-pink-800 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-bounce-gentle" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="container-custom relative z-10">
@@ -143,7 +144,7 @@ const Hero: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 className="btn-primary flex items-center justify-center gap-2 text-center"
               >
-                <PlayIcon className="w-5 h-5" />
+                <RocketLaunchIcon className="w-5 h-5" />
                 Hire Us Now
               </motion.button>
 
@@ -153,7 +154,7 @@ const Hero: React.FC = () => {
                 onClick={handleScrollToAbout}
                 className="btn-secondary flex items-center justify-center gap-2"
               >
-                <ArrowDownIcon className="w-5 h-5" />
+                <EyeIcon className="w-5 h-5" />
                 View Portfolio
               </motion.button>
 
@@ -163,7 +164,7 @@ const Hero: React.FC = () => {
                 onClick={handleDownloadResume}
                 className="btn-outline flex items-center justify-center gap-2"
               >
-                <DocumentArrowDownIcon className="w-5 h-5" />
+                <DocumentTextIcon className="w-5 h-5" />
                 Company Profile
               </motion.button>
             </motion.div>
@@ -271,8 +272,8 @@ const Hero: React.FC = () => {
                         animate={{ opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
-                        <rect x="65" y="310" width="70" height="22" rx="11" fill="#3b82f6" opacity="0.9"/>
-                        <text x="100" y="325" fontSize="12" fill="white" textAnchor="middle" fontWeight="bold">UI DESIGNER</text>
+                        <rect x="55" y="310" width="90" height="24" rx="12" fill="#3b82f6" opacity="0.9"/>
+                        <text x="100" y="326" fontSize="11" fill="white" textAnchor="middle" fontWeight="bold">UI DESIGNER</text>
                       </motion.g>
                     </g>
 
@@ -376,8 +377,8 @@ const Hero: React.FC = () => {
                         animate={{ opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
                       >
-                        <rect x="350" y="310" width="65" height="22" rx="11" fill="#ec4899" opacity="0.9"/>
-                        <text x="382" y="325" fontSize="12" fill="white" textAnchor="middle" fontWeight="bold">QA TESTER</text>
+                        <rect x="343" y="310" width="80" height="24" rx="12" fill="#ec4899" opacity="0.9"/>
+                        <text x="383" y="326" fontSize="11" fill="white" textAnchor="middle" fontWeight="bold">QA TESTER</text>
                       </motion.g>
                     </g>
 
