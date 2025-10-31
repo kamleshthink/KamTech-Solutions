@@ -91,11 +91,14 @@
 
   /* Paper texture backgrounds */
   .paper-texture-light {
-    background-color: #fefefe;
+    background-color: #f8fafc;
     background-image:
-      linear-gradient(90deg, transparent 79px, #f5f5f5 79px, #f5f5f5 81px, transparent 81px),
-      linear-gradient(#f9f9f9 0.1em, transparent 0.1em);
-    background-size: 100% 1.2em;
+      repeating-linear-gradient(0deg, transparent, transparent 2px, #e2e8f0 2px, #e2e8f0 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, #e2e8f0 2px, #e2e8f0 3px),
+      linear-gradient(135deg, #f1f5f9 25%, transparent 25%, transparent 75%, #f1f5f9 75%, #f1f5f9),
+      linear-gradient(45deg, #f1f5f9 25%, transparent 25%, transparent 75%, #f1f5f9 75%, #f1f5f9);
+    background-size: 20px 20px, 20px 20px, 40px 40px, 40px 40px;
+    background-position: 0 0, 0 0, 0 0, 20px 20px;
   }
 
   .dark .paper-texture-light {
@@ -107,11 +110,13 @@
   }
 
   .paper-texture-blue {
-    background-color: #fafbfc;
+    background-color: #eff6ff;
     background-image:
-      linear-gradient(90deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px),
-      linear-gradient(rgba(59, 130, 246, 0.02) 1px, transparent 1px);
-    background-size: 40px 40px;
+      repeating-linear-gradient(0deg, transparent, transparent 3px, #dbeafe 3px, #dbeafe 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 3px, #dbeafe 3px, #dbeafe 4px),
+      radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+    background-size: 25px 25px, 25px 25px, 100% 100%, 100% 100%;
   }
 
   .dark .paper-texture-blue {
@@ -125,7 +130,11 @@
   .paper-texture-purple {
     background-color: #faf5ff;
     background-image:
-      repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(139, 92, 246, 0.03) 35px, rgba(139, 92, 246, 0.03) 70px);
+      repeating-linear-gradient(45deg, transparent, transparent 10px, #f3e8ff 10px, #f3e8ff 11px),
+      repeating-linear-gradient(-45deg, transparent, transparent 10px, #f3e8ff 10px, #f3e8ff 11px),
+      radial-gradient(circle at 30% 40%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(167, 139, 250, 0.04) 0%, transparent 50%);
+    background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
   }
 
   .dark .paper-texture-purple {
@@ -135,65 +144,44 @@
   }
 
   .paper-texture-gradient {
-    background: linear-gradient(135deg, #fefefe 0%, #f8fafc 50%, #faf5ff 100%);
+    background:
+      linear-gradient(135deg, rgba(241, 245, 249, 0.8) 0%, rgba(226, 232, 240, 0.6) 50%, rgba(248, 250, 252, 0.8) 100%),
+      repeating-linear-gradient(0deg, transparent, transparent 5px, #e2e8f0 5px, #e2e8f0 6px),
+      repeating-linear-gradient(90deg, transparent, transparent 5px, #e2e8f0 5px, #e2e8f0 6px),
+      #f8fafc;
+    background-size: 100% 100%, 35px 35px, 35px 35px, 100% 100%;
     position: relative;
   }
 
   .dark .paper-texture-gradient {
-    background: linear-gradient(135deg, #1a1a1a 0%, #0f172a 50%, #1a1625 100%);
-  }
-
-  .paper-texture-gradient::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
-    pointer-events: none;
+    background:
+      linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 50%, rgba(26, 22, 37, 0.8) 100%),
+      repeating-linear-gradient(0deg, transparent, transparent 5px, #1e293b 5px, #1e293b 6px),
+      repeating-linear-gradient(90deg, transparent, transparent 5px, #1e293b 5px, #1e293b 6px),
+      #0f172a;
+    background-size: 100% 100%, 35px 35px, 35px 35px, 100% 100%;
   }
 
   /* Hand-drawn sketch background for About section */
   .hand-drawn-bg {
-    background-color: #fdfeff;
+    background-color: #f1f5f9;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 4px, #e2e8f0 4px, #e2e8f0 5px),
+      repeating-linear-gradient(90deg, transparent, transparent 4px, #e2e8f0 4px, #e2e8f0 5px),
+      radial-gradient(circle at 15% 25%, rgba(148, 163, 184, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(148, 163, 184, 0.08) 0%, transparent 40%);
+    background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
     position: relative;
   }
 
   .dark .hand-drawn-bg {
     background-color: #0f1419;
-  }
-
-  .hand-drawn-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
     background-image:
-      url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 Q 15 8, 20 10 T 40 10 T 60 10 T 80 10 T 100 10' stroke='%233b82f6' stroke-width='0.5' fill='none' opacity='0.08'/%3E%3Cpath d='M0 25 Q 5 23, 10 25 T 30 25 T 50 25 T 70 25 T 90 25' stroke='%238b5cf6' stroke-width='0.5' fill='none' opacity='0.06'/%3E%3Cpath d='M20 40 Q 25 38, 30 40 T 50 40 T 70 40 T 90 40' stroke='%233b82f6' stroke-width='0.5' fill='none' opacity='0.05'/%3E%3Cpath d='M0 55 Q 8 53, 15 55 T 35 55 T 55 55 T 75 55 T 95 55' stroke='%238b5cf6' stroke-width='0.5' fill='none' opacity='0.07'/%3E%3Cg opacity='0.04'%3E%3Cpath d='M25 100 L30 105 L35 100 L35 95 L30 90 L25 95 Z' stroke='%233b82f6' stroke-width='1' fill='none' /%3E%3Crect x='23' y='100' width='5' height='8' stroke='%233b82f6' stroke-width='1' fill='none' rx='1'/%3E%3C/g%3E%3Cg opacity='0.035'%3E%3Ccircle cx='160' cy='50' r='8' stroke='%238b5cf6' stroke-width='1' fill='none'/%3E%3Crect x='155' y='52' width='10' height='12' stroke='%238b5cf6' stroke-width='1' fill='none' rx='2'/%3E%3C/g%3E%3Cg opacity='0.04'%3E%3Cpath d='M80 150 L85 145 L90 150 L90 160 L85 165 L80 160 Z' stroke='%233b82f6' stroke-width='1' fill='none'/%3E%3Cpath d='M82 155 L88 155 M85 152 L85 158' stroke='%233b82f6' stroke-width='1'/%3E%3C/g%3E%3Cg opacity='0.038'%3E%3Ccircle cx='140' cy='170' r='10' stroke='%238b5cf6' stroke-width='1' fill='none'/%3E%3Cpath d='M135 170 L137 172 L145 164' stroke='%238b5cf6' stroke-width='1.5' fill='none'/%3E%3C/g%3E%3Ccircle cx='15' cy='15' r='1.5' fill='%233b82f6' opacity='0.08'/%3E%3Ccircle cx='45' cy='60' r='1.5' fill='%233b82f6' opacity='0.07'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-    opacity: 1;
-    pointer-events: none;
+      repeating-linear-gradient(0deg, transparent, transparent 4px, #1e293b 4px, #1e293b 5px),
+      repeating-linear-gradient(90deg, transparent, transparent 4px, #1e293b 4px, #1e293b 5px),
+      radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
+    background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
   }
 
-  .dark .hand-drawn-bg::before {
-    background-image:
-      url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 Q 15 8, 20 10 T 40 10 T 60 10 T 80 10 T 100 10' stroke='%233b82f6' stroke-width='0.5' fill='none' opacity='0.15'/%3E%3Cpath d='M0 25 Q 5 23, 10 25 T 30 25 T 50 25 T 70 25 T 90 25' stroke='%238b5cf6' stroke-width='0.5' fill='none' opacity='0.12'/%3E%3Cpath d='M20 40 Q 25 38, 30 40 T 50 40 T 70 40 T 90 40' stroke='%233b82f6' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3Cpath d='M0 55 Q 8 53, 15 55 T 35 55 T 55 55 T 75 55 T 95 55' stroke='%238b5cf6' stroke-width='0.5' fill='none' opacity='0.13'/%3E%3Cg opacity='0.08'%3E%3Cpath d='M25 100 L30 105 L35 100 L35 95 L30 90 L25 95 Z' stroke='%233b82f6' stroke-width='1' fill='none' /%3E%3Crect x='23' y='100' width='5' height='8' stroke='%233b82f6' stroke-width='1' fill='none' rx='1'/%3E%3C/g%3E%3Cg opacity='0.07'%3E%3Ccircle cx='160' cy='50' r='8' stroke='%238b5cf6' stroke-width='1' fill='none'/%3E%3Crect x='155' y='52' width='10' height='12' stroke='%238b5cf6' stroke-width='1' fill='none' rx='2'/%3E%3C/g%3E%3Cg opacity='0.08'%3E%3Cpath d='M80 150 L85 145 L90 150 L90 160 L85 165 L80 160 Z' stroke='%233b82f6' stroke-width='1' fill='none'/%3E%3Cpath d='M82 155 L88 155 M85 152 L85 158' stroke='%233b82f6' stroke-width='1'/%3E%3C/g%3E%3Cg opacity='0.075'%3E%3Ccircle cx='140' cy='170' r='10' stroke='%238b5cf6' stroke-width='1' fill='none'/%3E%3Cpath d='M135 170 L137 172 L145 164' stroke='%238b5cf6' stroke-width='1.5' fill='none'/%3E%3C/g%3E%3Ccircle cx='15' cy='15' r='1.5' fill='%233b82f6' opacity='0.12'/%3E%3Ccircle cx='45' cy='60' r='1.5' fill='%233b82f6' opacity='0.11'/%3E%3C/svg%3E");
-  }
-
-  .hand-drawn-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 40%),
-      radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.02) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .dark .hand-drawn-bg::after {
-    background:
-      radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 40%),
-      radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 50%);
-  }
 }

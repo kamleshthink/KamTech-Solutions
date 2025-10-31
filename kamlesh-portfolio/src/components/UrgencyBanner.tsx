@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-const UrgencyBanner: React.FC = () => {
+interface UrgencyBannerProps {
+  onBookNowClick: () => void;
+}
+
+const UrgencyBanner: React.FC<UrgencyBannerProps> = ({ onBookNowClick }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -91,12 +95,12 @@ const UrgencyBanner: React.FC = () => {
 
               {/* Right side - CTA and Close */}
               <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                <a
-                  href="#contact"
-                  className="bg-white text-primary-600 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-semibold text-xs sm:text-sm hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap hidden md:block"
+                <button
+                  onClick={onBookNowClick}
+                  className="bg-white text-primary-600 px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-lg font-semibold text-[10px] sm:text-xs md:text-sm hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap"
                 >
                   Book Now →
-                </a>
+                </button>
 
                 <button
                   onClick={handleClose}

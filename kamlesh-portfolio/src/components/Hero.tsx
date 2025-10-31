@@ -6,13 +6,15 @@ import {
   EyeIcon,
   DocumentTextIcon
 } from '@heroicons/react/24/outline';
-import BookingForm from './BookingForm';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onBookNowClick: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
   const [text, setText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
   
   const words = [
     'Elite Full-Stack Development Agency',
@@ -125,13 +127,13 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-6"
             >
               <motion.button
-                onClick={() => setIsBookingFormOpen(true)}
+                onClick={onBookNowClick}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary flex items-center justify-center gap-2 text-center"
+                className="btn-primary flex items-center justify-center gap-2 text-center w-full sm:w-auto"
               >
                 <RocketLaunchIcon className="w-5 h-5" />
                 Hire Us Now
@@ -141,7 +143,7 @@ const Hero: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleScrollToAbout}
-                className="btn-secondary flex items-center justify-center gap-2"
+                className="btn-secondary flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 <EyeIcon className="w-5 h-5" />
                 View Portfolio
@@ -151,7 +153,7 @@ const Hero: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleDownloadResume}
-                className="btn-outline flex items-center justify-center gap-2"
+                className="btn-outline flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 <DocumentTextIcon className="w-5 h-5" />
                 Company Profile
@@ -448,12 +450,6 @@ const Hero: React.FC = () => {
           </motion.button>
         </motion.div>
       </div>
-
-      {/* Booking Form Modal */}
-      <BookingForm
-        isOpen={isBookingFormOpen}
-        onClose={() => setIsBookingFormOpen(false)}
-      />
     </section>
   );
 };

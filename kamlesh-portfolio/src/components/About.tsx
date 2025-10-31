@@ -9,23 +9,23 @@ import {
 
 const About: React.FC = () => {
   const achievements = [
-    "₹50L+ revenue generated for our clients",
-    "3 live enterprise apps with 10,000+ active users",
-    "Average 300% ROI delivered on projects",
-    "98% project completion rate on-time",
-    "Industries served: AgriTech, Construction, E-Commerce, Healthcare",
-    "Average response time: Under 2 hours",
-    "Free revisions until 100% client satisfaction",
-    "NDA & IP protection for all client projects"
+    "Generated ₹50L+ in revenue for client businesses",
+    "Delivered 3+ enterprise-grade applications serving 10,000+ users",
+    "Achieved 300% average ROI across all completed projects",
+    "Maintained 98% on-time project delivery rate",
+    "Cross-industry expertise: AgriTech, Construction, E-Commerce, Healthcare",
+    "Professional support with <2 hour average response time",
+    "Client-centric approach with unlimited revisions",
+    "Complete confidentiality with NDA & IP protection"
   ];
 
   const interests = [
+    "Enterprise Web Applications",
+    "Cross-Platform Mobile Development",
     "AgriTech & Social Impact Solutions",
-    "Full Stack Web Development (MERN)",
-    "Machine Learning & Computer Vision",
-    "IoT & Hardware Projects (Arduino)",
-    "Mobile App Development (React Native, Kotlin)",
-    "Open Source Contribution & Community Building"
+    "AI/ML Integration & Computer Vision",
+    "Real-time Systems & IoT Solutions",
+    "E-Commerce & Payment Solutions"
   ];
 
   return (
@@ -53,10 +53,11 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative flex items-center justify-center lg:justify-start"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-purple-500 rounded-2xl sm:rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-purple-500 rounded-2xl sm:rounded-3xl blur-3xl opacity-60 animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 rounded-2xl sm:rounded-3xl blur-2xl opacity-40"></div>
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-1">
                 <div className="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
                   {/* Professional Agency Illustration */}
@@ -132,26 +133,43 @@ const About: React.FC = () => {
           >
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Who We Are
+                About KamTech Solutions
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                <strong className="text-gray-900 dark:text-white">KamTech Solutions</strong> is your trusted partner for building
-                high-performance web and mobile applications that drive real business results. Led by
-                <strong className="text-primary-600 dark:text-primary-400"> Kamlesh Sharma</strong>, we've helped businesses
-                generate <strong>₹50L+ in revenue</strong> through our digital solutions.
+                <strong className="text-gray-900 dark:text-white">KamTech Solutions</strong> is a professional software development agency
+                specializing in building scalable, high-performance digital solutions for businesses of all sizes. Our expertise spans across
+                web development, mobile applications, and AI-powered systems that deliver measurable business value.
               </p>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                Our <strong className="text-gray-900 dark:text-white">live, market-proven applications</strong> include:
-                <span className="block mt-2 ml-4">
-                  🌾 <strong>Achhadam.com</strong> - Connecting 1000+ farmers with buyers, ₹20L+ GMV<br/>
-                  🏗️ <strong>Ramsethu Construction</strong> - Managing ₹3.5Cr+ projects efficiently<br/>
-                  👥 <strong>ACEBITS.in</strong> - Serving 500+ professionals with 99.9% uptime
-                </span>
+                <strong className="text-gray-900 dark:text-white">Proven Track Record:</strong>
               </p>
+              <div className="space-y-2 mb-4 ml-4">
+                <div className="flex items-start gap-3">
+                  <span className="text-green-600 dark:text-green-400 text-xl flex-shrink-0">🌾</span>
+                  <div>
+                    <strong className="text-gray-900 dark:text-white">Achhadam.com</strong>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">AgriTech platform connecting 1000+ farmers, facilitating ₹20L+ in transactions</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-orange-600 dark:text-orange-400 text-xl flex-shrink-0">🏗️</span>
+                  <div>
+                    <strong className="text-gray-900 dark:text-white">Ramsethu Construction</strong>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Project management system handling ₹3.5Cr+ worth of construction projects</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-blue-600 dark:text-blue-400 text-xl flex-shrink-0">👥</span>
+                  <div>
+                    <strong className="text-gray-900 dark:text-white">ACEBITS.in</strong>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Professional networking platform serving 500+ users with 99.9% uptime</p>
+                  </div>
+                </div>
+              </div>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                We transform your ideas into <strong className="text-gray-900 dark:text-white">revenue-generating digital products</strong>.
-                From MVP to enterprise-scale applications, we handle: <strong>Web Apps, Mobile Apps, AI/ML Solutions, E-Commerce Platforms,
-                </strong> and <strong>API Development</strong>. Our focus: <em>Fast delivery, clean code, measurable ROI</em>.
+                <strong className="text-gray-900 dark:text-white">Our Approach:</strong> We focus on delivering production-ready solutions
+                with clean, maintainable code. Every project is built with security, scalability, and performance in mind. From initial
+                consultation to deployment and maintenance, we ensure complete transparency and client satisfaction at every stage.
               </p>
             </div>
 
@@ -182,7 +200,7 @@ const About: React.FC = () => {
             <div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <HeartIcon className="w-6 h-6 text-primary-600" />
-                Our Core Services & Specializations
+                Technical Expertise & Specializations
               </h3>
               <div className="flex flex-wrap gap-2">
                 {interests.map((interest, index) => (

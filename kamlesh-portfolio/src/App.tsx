@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import UrgencyBanner from './components/UrgencyBanner';
 import Header from './components/Header';
@@ -13,15 +13,18 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import AIAssistantButton from './components/AIAssistantButton';
+import BookingForm from './components/BookingForm';
 
 const App: React.FC = () => {
+  const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-        <UrgencyBanner />
+        <UrgencyBanner onBookNowClick={() => setIsBookingFormOpen(true)} />
         <Header />
         <main>
-          <Hero />
+          <Hero onBookNowClick={() => setIsBookingFormOpen(true)} />
           <About />
           <Services />
           <Process />
@@ -33,6 +36,10 @@ const App: React.FC = () => {
         <Footer />
         <WhatsAppButton />
         <AIAssistantButton />
+        <BookingForm
+          isOpen={isBookingFormOpen}
+          onClose={() => setIsBookingFormOpen(false)}
+        />
       </div>
     </ThemeProvider>
   );

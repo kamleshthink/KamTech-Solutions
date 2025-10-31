@@ -100,8 +100,8 @@ const Footer: React.FC = () => {
 
       <div className="container-custom relative z-10">
         {/* Main Footer Content */}
-        <div className="py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="py-12 sm:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8">
             {/* Brand Section */}
             <div className="lg:col-span-2">
               <motion.div
@@ -110,11 +110,11 @@ const Footer: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <div className="text-2xl font-bold mb-4">
+                <div className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
                   <span className="gradient-text">KamTech</span>
                   <span className="text-gray-300"> Solutions</span>
                 </div>
-                <p className="text-gray-400 mb-6 max-w-md text-sm sm:text-base">
+                <p className="text-gray-400 mb-4 sm:mb-6 max-w-md text-sm sm:text-base leading-relaxed">
                   Your trusted partner for building revenue-generating digital products.
                   From MVP to enterprise-scale applications - we deliver results that matter.
                 </p>
@@ -152,7 +152,7 @@ const Footer: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
@@ -174,8 +174,8 @@ const Footer: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
-              <div className="space-y-3 text-gray-400 text-sm">
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Get In Touch</h3>
+              <div className="space-y-2.5 sm:space-y-3 text-gray-400 text-sm">
                 <p className="flex items-start gap-2">
                   <span className="text-base flex-shrink-0">📧</span>
                   <a href="mailto:kamleshsharma@gmail.com" className="hover:text-primary-400 transition-colors break-all">
@@ -202,8 +202,8 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-gray-800 py-4 sm:py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
