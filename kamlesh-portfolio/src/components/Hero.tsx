@@ -97,8 +97,8 @@ const Hero: React.FC = () => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                 <span className="gradient-text">KamTech Solutions</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl font-medium text-gray-600 dark:text-gray-400">
-                Led by <span className="text-primary-600 dark:text-primary-400 font-semibold">Kamlesh Sharma</span>
+              <p className="text-base sm:text-lg md:text-xl font-medium text-gray-600 dark:text-gray-400 mb-2">
+                Elite Development Agency
               </p>
             </motion.div>
 
@@ -114,22 +114,11 @@ const Hero: React.FC = () => {
                   <span className="animate-pulse">|</span>
                 </span>
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-3 sm:mb-4">
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
                 We deliver world-class web & mobile applications that drive real business results.
                 From AgriTech platforms serving <strong>1000+ users</strong> to AI systems with <strong>94% accuracy</strong> -
                 we transform ambitious ideas into market-ready solutions.
               </p>
-              <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
-                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-xs sm:text-sm font-medium">
-                  ✅ Available on Fiverr
-                </span>
-                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-xs sm:text-sm font-medium">
-                  ✅ Available on Upwork
-                </span>
-                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-full text-xs sm:text-sm font-medium">
-                  ⚡ 24-48hr Turnaround
-                </span>
-              </div>
             </motion.div>
 
             <motion.div

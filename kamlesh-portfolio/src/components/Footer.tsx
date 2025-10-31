@@ -114,13 +114,13 @@ const Footer: React.FC = () => {
                   <span className="gradient-text">KamTech</span>
                   <span className="text-gray-300"> Solutions</span>
                 </div>
-                <p className="text-gray-400 mb-6 max-w-md">
+                <p className="text-gray-400 mb-6 max-w-md text-sm sm:text-base">
                   Your trusted partner for building revenue-generating digital products.
                   From MVP to enterprise-scale applications - we deliver results that matter.
                 </p>
                 
                 {/* Social Links */}
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-3 sm:gap-4">
                   {socialLinks.map((social, index) => (
                     <motion.a
                       key={index}
@@ -134,9 +134,11 @@ const Footer: React.FC = () => {
                       viewport={{ once: true }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.9 }}
-                      className="p-3 bg-gray-800 hover:bg-primary-600 rounded-lg transition-all duration-300 text-white"
+                      className="p-2.5 sm:p-3 bg-gray-800 hover:bg-primary-600 rounded-lg transition-all duration-300 text-white"
                     >
-                      {social.icon}
+                      <div className="w-5 h-5 sm:w-6 sm:h-6">
+                        {social.icon}
+                      </div>
                     </motion.a>
                   ))}
                 </div>
@@ -156,7 +158,7 @@ const Footer: React.FC = () => {
                   <li key={index}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-primary-400 transition-colors duration-200"
+                      className="text-gray-400 hover:text-primary-400 transition-colors duration-200 text-sm"
                     >
                       {link.name}
                     </a>
@@ -173,21 +175,25 @@ const Footer: React.FC = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
-              <div className="space-y-3 text-gray-400">
-                <p className="flex items-center gap-2">
-                  <span>📧</span>
-                  <span>kamleshsharma@gmail.com</span>
+              <div className="space-y-3 text-gray-400 text-sm">
+                <p className="flex items-start gap-2">
+                  <span className="text-base flex-shrink-0">📧</span>
+                  <a href="mailto:kamleshsharma@gmail.com" className="hover:text-primary-400 transition-colors break-all">
+                    kamleshsharma@gmail.com
+                  </a>
                 </p>
-                <p className="flex items-center gap-2">
-                  <span>📱</span>
-                  <span>+91 72092 13003</span>
+                <p className="flex items-start gap-2">
+                  <span className="text-base flex-shrink-0">📱</span>
+                  <a href="tel:+917209213003" className="hover:text-primary-400 transition-colors">
+                    +91 72092 13003
+                  </a>
                 </p>
-                <p className="flex items-center gap-2">
-                  <span>📍</span>
+                <p className="flex items-start gap-2">
+                  <span className="text-base flex-shrink-0">📍</span>
                   <span>Dhanbad, Jharkhand</span>
                 </p>
-                <p className="flex items-center gap-2">
-                  <span>⏰</span>
+                <p className="flex items-start gap-2">
+                  <span className="text-base flex-shrink-0">⏰</span>
                   <span>Mon-Sat: 9AM-9PM</span>
                 </p>
               </div>
@@ -203,7 +209,7 @@ const Footer: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="flex items-center gap-2 text-gray-400"
+              className="flex items-center gap-2 text-gray-400 text-xs sm:text-sm text-center"
             >
               <span>© {currentYear} KamTech Solutions. All rights reserved.</span>
             </motion.div>

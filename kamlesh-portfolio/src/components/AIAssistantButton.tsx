@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SparklesIcon } from '@heroicons/react/24/solid';
+import AIChatbot from './AIChatbot';
 
 const AIAssistantButton: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
-  // You can link this to your AI assistant/chatbot
   const handleClick = () => {
-    // Placeholder - can be replaced with actual AI assistant integration
-    window.open('https://wa.me/917209213003?text=I%20need%20AI%20assistance%20for%20my%20project', '_blank');
+    setIsChatbotOpen(true);
   };
 
   return (
@@ -59,6 +59,9 @@ const AIAssistantButton: React.FC = () => {
       >
         <span className="text-gray-900 text-[10px] sm:text-xs font-bold">AI</span>
       </motion.div>
+
+      {/* AI Chatbot Modal */}
+      <AIChatbot isOpen={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
     </motion.div>
   );
 };
