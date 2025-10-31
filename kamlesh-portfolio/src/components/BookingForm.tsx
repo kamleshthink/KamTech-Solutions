@@ -267,7 +267,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
         formDataToSend.append(`files`, file);
       });
 
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_URL}/bookings`, {
         method: 'POST',
         body: formDataToSend
       });
