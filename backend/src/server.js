@@ -1,4 +1,13 @@
-require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
+const path = require('path');
+const envPath = path.join(__dirname, '..', '.env');
+console.log('Loading .env from:', envPath);
+const dotenvResult = require('dotenv').config({ path: envPath });
+if (dotenvResult.error) {
+  console.error('Error loading .env file:', dotenvResult.error);
+} else {
+  console.log('✅ .env file loaded successfully');
+  console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
+}
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
