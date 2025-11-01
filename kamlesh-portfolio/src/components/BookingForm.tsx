@@ -333,7 +333,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -344,13 +344,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
           />
 
           {/* Modal */}
-          <div className="flex min-h-full items-center justify-center p-2 sm:p-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden my-4"
-            >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col z-10"
+          >
               {/* Header */}
               <div className="bg-gradient-to-r from-primary-600 to-purple-600 p-4 sm:p-6 text-white">
                 <div className="flex items-center justify-between">
@@ -399,7 +398,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
               </div>
 
               {/* Form Content */}
-              <form onSubmit={handleSubmit} className="p-4 sm:p-6 max-h-[60vh] overflow-y-auto custom-scrollbar">
+              <div className="flex-1 overflow-y-auto custom-scrollbar">
+                <form onSubmit={handleSubmit} className="p-4 sm:p-6">
                 {submitSuccess ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -875,11 +875,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                     )}
                   </>
                 )}
-              </form>
+                </form>
+              </div>
 
               {/* Footer with Navigation */}
               {!submitSuccess && (
-                <div className="border-t border-gray-200 dark:border-gray-700 p-4 sm:p-6 bg-gray-50 dark:bg-gray-800/50">
+                <div className="flex-shrink-0 border-t border-gray-200 dark:border-gray-700 p-4 sm:p-6 bg-gray-50 dark:bg-gray-800/50">
                   <div className="flex justify-between items-center gap-2">
                     <button
                       type="button"
@@ -928,8 +929,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                   </div>
                 </div>
               )}
-            </motion.div>
-          </div>
+          </motion.div>
         </div>
       )}
     </AnimatePresence>
