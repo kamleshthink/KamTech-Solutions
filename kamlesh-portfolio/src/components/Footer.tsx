@@ -1,11 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
+import {
   HeartIcon,
   ArrowUpIcon
 } from '@heroicons/react/24/outline';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onTermsClick: () => void;
+  onCookiePolicyClick: () => void;
+  onPrivacyClick: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onTermsClick, onCookiePolicyClick, onPrivacyClick }) => {
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
@@ -210,7 +216,31 @@ const Footer: React.FC = () => {
               viewport={{ once: true }}
               className="text-gray-400 text-xs sm:text-sm text-center sm:text-left"
             >
-              <span>© {currentYear} PragyaTek Solutions. All rights reserved.</span>
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                <span>© {currentYear} PragyaTek Solutions. All rights reserved.</span>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <button
+                    onClick={onPrivacyClick}
+                    className="text-gray-400 hover:text-primary-400 transition-colors underline-offset-4 hover:underline text-xs sm:text-sm"
+                  >
+                    Privacy
+                  </button>
+                  <span className="text-gray-600">•</span>
+                  <button
+                    onClick={onTermsClick}
+                    className="text-gray-400 hover:text-primary-400 transition-colors underline-offset-4 hover:underline text-xs sm:text-sm"
+                  >
+                    Terms
+                  </button>
+                  <span className="text-gray-600">•</span>
+                  <button
+                    onClick={onCookiePolicyClick}
+                    className="text-gray-400 hover:text-primary-400 transition-colors underline-offset-4 hover:underline text-xs sm:text-sm"
+                  >
+                    Cookies
+                  </button>
+                </div>
+              </div>
             </motion.div>
 
             <motion.button

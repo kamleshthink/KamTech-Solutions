@@ -110,7 +110,7 @@ export const projects: Project[] = [
     id: 4,
     title: "Cancer Detection AI System",
     description: "Advanced deep learning model for early cancer detection using medical imaging. Implements CNN architecture with TensorFlow and Keras for high-accuracy diagnosis. Features image preprocessing, model training, and real-time prediction capabilities.",
-    image: "/Assets/cancer detection model/AI Chatbot – Smart Virtual Assistant.jpg",
+    image: "/Assets/cancer detection model/Screenshot (830).png",
     technologies: ["Python", "TensorFlow", "Keras", "NumPy", "Pandas", "OpenCV", "Scikit-learn"],
     githubUrl: "https://github.com/kamleshthink/cancer-detection-ml",
     category: "ml",

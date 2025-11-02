@@ -14,9 +14,16 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import AIAssistantButton from './components/AIAssistantButton';
 import BookingForm from './components/BookingForm';
+import CookieConsent from './components/CookieConsent';
+import TermsOfService from './components/TermsOfService';
+import CookiePolicy from './components/CookiePolicy';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 const App: React.FC = () => {
   const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isCookiePolicyOpen, setIsCookiePolicyOpen] = useState(false);
+  const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
 
   const handleBookNowClick = () => {
     console.log('Book Now clicked - Opening Booking Form');
@@ -38,12 +45,32 @@ const App: React.FC = () => {
           <FAQ />
           <Contact />
         </main>
-        <Footer />
+        <Footer
+          onTermsClick={() => setIsTermsOpen(true)}
+          onCookiePolicyClick={() => setIsCookiePolicyOpen(true)}
+          onPrivacyClick={() => setIsPrivacyPolicyOpen(true)}
+        />
         <WhatsAppButton />
         <AIAssistantButton />
         <BookingForm
           isOpen={isBookingFormOpen}
           onClose={() => setIsBookingFormOpen(false)}
+        />
+        <CookieConsent
+          onPrivacyClick={() => setIsPrivacyPolicyOpen(true)}
+          onCookiePolicyClick={() => setIsCookiePolicyOpen(true)}
+        />
+        <TermsOfService
+          isOpen={isTermsOpen}
+          onClose={() => setIsTermsOpen(false)}
+        />
+        <CookiePolicy
+          isOpen={isCookiePolicyOpen}
+          onClose={() => setIsCookiePolicyOpen(false)}
+        />
+        <PrivacyPolicy
+          isOpen={isPrivacyPolicyOpen}
+          onClose={() => setIsPrivacyPolicyOpen(false)}
         />
       </div>
     </ThemeProvider>

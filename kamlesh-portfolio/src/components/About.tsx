@@ -147,8 +147,8 @@ const About: React.FC = () => {
                 <div className="flex items-start gap-3">
                   <span className="text-green-600 dark:text-green-400 text-xl flex-shrink-0">🌾</span>
                   <div>
-                    <strong className="text-gray-900 dark:text-white">Achhadam.com</strong>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">AgriTech platform connecting 1000+ farmers, facilitating ₹20L+ in transactions</p>
+                    <strong className="text-gray-900 dark:text-white">Achhadam(Agriculture)</strong>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">AgriTech platform connecting 10000+ farmers, facilitating ₹20L+ in transactions</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -161,7 +161,7 @@ const About: React.FC = () => {
                 <div className="flex items-start gap-3">
                   <span className="text-blue-600 dark:text-blue-400 text-xl flex-shrink-0">👥</span>
                   <div>
-                    <strong className="text-gray-900 dark:text-white">ACEBITS.in</strong>
+                    <strong className="text-gray-900 dark:text-white">ACEBITS(community Platform)</strong>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Professional networking platform serving 500+ users with 99.9% uptime</p>
                   </div>
                 </div>
