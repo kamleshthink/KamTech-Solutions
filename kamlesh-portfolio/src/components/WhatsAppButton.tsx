@@ -6,7 +6,7 @@ const WhatsAppButton: React.FC = () => {
 
   // Replace with actual WhatsApp number
   const whatsappNumber = "917209213003"; // Format: country code + number (no + or spaces)
-  const message = "Hi! I'm interested in discussing a project with KamTech Solutions.";
+  const message = "Hi! I'm interested in discussing a project with PragyaTek Solutions.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   return (

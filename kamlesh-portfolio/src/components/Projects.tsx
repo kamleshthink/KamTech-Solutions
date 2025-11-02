@@ -179,14 +179,16 @@ const Projects: React.FC = () => {
                   {/* Project Stats */}
                   {project.stats && (
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {Object.entries(project.stats).map(([key, value], idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded text-xs font-semibold"
-                        >
-                          {key}: {value}
-                        </span>
-                      ))}
+                      {Object.entries(project.stats)
+                        .filter(([key]) => key !== 'commits')
+                        .map(([key, value], idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded text-xs font-semibold"
+                          >
+                            {key}: {value}
+                          </span>
+                        ))}
                     </div>
                   )}
 

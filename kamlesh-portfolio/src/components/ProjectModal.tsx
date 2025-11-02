@@ -256,28 +256,30 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                     {/* Right Column */}
                     <div>
                       {/* Stats */}
-                      {project.stats && Object.keys(project.stats).length > 0 && (
+                      {project.stats && Object.keys(project.stats).filter(k => k !== 'commits').length > 0 && (
                         <div className="mb-6">
                           <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                             Project Statistics
                           </h4>
                           <div className="grid grid-cols-2 gap-3">
-                            {Object.entries(project.stats).map(([key, value], index) => (
-                              <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800"
-                              >
-                                <div className="text-2xl font-bold text-green-700 dark:text-green-400 mb-1">
-                                  {String(value)}
-                                </div>
-                                <div className="text-sm text-green-600 dark:text-green-500 font-medium capitalize">
-                                  {key.replace(/([A-Z])/g, ' $1').trim()}
-                                </div>
-                              </motion.div>
-                            ))}
+                            {Object.entries(project.stats)
+                              .filter(([key]) => key !== 'commits')
+                              .map(([key, value], index) => (
+                                <motion.div
+                                  key={index}
+                                  initial={{ opacity: 0, y: 20 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: index * 0.1 }}
+                                  className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800"
+                                >
+                                  <div className="text-2xl font-bold text-green-700 dark:text-green-400 mb-1">
+                                    {String(value)}
+                                  </div>
+                                  <div className="text-sm text-green-600 dark:text-green-500 font-medium capitalize">
+                                    {key.replace(/([A-Z])/g, ' $1').trim()}
+                                  </div>
+                                </motion.div>
+                              ))}
                           </div>
                         </div>
                       )}

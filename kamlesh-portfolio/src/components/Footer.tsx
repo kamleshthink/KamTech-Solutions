@@ -110,9 +110,12 @@ const Footer: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <div className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
-                  <span className="gradient-text">KamTech</span>
-                  <span className="text-gray-300"> Solutions</span>
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <img
+                    src="/Assets/logo/PragyaTek Solutions.png"
+                    alt="PragyaTek Solutions Logo"
+                    className="h-8 sm:h-10 w-auto"
+                  />
                 </div>
                 <p className="text-gray-400 mb-4 sm:mb-6 max-w-md text-sm sm:text-base leading-relaxed">
                   Your trusted partner for building revenue-generating digital products.
@@ -176,24 +179,20 @@ const Footer: React.FC = () => {
             >
               <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Get In Touch</h3>
               <div className="space-y-2.5 sm:space-y-3 text-gray-400 text-sm">
-                <p className="flex items-start gap-2">
-                  <span className="text-base flex-shrink-0">📧</span>
-                  <a href="mailto:kamleshsharma@gmail.com" className="hover:text-primary-400 transition-colors break-all">
-                    kamleshsharma@gmail.com
+                <p>
+                  <a href="mailto:kamleshsharma@gmail.com" className="hover:text-primary-400 transition-colors break-words">
+                    kamleshsamudih@gmail.com
                   </a>
                 </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-base flex-shrink-0">📱</span>
+                <p>
                   <a href="tel:+917209213003" className="hover:text-primary-400 transition-colors">
                     +91 72092 13003
                   </a>
                 </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-base flex-shrink-0">📍</span>
+                <p>
                   <span>Dhanbad, Jharkhand</span>
                 </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-base flex-shrink-0">⏰</span>
+                <p>
                   <span>Mon-Sat: 9AM-9PM</span>
                 </p>
               </div>
@@ -203,15 +202,15 @@ const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 py-4 sm:py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="flex items-center gap-2 text-gray-400 text-xs sm:text-sm text-center"
+              className="text-gray-400 text-xs sm:text-sm text-center sm:text-left"
             >
-              <span>© {currentYear} KamTech Solutions. All rights reserved.</span>
+              <span>© {currentYear} PragyaTek Solutions. All rights reserved.</span>
             </motion.div>
 
             <motion.button

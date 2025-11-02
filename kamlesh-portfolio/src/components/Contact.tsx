@@ -141,7 +141,7 @@ const Contact: React.FC = () => {
                 Let's Build Something Amazing
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                <strong className="text-gray-900 dark:text-white">KamTech Solutions</strong> is ready to bring your vision to life.
+                <strong className="text-gray-900 dark:text-white">PragyaTek Solutions</strong> is ready to bring your vision to life.
                 Whether you're a startup looking for an MVP or an enterprise needing a scalable solution - we've got you covered.
               </p>
               <div className="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-lg mb-8">

@@ -20,7 +20,11 @@ interface Service {
   badge?: string;
 }
 
-const Services: React.FC = () => {
+interface ServicesProps {
+  onBookNowClick?: () => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ onBookNowClick }) => {
   const services: Service[] = [
     {
       icon: <CodeBracketIcon className="w-12 h-12" />,
@@ -34,7 +38,7 @@ const Services: React.FC = () => {
         "Source code & deployment",
         "3 months support"
       ],
-      priceRange: "$1,500 - $10,000+",
+      priceRange: "₹25,000 - ₹2,00,000+",
       turnaround: "2-6 weeks",
       badge: "Most Popular"
     },
@@ -50,7 +54,7 @@ const Services: React.FC = () => {
         "SEO implementation",
         "Design system"
       ],
-      priceRange: "$800 - $5,000+",
+      priceRange: "₹50,000 - ₹5,00,000+",
       turnaround: "1-4 weeks"
     },
     {
@@ -65,7 +69,7 @@ const Services: React.FC = () => {
         "API documentation",
         "Testing & deployment"
       ],
-      priceRange: "$1,000 - $6,000+",
+      priceRange: "₹75,000 - ₹4,00,000+",
       turnaround: "1-4 weeks"
     },
     {
@@ -80,7 +84,7 @@ const Services: React.FC = () => {
         "Performance metrics",
         "Training notebooks"
       ],
-      priceRange: "$1,500 - $8,000+",
+      priceRange: "₹1,00,000 - ₹6,00,000+",
       turnaround: "2-5 weeks",
       badge: "Premium"
     },
@@ -96,7 +100,7 @@ const Services: React.FC = () => {
         "Order management",
         "Admin dashboard"
       ],
-      priceRange: "$2,500 - $15,000+",
+      priceRange: "₹1,50,000 - ₹10,00,000+",
       turnaround: "3-8 weeks"
     },
     {
@@ -111,7 +115,7 @@ const Services: React.FC = () => {
         "Basic analytics",
         "User feedback system"
       ],
-      priceRange: "$2,000 - $10,000+",
+      priceRange: "₹1,00,000 - ₹8,00,000+",
       turnaround: "2-6 weeks",
       badge: "Startup Special"
     }
@@ -221,14 +225,14 @@ const Services: React.FC = () => {
                 </div>
 
                 {/* CTA Button */}
-                <motion.a
-                  href="#contact"
+                <motion.button
+                  onClick={onBookNowClick}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="block mt-6 w-full py-3 bg-primary-600 hover:bg-primary-700 text-white text-center font-semibold rounded-lg transition-colors duration-200"
                 >
                   Get Started
-                </motion.a>
+                </motion.button>
               </div>
             </motion.div>
           ))}

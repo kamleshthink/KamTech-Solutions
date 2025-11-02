@@ -57,10 +57,20 @@ const Header: React.FC = () => {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white"
+            className="flex items-center gap-3"
           >
-            <span className="gradient-text">KamTech</span>
-            <span className="text-gray-600 dark:text-gray-300"> Solutions</span>
+            <img
+              src="/Assets/logo/PragyaTek Solutions.png"
+              alt="PragyaTek Solutions Logo"
+              className="h-8 md:h-10 w-auto object-contain"
+              style={{
+                mixBlendMode: 'multiply',
+                filter: 'contrast(1.1)'
+              }}
+            />
+            <span className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
+              PragyaTek Solutions
+            </span>
           </motion.div>
 
           {/* Desktop Navigation */}

@@ -39,7 +39,7 @@ const About: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            About <span className="gradient-text">KamTech Solutions</span>
+            About <span className="gradient-text">PragyaTek Solutions</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Elite Development Agency | Building Scalable Solutions | From Startups to Enterprises
@@ -133,10 +133,10 @@ const About: React.FC = () => {
           >
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                About KamTech Solutions
+                About PragyaTek Solutions
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                <strong className="text-gray-900 dark:text-white">KamTech Solutions</strong> is a professional software development agency
+                <strong className="text-gray-900 dark:text-white">PragyaTek Solutions</strong> is a professional software development agency
                 specializing in building scalable, high-performance digital solutions for businesses of all sizes. Our expertise spans across
                 web development, mobile applications, and AI-powered systems that deliver measurable business value.
               </p>

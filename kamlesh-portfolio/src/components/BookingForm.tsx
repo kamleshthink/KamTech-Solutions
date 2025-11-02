@@ -333,23 +333,26 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+        <>
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
           />
 
           {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col z-10"
-          >
+          <div className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center p-4 sm:p-6 pointer-events-none overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl flex flex-col pointer-events-auto"
+              style={{ maxHeight: '90vh', height: 'auto' }}
+            >
               {/* Header */}
               <div className="bg-gradient-to-r from-primary-600 to-purple-600 p-4 sm:p-6 text-white">
                 <div className="flex items-center justify-between">
@@ -929,8 +932,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                   </div>
                 </div>
               )}
-          </motion.div>
-        </div>
+            </motion.div>
+          </div>
+        </>
       )}
     </AnimatePresence>
   );

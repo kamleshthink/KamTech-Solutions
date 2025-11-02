@@ -18,15 +18,20 @@ import BookingForm from './components/BookingForm';
 const App: React.FC = () => {
   const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
 
+  const handleBookNowClick = () => {
+    console.log('Book Now clicked - Opening Booking Form');
+    setIsBookingFormOpen(true);
+  };
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-        <UrgencyBanner onBookNowClick={() => setIsBookingFormOpen(true)} />
+        <UrgencyBanner onBookNowClick={handleBookNowClick} />
         <Header />
         <main>
           <Hero onBookNowClick={() => setIsBookingFormOpen(true)} />
           <About />
-          <Services />
+          <Services onBookNowClick={() => setIsBookingFormOpen(true)} />
           <Process />
           <Projects />
           <Testimonials />
