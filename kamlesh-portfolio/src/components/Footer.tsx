@@ -107,9 +107,9 @@ const Footer: React.FC<FooterProps> = ({ onTermsClick, onCookiePolicyClick, onPr
       <div className="container-custom relative z-10">
         {/* Main Footer Content */}
         <div className="py-12 sm:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-8">
             {/* Brand Section */}
-            <div className="lg:col-span-2">
+            <div className="col-span-2 lg:col-span-2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -160,14 +160,15 @@ const Footer: React.FC<FooterProps> = ({ onTermsClick, onCookiePolicyClick, onPr
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
+              className="col-span-1"
             >
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Quick Links</h3>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-3 sm:mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-primary-400 transition-colors duration-200 text-sm"
+                      className="text-gray-400 hover:text-primary-400 transition-colors duration-200 text-xs sm:text-sm"
                     >
                       {link.name}
                     </a>
@@ -182,9 +183,10 @@ const Footer: React.FC<FooterProps> = ({ onTermsClick, onCookiePolicyClick, onPr
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
+              className="col-span-1"
             >
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Get In Touch</h3>
-              <div className="space-y-2.5 sm:space-y-3 text-gray-400 text-sm">
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-3 sm:mb-4">Get In Touch</h3>
+              <div className="space-y-2.5 sm:space-y-3 text-gray-400 text-xs sm:text-sm">
                 <p>
                   <a href="mailto:kamleshsharma@gmail.com" className="hover:text-primary-400 transition-colors break-words">
                     kamleshsamudih@gmail.com

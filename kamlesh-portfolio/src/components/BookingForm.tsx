@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   XMarkIcon,
@@ -20,6 +20,32 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+    };
+  }, [isOpen]);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -344,21 +370,25 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
           />
 
           {/* Modal */}
-          <div className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center p-4 sm:p-6 pointer-events-none overflow-hidden">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 md:p-6 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl flex flex-col pointer-events-auto"
-              style={{ maxHeight: '90vh', height: 'auto' }}
+              className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-2xl flex flex-col pointer-events-auto mx-auto my-auto"
+              style={{
+                maxHeight: 'calc(100vh - 1rem)',
+                height: 'auto',
+                maxWidth: '100%'
+              }}
             >
               {/* Header */}
-              <div className="bg-gradient-to-r from-primary-600 to-purple-600 p-4 sm:p-6 text-white">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-bold">Start Your Project</h2>
-                    <p className="text-white/90 text-xs sm:text-sm mt-1">Tell us about your project in detail</p>
+              <div className="bg-gradient-to-r from-primary-600 to-purple-600 p-3 sm:p-4 md:p-6 text-white flex-shrink-0">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold truncate">Start Your Project</h2>
+                    <p className="text-white/90 text-xs sm:text-sm mt-0.5 sm:mt-1">Tell us about your project in detail</p>
                   </div>
                   <button
                     onClick={onClose}
@@ -369,20 +399,20 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Progress Steps */}
-                <div className="mt-4 sm:mt-6 flex items-center justify-between">
+                <div className="mt-3 sm:mt-4 md:mt-6 flex items-center justify-between">
                   {[1, 2, 3, 4, 5].map((step) => (
                     <div key={step} className="flex items-center flex-1">
-                      <div className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 ${
+                      <div className={`flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full border-2 ${
                         currentStep >= step ? 'bg-white text-primary-600 border-white' : 'border-white/50 text-white/50'
                       }`}>
                         {currentStep > step ? (
-                          <CheckCircleIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                          <CheckCircleIcon className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                         ) : (
-                          <span className="text-xs sm:text-sm font-bold">{step}</span>
+                          <span className="text-[10px] sm:text-xs md:text-sm font-bold">{step}</span>
                         )}
                       </div>
                       {step < 5 && (
-                        <div className={`flex-1 h-0.5 mx-1 sm:mx-2 ${
+                        <div className={`flex-1 h-0.5 mx-0.5 sm:mx-1 md:mx-2 ${
                           currentStep > step ? 'bg-white' : 'bg-white/30'
                         }`} />
                       )}
@@ -391,7 +421,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Step Labels */}
-                <div className="mt-2 flex justify-between text-xs sm:text-xs text-white/80 px-1">
+                <div className="mt-1.5 sm:mt-2 flex justify-between text-[10px] sm:text-xs text-white/80 px-0.5 sm:px-1">
                   <span className="text-center">Basic</span>
                   <span className="text-center">Project</span>
                   <span className="text-center">Tech</span>
@@ -401,8 +431,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
               </div>
 
               {/* Form Content */}
-              <div className="flex-1 overflow-y-auto custom-scrollbar">
-                <form onSubmit={handleSubmit} className="p-4 sm:p-6">
+              <div className="flex-1 overflow-y-auto custom-scrollbar" style={{ minHeight: 0 }}>
+                <form onSubmit={handleSubmit} className="p-3 sm:p-4 md:p-6">
                 {submitSuccess ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -883,13 +913,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
 
               {/* Footer with Navigation */}
               {!submitSuccess && (
-                <div className="flex-shrink-0 border-t border-gray-200 dark:border-gray-700 p-4 sm:p-6 bg-gray-50 dark:bg-gray-800/50">
+                <div className="flex-shrink-0 border-t border-gray-200 dark:border-gray-700 p-3 sm:p-4 md:p-6 bg-gray-50 dark:bg-gray-800/50">
                   <div className="flex justify-between items-center gap-2">
                     <button
                       type="button"
                       onClick={prevStep}
                       disabled={currentStep === 1}
-                      className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
+                      className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg font-medium transition-colors text-xs sm:text-sm md:text-base ${
                         currentStep === 1
                           ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
                           : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
@@ -898,7 +928,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                       Previous
                     </button>
 
-                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">
                       Step {currentStep} of 5
                     </div>
 
@@ -907,7 +937,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                         type="button"
                         onClick={nextStep}
                         disabled={!validateStep(currentStep)}
-                        className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
+                        className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg font-medium transition-colors text-xs sm:text-sm md:text-base ${
                           validateStep(currentStep)
                             ? 'bg-primary-600 text-white hover:bg-primary-700'
                             : 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
@@ -920,7 +950,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                         type="button"
                         onClick={handleSubmit}
                         disabled={isSubmitting || !validateStep(4)}
-                        className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
+                        className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg font-medium transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${
                           isSubmitting || !validateStep(4)
                             ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
                             : 'bg-gradient-to-r from-primary-600 to-purple-600 text-white hover:from-primary-700 hover:to-purple-700'

@@ -110,7 +110,7 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="mb-6 sm:mb-8"
             >
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4 min-h-[2rem] sm:min-h-[2.5rem]">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4 min-h-[4rem] sm:min-h-[4.5rem] md:min-h-[3rem] flex items-center justify-center lg:justify-start">
                 <span className="text-primary-600 dark:text-primary-400">
                   {text}
                   <span className="animate-pulse">|</span>
