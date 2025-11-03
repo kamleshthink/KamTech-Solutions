@@ -71,14 +71,7 @@
   "orientation": "any",
   "scope": "/",
   "categories": ["business", "productivity", "technology"],
-  "screenshots": [
-    {
-      "src": "/Assets/Achhadamproject3/Screenshot (756).png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
+  "screenshots": [],
   "shortcuts": [
     {
       "name": "Contact Us",

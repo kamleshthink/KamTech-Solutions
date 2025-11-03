@@ -46,6 +46,11 @@ coverage/
 .claude/
 .cursor/
 
+# Client Private Projects (Confidential)
+**/Achhadamproject*/**
+kamlesh-portfolio/public/Assets/Achhadamproject*/
+kamlesh-portfolio/build/Assets/Achhadamproject*/
+
 # Package lock files (optional - remove if you want to commit them)
 # package-lock.json
 # yarn.lock
