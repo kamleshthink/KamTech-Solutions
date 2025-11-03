@@ -20,13 +20,29 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
 
   useEffect(() => {
     if (isOpen) {
+      // Lock body scroll and prevent floating
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
       setCurrentImageIndex(0);
     } else {
-      document.body.style.overflow = 'unset';
+      // Restore scroll position
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
+
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
     };
   }, [isOpen]);
 
@@ -81,21 +97,25 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
           />
 
           {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed inset-4 md:inset-8 lg:inset-12 z-50 overflow-hidden"
-          >
-            <div className="h-full bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 pointer-events-none">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-7xl bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto mx-auto my-auto"
+              style={{
+                maxHeight: 'calc(100vh - 1rem)',
+                height: 'auto'
+              }}
+            >
               {/* Header */}
-              <div className="bg-gradient-to-r from-primary-600 to-purple-600 px-6 py-4 flex items-center justify-between">
+              <div className="bg-gradient-to-r from-primary-600 to-purple-600 px-3 sm:px-4 md:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 flex-shrink-0">
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-xl md:text-2xl font-bold text-white truncate">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white truncate">
                     {project.title}
                   </h2>
-                  <p className="text-primary-100 text-sm mt-1">
+                  <p className="text-primary-100 text-xs sm:text-sm mt-0.5 sm:mt-1">
                     {hasGallery && `${gallery.length} screenshots available`}
                   </p>
                 </div>
@@ -103,14 +123,14 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={onClose}
-                  className="ml-4 p-2 bg-white/20 hover:bg-white/30 rounded-full text-white transition-colors duration-200"
+                  className="flex-shrink-0 p-1.5 sm:p-2 bg-white/20 hover:bg-white/30 rounded-full text-white transition-colors duration-200"
                 >
-                  <XMarkIcon className="w-6 h-6" />
+                  <XMarkIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </motion.button>
               </div>
 
               {/* Content */}
-              <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
+              <div className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 custom-scrollbar" style={{ minHeight: 0 }}>
                 <div className="max-w-7xl mx-auto">
                   {/* Image Gallery */}
                   {hasGallery && (
@@ -319,8 +339,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                   </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>

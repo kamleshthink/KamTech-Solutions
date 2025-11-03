@@ -34,6 +34,32 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+    };
+  }, [isOpen]);
+
   const handleNavClick = (href: string) => {
     setIsOpen(false);
     const element = document.querySelector(href);
@@ -46,29 +72,29 @@ const Header: React.FC = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'top-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
-          : 'top-12 bg-transparent'
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg'
+          : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'
       }`}
     >
       <div className="container-custom">
-        <nav className="flex items-center justify-between py-4">
+        <nav className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2 sm:gap-3 flex-shrink-0"
           >
             <img
               src="/Assets/logo/PragyaTek Solutions.png"
               alt="PragyaTek Solutions Logo"
-              className="h-8 md:h-10 w-auto object-contain"
+              className="h-7 sm:h-8 md:h-10 w-auto object-contain"
               style={{
                 mixBlendMode: 'multiply',
                 filter: 'contrast(1.1)'
               }}
             />
-            <span className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
+            <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 dark:text-white truncate">
               PragyaTek Solutions
             </span>
           </motion.div>
@@ -88,36 +114,36 @@ const Header: React.FC = () => {
           </div>
 
           {/* Theme Toggle & Mobile Menu Button */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             {/* Theme Toggle */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 sm:p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
               aria-label="Toggle theme"
             >
-              <div className="w-5 h-5">
-                {isDark ? (
-                  <SunIcon className="w-5 h-5" />
-                ) : (
-                  <MoonIcon className="w-5 h-5" />
-                )}
-              </div>
-            </button>
+              {isDark ? (
+                <SunIcon className="w-5 h-5 sm:w-5 sm:h-5" />
+              ) : (
+                <MoonIcon className="w-5 h-5 sm:w-5 sm:h-5" />
+              )}
+            </motion.button>
 
             {/* Mobile Menu Button */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="md:hidden p-2 sm:p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
               aria-label="Toggle menu"
             >
-              <div className="w-6 h-6">
-                {isOpen ? (
-                  <XMarkIcon className="w-6 h-6" />
-                ) : (
-                  <Bars3Icon className="w-6 h-6" />
-                )}
-              </div>
-            </button>
+              {isOpen ? (
+                <XMarkIcon className="w-6 h-6 sm:w-6 sm:h-6" />
+              ) : (
+                <Bars3Icon className="w-6 h-6 sm:w-6 sm:h-6" />
+              )}
+            </motion.button>
           </div>
         </nav>
 
@@ -128,15 +154,20 @@ const Header: React.FC = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white dark:bg-gray-900 rounded-lg shadow-lg mt-2 overflow-hidden"
+              transition={{ duration: 0.2 }}
+              className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-lg shadow-lg mt-2 overflow-hidden border border-gray-200 dark:border-gray-700"
             >
-              <div className="py-4 space-y-2">
-                {navItems.map((item) => (
+              <div className="py-3 space-y-1">
+                {navItems.map((item, index) => (
                   <motion.button
                     key={item.label}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
                     whileHover={{ x: 10 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => handleNavClick(item.href)}
-                    className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+                    className="block w-full text-left px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 font-medium"
                   >
                     {item.label}
                   </motion.button>

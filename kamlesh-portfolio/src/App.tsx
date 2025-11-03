@@ -18,6 +18,8 @@ import CookieConsent from './components/CookieConsent';
 import TermsOfService from './components/TermsOfService';
 import CookiePolicy from './components/CookiePolicy';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
+import PWAUpdateNotification from './components/PWAUpdateNotification';
 
 const App: React.FC = () => {
   const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
@@ -72,6 +74,8 @@ const App: React.FC = () => {
           isOpen={isPrivacyPolicyOpen}
           onClose={() => setIsPrivacyPolicyOpen(false)}
         />
+        <PWAInstallPrompt />
+        <PWAUpdateNotification />
       </div>
     </ThemeProvider>
   );

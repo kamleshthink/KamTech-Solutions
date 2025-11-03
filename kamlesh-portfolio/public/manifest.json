@@ -5,33 +5,128 @@
   "icons": [
     {
       "src": "/Assets/logo/PragyaTek Solutions.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/logo/PragyaTek Solutions.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/logo/PragyaTek Solutions.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/logo/PragyaTek Solutions.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/logo/PragyaTek Solutions.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/logo/PragyaTek Solutions.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/logo/PragyaTek Solutions.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/Assets/logo/PragyaTek Solutions.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/logo/PragyaTek Solutions.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/Assets/logo/PragyaTek Solutions.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#3B82F6",
   "background_color": "#ffffff",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "scope": "/",
   "categories": ["business", "productivity", "technology"],
   "screenshots": [
     {
       "src": "/Assets/Achhadamproject3/Screenshot (756).png",
       "sizes": "1280x720",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with PragyaTek Solutions",
+      "url": "/#contact",
+      "icons": [
+        {
+          "src": "/Assets/logo/PragyaTek Solutions.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Our Services",
+      "short_name": "Services",
+      "description": "View our software development services",
+      "url": "/#services",
+      "icons": [
+        {
+          "src": "/Assets/logo/PragyaTek Solutions.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Portfolio",
+      "short_name": "Projects",
+      "description": "Check out our latest projects",
+      "url": "/#projects",
+      "icons": [
+        {
+          "src": "/Assets/logo/PragyaTek Solutions.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ],
   "related_applications": [],
   "prefer_related_applications": false,
   "dir": "ltr",
-  "lang": "en-US"
+  "lang": "en-US",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "iarc_rating_id": "",
+  "edge_side_panel": {
+    "preferred_width": 480
+  }
 }

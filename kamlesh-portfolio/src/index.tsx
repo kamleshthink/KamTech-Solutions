@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import * as serviceWorkerRegistration from './utils/serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,19 +14,15 @@ root.render(
   </React.StrictMode>
 );
 
-// Register service worker for PWA support
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/service-worker.js')
-      .then((registration) => {
-        console.log('✅ Service Worker registered successfully:', registration.scope);
-      })
-      .catch((error) => {
-        console.log('❌ Service Worker registration failed:', error);
-      });
-  });
-}
+// Register service worker with enhanced PWA features
+serviceWorkerRegistration.register({
+  onSuccess: (registration) => {
+    console.log('[PWA] ✅ Service Worker registered successfully. App is now available offline!');
+  },
+  onUpdate: (registration) => {
+    console.log('[PWA] 🔄 New version available! Update notification will be shown.');
+  },
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

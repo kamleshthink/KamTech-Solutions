@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center paper-texture-blue relative overflow-hidden pt-32">
+    <section id="home" className="min-h-screen flex items-center justify-center paper-texture-blue relative overflow-hidden pt-20 sm:pt-24 md:pt-28 lg:pt-32">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 dark:bg-primary-800 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-bounce-gentle"></div>
