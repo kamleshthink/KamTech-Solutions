@@ -88,7 +88,7 @@ const Header: React.FC = () => {
             <img
               src="/Assets/logo/PragyaTek Solutions.png"
               alt="PragyaTek Solutions Logo"
-              className="h-7 sm:h-8 md:h-10 w-auto object-contain"
+              className="h-7 sm:h-8 md:h-10 w-7 sm:w-8 md:w-10 object-cover rounded-full"
               style={{
                 mixBlendMode: 'multiply',
                 filter: 'contrast(1.1)'

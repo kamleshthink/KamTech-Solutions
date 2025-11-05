@@ -15,11 +15,11 @@ import { ContactForm } from '../types';
 import { contactAPI } from '../services/api';
 
 const schema = yup.object({
-  name: yup.string().required('Name is required'),
+  name: yup.string().required('Name is required').min(2, 'Name must be at least 2 characters').max(100, 'Name cannot exceed 100 characters'),
   email: yup.string().email('Invalid email').required('Email is required'),
   phone: yup.string().notRequired(),
-  subject: yup.string().required('Subject is required'),
-  message: yup.string().required('Message is required').min(10, 'Message must be at least 10 characters'),
+  subject: yup.string().required('Subject is required').min(5, 'Subject must be at least 5 characters').max(200, 'Subject cannot exceed 200 characters'),
+  message: yup.string().required('Message is required').min(10, 'Message must be at least 10 characters').max(2000, 'Message cannot exceed 2000 characters'),
   projectBudget: yup.string().notRequired(),
   projectType: yup.string().notRequired(),
   urgency: yup.string().notRequired()
@@ -50,8 +50,11 @@ const Contact: React.FC = () => {
         setIsSubmitted(true);
         reset();
 
-        // Reset success message after 5 seconds
-        setTimeout(() => setIsSubmitted(false), 5000);
+        // Scroll to top to show success message
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Reset success message after 8 seconds
+        setTimeout(() => setIsSubmitted(false), 8000);
       } else {
         setSubmitError(response.message || 'Failed to send message. Please try again.');
       }
@@ -257,12 +260,31 @@ const Contact: React.FC = () => {
 
             {isSubmitted && (
               <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg flex items-center gap-2"
+                initial={{ opacity: 0, scale: 0.8, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 30
+                }}
+                className="mb-6 p-6 bg-gradient-to-r from-green-500 to-emerald-600 dark:from-green-600 dark:to-emerald-700 text-white rounded-xl shadow-2xl"
               >
-                <CheckCircleIcon className="w-5 h-5" />
-                <span>Message sent successfully! I'll get back to you soon.</span>
+                <div className="flex items-start gap-4">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 500 }}
+                  >
+                    <CheckCircleIcon className="w-8 h-8 flex-shrink-0" />
+                  </motion.div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold mb-1">Message Sent Successfully! ✨</h4>
+                    <p className="text-green-50 text-sm leading-relaxed">
+                      Thank you for reaching out! Your message has been received and I'll get back to you within 24-48 hours.
+                      Check your email for a confirmation.
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             )}
 

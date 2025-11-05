@@ -19,6 +19,9 @@ const getEmailTransporter = () => {
 // @access  Public
 exports.submitContact = async (req, res, next) => {
   try {
+    console.log('📨 Contact form submission received');
+    console.log('📋 Request body:', req.body);
+
     const { name, email, phone, subject, message, projectBudget, projectType, urgency } = req.body;
 
     // Get IP and User Agent

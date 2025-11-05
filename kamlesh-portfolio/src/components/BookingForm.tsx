@@ -294,10 +294,17 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
       });
 
       const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-      const response = await fetch(`${API_URL}/bookings`, {
+      const fullURL = `${API_URL}/bookings`;
+      console.log('📤 Submitting booking to:', fullURL);
+      console.log('📋 Form data:', Object.fromEntries(formDataToSend.entries()));
+
+      const response = await fetch(fullURL, {
         method: 'POST',
         body: formDataToSend
       });
+
+      console.log('📥 Response status:', response.status);
+      console.log('📥 Response OK:', response.ok);
 
       if (!response.ok) {
         throw new Error('Failed to submit booking');

@@ -107,11 +107,11 @@ const PWAInstallPrompt: React.FC = () => {
             {/* Header with gradient */}
             <div className="bg-gradient-to-r from-primary-600 to-purple-600 px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
                   <img
                     src="/Assets/logo/PragyaTek Solutions.png"
                     alt="PragyaTek"
-                    className="w-10 h-10 object-contain"
+                    className="w-10 h-10 object-cover rounded-full"
                   />
                 </div>
                 <div>

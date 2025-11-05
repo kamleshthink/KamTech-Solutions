@@ -120,7 +120,7 @@ const Footer: React.FC<FooterProps> = ({ onTermsClick, onCookiePolicyClick, onPr
                   <img
                     src="/Assets/logo/PragyaTek Solutions.png"
                     alt="PragyaTek Solutions Logo"
-                    className="h-8 sm:h-10 w-auto"
+                    className="h-8 sm:h-10 w-8 sm:w-10 object-cover rounded-full"
                   />
                 </div>
                 <p className="text-gray-400 mb-4 sm:mb-6 max-w-md text-sm sm:text-base leading-relaxed">

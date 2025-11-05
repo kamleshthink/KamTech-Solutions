@@ -24,9 +24,10 @@ const bookingLimiter = rateLimit({
 });
 
 // Public routes
+// Rate limiter disabled in development for testing
 router.post(
   '/',
-  bookingLimiter,
+  process.env.NODE_ENV === 'production' ? bookingLimiter : (req, res, next) => next(),
   upload.array('files', 10), // Allow up to 10 files
   submitBooking
 );

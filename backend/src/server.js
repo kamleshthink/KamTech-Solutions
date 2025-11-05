@@ -33,12 +33,20 @@ const contactRoutes = require('./routes/contactRoutes');
 const authRoutes = require('./routes/authRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const cookieConsentRoutes = require('./routes/cookieConsentRoutes');
+const { cloudinary } = require('./config/cloudinary');
 
 // Initialize Express app
 const app = express();
 
 // Connect to MongoDB
 connectDB();
+
+// Verify Cloudinary configuration
+if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY) {
+  console.log('☁️  Cloudinary Connected:', process.env.CLOUDINARY_CLOUD_NAME);
+} else {
+  console.warn('⚠️  Cloudinary credentials not configured');
+}
 
 // Middleware
 app.use(helmet()); // Security headers

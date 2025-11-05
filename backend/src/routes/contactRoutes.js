@@ -21,8 +21,9 @@ const contactLimiter = rateLimit({
 });
 
 // Public route
+// Rate limiter disabled in development for testing
 router.post('/',
-  contactLimiter,
+  process.env.NODE_ENV === 'production' ? contactLimiter : (req, res, next) => next(),
   contactValidationRules,
   validate,
   submitContact

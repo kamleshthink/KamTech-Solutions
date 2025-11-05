@@ -1,5 +1,7 @@
 // API Configuration
+console.log('🔧 Environment REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+console.log('🔧 Using API_BASE_URL:', API_BASE_URL);
 
 // API Response type
 interface ApiResponse<T = any> {
@@ -15,6 +17,8 @@ async function apiRequest<T = any>(
   options: RequestInit = {}
 ): Promise<ApiResponse<T>> {
   const url = `${API_BASE_URL}${endpoint}`;
+  console.log('📤 API Request:', url);
+  console.log('📋 Request options:', options);
 
   const defaultHeaders = {
     'Content-Type': 'application/json',
@@ -29,15 +33,20 @@ async function apiRequest<T = any>(
       },
     });
 
+    console.log('📥 Response status:', response.status);
+    console.log('📥 Response OK:', response.ok);
+
     const data = await response.json();
+    console.log('📥 Response data:', data);
 
     if (!response.ok) {
+      console.log('❌ Validation errors:', data.errors);
       throw new Error(data.message || 'API request failed');
     }
 
     return data;
   } catch (error) {
-    console.error('API Error:', error);
+    console.error('❌ API Error:', error);
     throw error;
   }
 }

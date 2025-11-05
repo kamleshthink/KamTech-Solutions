@@ -7,16 +7,31 @@ export const projects: Project[] = [
     title: "Achhadam - Digital Farming Platform",
     description: "Revolutionary full-stack AgriTech platform connecting farmers, buyers, and transporters across India. Features real-time market pricing, secure payments, GPS logistics, and multi-language support. Serving farmers nationwide with 127+ commits on main platform.",
     detailedDescription: "Achhadam is a comprehensive agriculture technology platform that revolutionizes how farmers, buyers, and transporters interact in the agricultural supply chain. Built with modern web technologies, it provides real-time market data, secure transaction processing, and efficient logistics management. The platform features farmer profiles, buyer dashboards, transporter tracking, secure payment gateways, real-time price updates, multi-language support for regional languages, and GPS-enabled logistics management.",
-    image: "https://via.placeholder.com/1200x675/10B981/FFFFFF?text=Achhadam+AgriTech+Platform",
+    image: "/Assets/Achhadamproject3/Screenshot (756).png",
     gallery: [
-      "https://via.placeholder.com/1200x675/10B981/FFFFFF?text=Achhadam+Dashboard",
-      "https://via.placeholder.com/1200x675/10B981/FFFFFF?text=Farmer+Portal",
-      "https://via.placeholder.com/1200x675/10B981/FFFFFF?text=Buyer+Dashboard",
-      "https://via.placeholder.com/1200x675/10B981/FFFFFF?text=Transporter+Tracking"
+      "/Assets/Achhadamproject3/Screenshot (756).png",
+      "/Assets/Achhadamproject3/Screenshot (757).png",
+      "/Assets/Achhadamproject3/Screenshot (758).png",
+      "/Assets/Achhadamproject3/Screenshot (759).png",
+      "/Assets/Achhadamproject3/Screenshot (760).png",
+      "/Assets/Achhadamproject3/Screenshot (761).png",
+      "/Assets/Achhadamproject3/Screenshot (762).png",
+      "/Assets/Achhadamproject3/Screenshot (763).png",
+      "/Assets/Achhadamproject3/Screenshot (764).png",
+      "/Assets/Achhadamproject3/Screenshot (765).png",
+      "/Assets/Achhadamproject3/Screenshot (766).png",
+      "/Assets/Achhadamproject3/Screenshot (767).png",
+      "/Assets/Achhadamproject3/Screenshot (768).png",
+      "/Assets/Achhadamproject3/Screenshot (769).png",
+      "/Assets/Achhadamproject3/Screenshot (770).png",
+      "/Assets/Achhadamproject3/Screenshot (771).png",
+      "/Assets/Achhadamproject3/Screenshot (772).png",
+      "/Assets/Achhadamproject3/Screenshot (773).png",
+      "/Assets/Achhadamproject3/Screenshot (774).png"
     ],
     technologies: ["React", "Next.js", "TypeScript", "Node.js", "Express", "MongoDB", "REST API", "Socket.io", "JWT", "Razorpay"],
     githubUrl: "",
-    liveUrl: "",
+    liveUrl: "https://achhadam.com",
     category: "web",
     featured: true,
     stats: { commits: "127+", users: "1000+", status: "Live", impact: "Nationwide" }
@@ -97,7 +112,7 @@ export const projects: Project[] = [
     description: "Advanced deep learning model for early cancer detection using medical imaging. Implements CNN architecture with TensorFlow and Keras for high-accuracy diagnosis. Features image preprocessing, model training, and real-time prediction capabilities.",
     image: "/Assets/cancer detection model/Screenshot (830).png",
     technologies: ["Python", "TensorFlow", "Keras", "NumPy", "Pandas", "OpenCV", "Scikit-learn"],
-    githubUrl: "https://github.com/kamleshthink/cancer-detection-ml",
+    githubUrl: "https://github.com/kamleshthink/Cancer-detection-ML-model",
     category: "ml",
     stats: { accuracy: "94%", model: "CNN", dataset: "10k+ images" }
   },
@@ -131,7 +146,7 @@ export const projects: Project[] = [
     image: "/Assets/jobportal-free-template.jpg.avif",
     technologies: ["TypeScript", "React", "Node.js", "MongoDB", "Express", "JWT", "Redux"],
     githubUrl: "https://github.com/kamleshthink/Jobportalprof",
-    liveUrl: "https://job-portal-demo.vercel.app",
+    liveUrl: "https://jobportalprof1.netlify.app/",
     category: "web",
     stats: { commits: "10+", jobs: "200+", status: "Live" }
   },
@@ -142,6 +157,7 @@ export const projects: Project[] = [
     image: "/Assets/freelancer platform ui/Screenshot (822).png",
     technologies: ["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Stripe", "WebSockets", "Prisma"],
     githubUrl: "https://github.com/AIconsciousness/gig",
+    liveUrl: "https://jobportalprof1.netlify.app/",
     category: "web",
     stats: { status: "In Development", features: "50+", commits: "7+" }
   },
@@ -152,7 +168,7 @@ export const projects: Project[] = [
     image: "/Assets/satyanews/Screenshot (821).png",
     technologies: ["React", "Node.js", "MongoDB", "Express", "News API", "Redux", "Socket.io"],
     githubUrl: "https://github.com/kamleshthink/news-portal",
-    liveUrl: "https://news-portal-demo.vercel.app",
+    liveUrl: "https://satyanews.netlify.app/",
     category: "web"
   },
   {

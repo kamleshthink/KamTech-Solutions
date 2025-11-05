@@ -18,6 +18,10 @@ const transporter = nodemailer.createTransport({
 // @access  Public
 exports.submitBooking = async (req, res, next) => {
   try {
+    console.log('📨 Booking submission received');
+    console.log('📋 Request body:', req.body);
+    console.log('📎 Files:', req.files ? req.files.length : 0);
+
     const {
       clientName,
       email,
