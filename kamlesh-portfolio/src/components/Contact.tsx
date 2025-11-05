@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
                 <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                   <li>✅ 2-3 Days Response Time</li>
                   <li>✅ Free Consultation (Worth ₹5,000)</li>
-                  <li>✅ 300% Average ROI</li>
+                  <li>✅ 100% Average ROI</li>
                   <li>✅ 3 Months Free Support</li>
                 </ul>
               </div>

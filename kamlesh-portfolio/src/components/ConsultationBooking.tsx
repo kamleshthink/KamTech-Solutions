@@ -1,0 +1,306 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  VideoCameraIcon,
+  PhoneIcon,
+  CalendarDaysIcon,
+  ClockIcon,
+  XMarkIcon,
+  CheckCircleIcon
+} from '@heroicons/react/24/outline';
+
+interface ConsultationBookingProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClose }) => {
+  const [selectedMode, setSelectedMode] = useState<'google-meet' | 'phone' | null>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    preferredDate: '',
+    preferredTime: '',
+    projectType: '',
+    message: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you can integrate with your booking API
+    console.log('Consultation booking:', { ...formData, mode: selectedMode });
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      onClose();
+      setSelectedMode(null);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        preferredDate: '',
+        preferredTime: '',
+        projectType: '',
+        message: ''
+      });
+    }, 3000);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+      />
+
+      {/* Modal */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl"
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
+          <XMarkIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+        </button>
+
+        <div className="p-6 sm:p-8">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring" }}
+              className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full mb-4"
+            >
+              <CalendarDaysIcon className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+            </motion.div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              Schedule Free Consultation
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Worth ₹5,000 - Discuss your project with our expert
+            </p>
+          </div>
+
+          {isSubmitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-8"
+            >
+              <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                Consultation Booked Successfully!
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                We'll contact you within 2-3 hours to confirm the schedule.
+              </p>
+            </motion.div>
+          ) : (
+            <>
+              {/* Mode Selection */}
+              {!selectedMode ? (
+                <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setSelectedMode('google-meet')}
+                    className="p-6 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-primary-500 dark:hover:border-primary-400 transition-colors group"
+                  >
+                    <VideoCameraIcon className="w-12 h-12 text-primary-600 dark:text-primary-400 mx-auto mb-3" />
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                      Google Meet
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Virtual face-to-face meeting
+                    </p>
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setSelectedMode('phone')}
+                    className="p-6 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-primary-500 dark:hover:border-primary-400 transition-colors group"
+                  >
+                    <PhoneIcon className="w-12 h-12 text-green-600 dark:text-green-400 mx-auto mb-3" />
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                      Phone Call
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Direct phone consultation
+                    </p>
+                  </motion.button>
+                </div>
+              ) : (
+                <>
+                  {/* Selected Mode */}
+                  <div className="mb-6 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      {selectedMode === 'google-meet' ? (
+                        <VideoCameraIcon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+                      ) : (
+                        <PhoneIcon className="w-6 h-6 text-green-600 dark:text-green-400" />
+                      )}
+                      <span className="font-medium text-gray-900 dark:text-white">
+                        {selectedMode === 'google-meet' ? 'Google Meet' : 'Phone Call'}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => setSelectedMode(null)}
+                      className="text-sm text-primary-600 dark:text-primary-400 hover:underline"
+                    >
+                      Change
+                    </button>
+                  </div>
+
+                  {/* Booking Form */}
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                          Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                          placeholder="Your name"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                          Preferred Date *
+                        </label>
+                        <input
+                          type="date"
+                          required
+                          value={formData.preferredDate}
+                          onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
+                          min={new Date().toISOString().split('T')[0]}
+                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                          Preferred Time *
+                        </label>
+                        <select
+                          required
+                          value={formData.preferredTime}
+                          onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                        >
+                          <option value="">Select time</option>
+                          <option value="10:00 AM">10:00 AM</option>
+                          <option value="11:00 AM">11:00 AM</option>
+                          <option value="12:00 PM">12:00 PM</option>
+                          <option value="2:00 PM">2:00 PM</option>
+                          <option value="3:00 PM">3:00 PM</option>
+                          <option value="4:00 PM">4:00 PM</option>
+                          <option value="5:00 PM">5:00 PM</option>
+                          <option value="6:00 PM">6:00 PM</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Project Type
+                      </label>
+                      <select
+                        value={formData.projectType}
+                        onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                      >
+                        <option value="">Select type</option>
+                        <option value="web-development">Web Development</option>
+                        <option value="mobile-app">Mobile App</option>
+                        <option value="ml-ai">ML/AI Solution</option>
+                        <option value="full-stack">Full Stack Project</option>
+                        <option value="consulting">Consulting</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Brief Description (Optional)
+                      </label>
+                      <textarea
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        rows={3}
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                        placeholder="Tell us about your project..."
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                    >
+                      Confirm Consultation Booking
+                    </button>
+
+                    <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+                      We'll send you a confirmation email with {selectedMode === 'google-meet' ? 'the Google Meet link' : 'the phone number'} shortly
+                    </p>
+                  </form>
+                </>
+              )}
+            </>
+          )}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default ConsultationBooking;

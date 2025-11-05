@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import ConsultationBooking from './ConsultationBooking';
 
 interface FAQItem {
   question: string;
@@ -9,6 +10,7 @@ interface FAQItem {
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   const faqs: FAQItem[] = [
     {
@@ -137,15 +139,21 @@ const FAQ: React.FC = () => {
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             Still have questions? Let's talk!
           </p>
-          <a
-            href="#contact"
+          <button
+            onClick={() => setIsConsultationOpen(true)}
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
           >
             Schedule Free Consultation
             <span className="text-sm">(Worth ₹5,000)</span>
-          </a>
+          </button>
         </motion.div>
       </div>
+
+      {/* Consultation Booking Modal */}
+      <ConsultationBooking
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+      />
     </section>
   );
 };

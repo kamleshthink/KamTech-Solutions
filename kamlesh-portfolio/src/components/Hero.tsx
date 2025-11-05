@@ -150,7 +150,7 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
             >
               {[
                 {
-                  number: '₹50L+',
+                  number: '₹5L+',
                   label: 'Client Revenue',
                   icon: (
                     <svg className="w-10 h-10 mx-auto text-green-600 dark:text-green-400" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">

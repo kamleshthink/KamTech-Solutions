@@ -9,9 +9,9 @@ import {
 
 const About: React.FC = () => {
   const achievements = [
-    "Generated ₹50L+ in revenue for client businesses",
+    "Generated ₹5L+ in revenue for client businesses",
     "Delivered 3+ enterprise-grade applications serving 10,000+ users",
-    "Achieved 300% average ROI across all completed projects",
+    "Achieved 100% average ROI across all completed projects",
     "Maintained 98% on-time project delivery rate",
     "Cross-industry expertise: AgriTech, Construction, E-Commerce, Healthcare",
     "Professional support with <2 hour average response time",
@@ -61,18 +61,27 @@ const About: React.FC = () => {
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-1">
                 <div className="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
                   {/* Professional Agency Illustration */}
-                  <div className="space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="space-y-4 sm:space-y-6 md:space-y-8 relative">
+                    {/* Tech Logos Background Pattern */}
+                    <div className="absolute inset-0 opacity-5 overflow-hidden">
+                      <div className="absolute top-4 left-4 text-6xl grayscale">⚛️</div>
+                      <div className="absolute top-16 right-8 text-5xl grayscale">🟢</div>
+                      <div className="absolute bottom-20 left-8 text-5xl grayscale">🔷</div>
+                      <div className="absolute bottom-8 right-12 text-6xl grayscale">📦</div>
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl grayscale opacity-30">⚙️</div>
+                    </div>
+
                     {/* Team Work Illustration */}
-                    <div className="flex justify-center items-center gap-4">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl font-bold shadow-2xl">
-                        KT
+                    <div className="flex justify-center items-center gap-4 relative z-10">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-lg sm:text-2xl md:text-3xl font-bold shadow-2xl">
+                        PTS
                       </div>
                     </div>
 
                     {/* Stats Cards */}
-                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 relative z-10">
                       <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl border-2 border-green-200 dark:border-green-800">
-                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">₹50L+</div>
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">₹5L+</div>
                         <div className="text-xs sm:text-sm text-green-700 dark:text-green-500 font-medium">Revenue</div>
                       </div>
                       <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl border-2 border-blue-200 dark:border-blue-800">
@@ -84,7 +93,7 @@ const About: React.FC = () => {
                         <div className="text-xs sm:text-sm text-purple-700 dark:text-purple-500 font-medium">Success</div>
                       </div>
                       <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl border-2 border-orange-200 dark:border-orange-800">
-                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">300%</div>
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">100%</div>
                         <div className="text-xs sm:text-sm text-orange-700 dark:text-orange-500 font-medium">Avg ROI</div>
                       </div>
                     </div>
@@ -221,9 +230,9 @@ const About: React.FC = () => {
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-6 pt-6">
               {[
-                { icon: BriefcaseIcon, number: "₹50L+", label: "Client Revenue" },
+                { icon: BriefcaseIcon, number: "₹5L+", label: "Client Revenue" },
                 { icon: HeartIcon, number: "10K+", label: "App Users" },
-                { icon: AcademicCapIcon, number: "300%", label: "Avg ROI" }
+                { icon: AcademicCapIcon, number: "100%", label: "Avg ROI" }
               ].map((stat, index) => (
                 <motion.div
                   key={index}

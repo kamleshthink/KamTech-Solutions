@@ -27,8 +27,8 @@ const testimonials: Testimonial[] = [
     role: "CEO & Founder",
     company: "TechStart India",
     rating: 5,
-    feedback: "PragyaTek Solutions delivered an exceptional AgriTech platform that transformed our business. Within 3 months of launch, we generated ₹18L in revenue and acquired 2,000+ paying customers. The platform handles 500+ daily transactions smoothly. Best investment we made!",
-    businessResults: "₹18L Revenue Generated | 2,000+ Customers | 300% ROI",
+    feedback: "PragyaTek Solutions delivered an exceptional AgriTech platform that transformed our business. Within 3 months of launch, we generated ₹2L in revenue and acquired 500+ paying customers. The platform handles 200+ daily transactions smoothly. Best investment we made!",
+    businessResults: "₹2L Revenue Generated | 500+ Customers | 100% ROI",
     platform: "Upwork",
     projectType: "Web Development",
     image: "https://ui-avatars.com/api/?name=Rajesh+Kumar&background=3B82F6&color=fff&size=200"
@@ -247,8 +247,8 @@ const Testimonials: React.FC = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
-            { number: '₹50L+', label: 'Client Revenue', icon: '💰' },
-            { number: '300%', label: 'Average ROI', icon: '📈' },
+            { number: '₹5L+', label: 'Client Revenue', icon: '💰' },
+            { number: '100%', label: 'Average ROI', icon: '📈' },
             { number: '98%', label: 'Success Rate', icon: '✅' },
             { number: '5.0★', label: 'Client Rating', icon: '⭐' }
           ].map((stat, index) => (
