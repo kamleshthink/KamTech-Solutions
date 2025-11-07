@@ -170,6 +170,31 @@ export const testimonialsAPI = {
 };
 
 // ====================
+// CONSULTATIONS API
+// ====================
+
+export interface ConsultationFormData {
+  name: string;
+  email: string;
+  phone: string;
+  preferredDate: string;
+  preferredTime: string;
+  mode: 'google-meet' | 'phone';
+  projectType?: string;
+  message?: string;
+}
+
+export const consultationsAPI = {
+  // Submit consultation booking
+  submit: (data: ConsultationFormData): Promise<ApiResponse> => {
+    return apiRequest('/consultations', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+};
+
+// ====================
 // HEALTH CHECK API
 // ====================
 
@@ -183,5 +208,6 @@ export default {
   contact: contactAPI,
   projects: projectsAPI,
   testimonials: testimonialsAPI,
+  consultations: consultationsAPI,
   health: healthAPI,
 };

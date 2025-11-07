@@ -6,8 +6,10 @@ import {
   CalendarDaysIcon,
   ClockIcon,
   XMarkIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  ExclamationTriangleIcon
 } from '@heroicons/react/24/outline';
+import { consultationsAPI } from '../services/api';
 
 interface ConsultationBookingProps {
   isOpen: boolean;
@@ -26,26 +28,58 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you can integrate with your booking API
-    console.log('Consultation booking:', { ...formData, mode: selectedMode });
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      onClose();
-      setSelectedMode(null);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        preferredDate: '',
-        preferredTime: '',
-        projectType: '',
-        message: ''
+
+    if (!selectedMode) {
+      setError('Please select a consultation mode');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await consultationsAPI.submit({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime,
+        mode: selectedMode,
+        projectType: formData.projectType || undefined,
+        message: formData.message || undefined
       });
-    }, 3000);
+
+      if (response.success) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          onClose();
+          setSelectedMode(null);
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            preferredDate: '',
+            preferredTime: '',
+            projectType: '',
+            message: ''
+          });
+          setError(null);
+        }, 3000);
+      } else {
+        setError(response.message || 'Failed to submit consultation booking');
+      }
+    } catch (err: any) {
+      console.error('Consultation submission error:', err);
+      setError(err.message || 'Failed to submit consultation booking. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -66,7 +100,8 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl"
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overscroll-contain"
+        style={{ WebkitOverflowScrolling: 'touch' }}
       >
         {/* Close button */}
         <button
@@ -178,8 +213,9 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
                           placeholder="Your name"
+                          autoComplete="name"
                         />
                       </div>
 
@@ -190,10 +226,12 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
                         <input
                           type="email"
                           required
+                          inputMode="email"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
                           placeholder="your.email@example.com"
+                          autoComplete="email"
                         />
                       </div>
                     </div>
@@ -205,10 +243,12 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
                       <input
                         type="tel"
                         required
+                        inputMode="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
                         placeholder="+91 98765 43210"
+                        autoComplete="tel"
                       />
                     </div>
 
@@ -223,7 +263,7 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
                           value={formData.preferredDate}
                           onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
                           min={new Date().toISOString().split('T')[0]}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
                         />
                       </div>
 
@@ -235,7 +275,7 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
                           required
                           value={formData.preferredTime}
                           onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
                         >
                           <option value="">Select time</option>
                           <option value="10:00 AM">10:00 AM</option>
@@ -257,7 +297,7 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
                       <select
                         value={formData.projectType}
                         onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
                       >
                         <option value="">Select type</option>
                         <option value="web-development">Web Development</option>
@@ -277,16 +317,39 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         rows={3}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white resize-none"
                         placeholder="Tell us about your project..."
                       />
                     </div>
 
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-start gap-3"
+                      >
+                        <ExclamationTriangleIcon className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
+                        <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                      </motion.div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                      disabled={isSubmitting}
+                      className="w-full py-3 sm:py-3 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 active:scale-95 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 touch-manipulation"
+                      style={{ WebkitTapHighlightColor: 'transparent' }}
                     >
-                      Confirm Consultation Booking
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          <span>Booking...</span>
+                        </>
+                      ) : (
+                        'Confirm Consultation Booking'
+                      )}
                     </button>
 
                     <p className="text-xs text-center text-gray-500 dark:text-gray-400">

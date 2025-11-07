@@ -32,6 +32,7 @@ const testimonialRoutes = require('./routes/testimonialRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const authRoutes = require('./routes/authRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
+const consultationRoutes = require('./routes/consultationRoutes');
 const cookieConsentRoutes = require('./routes/cookieConsentRoutes');
 const { cloudinary } = require('./config/cloudinary');
 
@@ -99,6 +100,7 @@ app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/consultations', consultationRoutes);
 app.use('/api/cookie-consent', cookieConsentRoutes);
 
 // 404 handler
