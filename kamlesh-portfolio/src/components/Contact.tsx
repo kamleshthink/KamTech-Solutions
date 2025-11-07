@@ -308,9 +308,11 @@ const Contact: React.FC = () => {
                   {...register('name')}
                   type="text"
                   id="name"
+                  inputMode="text"
+                  autoComplete="name"
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 ${
-                    errors.name 
-                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
+                    errors.name
+                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                       : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
                   }`}
                   placeholder="Your name"
@@ -330,9 +332,11 @@ const Contact: React.FC = () => {
                   {...register('email')}
                   type="email"
                   id="email"
+                  inputMode="email"
+                  autoComplete="email"
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 ${
-                    errors.email 
-                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
+                    errors.email
+                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                       : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
                   }`}
                   placeholder="your.email@example.com"
@@ -352,9 +356,11 @@ const Contact: React.FC = () => {
                   {...register('subject')}
                   type="text"
                   id="subject"
+                  inputMode="text"
+                  autoComplete="off"
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 ${
-                    errors.subject 
-                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
+                    errors.subject
+                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                       : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
                   }`}
                   placeholder="What's this about?"
@@ -375,6 +381,8 @@ const Contact: React.FC = () => {
                   {...register('phone')}
                   type="tel"
                   id="phone"
+                  inputMode="tel"
+                  autoComplete="tel"
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200"
                   placeholder="+91 98765 43210"
                 />
@@ -447,7 +455,8 @@ const Contact: React.FC = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 sm:py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 touch-manipulation active:scale-95"
+                style={{ WebkitTapHighlightColor: 'transparent' }}
               >
                 {isSubmitting ? (
                   <>

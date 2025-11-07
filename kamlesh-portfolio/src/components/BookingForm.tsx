@@ -265,6 +265,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
+
+    console.log('📤 BookingForm: Form submitted on mobile/desktop');
 
     if (!validateStep(4)) {
       setSubmitError('Please fill all required fields');
@@ -479,6 +482,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                               value={formData.clientName}
                               onChange={handleInputChange}
                               required
+                              inputMode="text"
+                              autoComplete="name"
                               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:text-white"
                               placeholder="Your full name"
                             />
@@ -494,6 +499,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                               value={formData.email}
                               onChange={handleInputChange}
                               required
+                              inputMode="email"
+                              autoComplete="email"
                               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:text-white"
                               placeholder="your.email@example.com"
                             />
@@ -509,6 +516,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                               value={formData.phone}
                               onChange={handleInputChange}
                               required
+                              inputMode="tel"
+                              autoComplete="tel"
                               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:text-white"
                               placeholder="+91 98765 43210"
                             />
@@ -957,11 +966,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                         type="button"
                         onClick={handleSubmit}
                         disabled={isSubmitting || !validateStep(4)}
-                        className={`px-3 sm:px-4 md:px-6 py-2 rounded-lg font-medium transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${
+                        className={`px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap touch-manipulation active:scale-95 ${
                           isSubmitting || !validateStep(4)
                             ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
                             : 'bg-gradient-to-r from-primary-600 to-purple-600 text-white hover:from-primary-700 hover:to-purple-700'
                         }`}
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
                       >
                         {isSubmitting ? 'Submitting...' : 'Submit'}
                       </button>
