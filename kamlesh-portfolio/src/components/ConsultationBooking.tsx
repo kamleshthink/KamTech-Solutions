@@ -31,11 +31,34 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Lock body scroll when modal is open
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = '0px';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [isOpen]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
 
     if (!selectedMode) {
       setError('Please select a consultation mode');
+      return;
+    }
+
+    // Validate all required fields
+    if (!formData.name || !formData.email || !formData.phone || !formData.preferredDate || !formData.preferredTime) {
+      setError('Please fill all required fields');
       return;
     }
 
@@ -43,16 +66,27 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
     setError(null);
 
     try {
-      const response = await consultationsAPI.submit({
+      console.log('📤 Submitting consultation booking...', {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         preferredDate: formData.preferredDate,
         preferredTime: formData.preferredTime,
-        mode: selectedMode,
-        projectType: formData.projectType || undefined,
-        message: formData.message || undefined
+        mode: selectedMode
       });
+
+      const response = await consultationsAPI.submit({
+        name: formData.name.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim(),
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime,
+        mode: selectedMode,
+        projectType: formData.projectType ? formData.projectType.trim() : undefined,
+        message: formData.message ? formData.message.trim() : undefined
+      });
+
+      console.log('📥 Response received:', response);
 
       if (response.success) {
         setIsSubmitted(true);
@@ -85,14 +119,15 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ isOpen, onClo
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4" style={{ position: 'fixed' }}>
       {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+        style={{ position: 'fixed' }}
       />
 
       {/* Modal */}
