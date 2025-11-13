@@ -24,28 +24,32 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     // Check for saved theme preference or default to dark mode
-    const savedTheme = localStorage.getItem('theme');
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
 
-    if (savedTheme === 'light') {
-      setIsDark(false);
-      document.documentElement.classList.remove('dark');
-    } else {
-      // Default to dark mode
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
+      if (savedTheme === 'light') {
+        setIsDark(false);
+        document.documentElement.classList.remove('dark');
+      } else {
+        // Default to dark mode
+        setIsDark(true);
+        document.documentElement.classList.add('dark');
+      }
     }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
-    
-    if (newTheme) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+
+    if (typeof window !== 'undefined') {
+      if (newTheme) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
     }
   };
 

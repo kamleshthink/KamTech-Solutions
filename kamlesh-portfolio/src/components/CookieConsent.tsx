@@ -33,21 +33,23 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onPrivacyClick, onCookieP
 
   useEffect(() => {
     // Check if user has already given consent
-    const consentGiven = localStorage.getItem('cookie_consent');
-    const storedUserId = localStorage.getItem('cookie_user_id');
+    if (typeof window !== 'undefined') {
+      const consentGiven = localStorage.getItem('cookie_consent');
+      const storedUserId = localStorage.getItem('cookie_user_id');
 
-    if (!consentGiven) {
-      // Show banner after a short delay for better UX
-      setTimeout(() => setShowBanner(true), 1000);
-    }
+      if (!consentGiven) {
+        // Show banner after a short delay for better UX
+        setTimeout(() => setShowBanner(true), 1000);
+      }
 
-    // Get or create user ID
-    if (storedUserId) {
-      setUserId(storedUserId);
-    } else {
-      const newUserId = generateUUID();
-      setUserId(newUserId);
-      localStorage.setItem('cookie_user_id', newUserId);
+      // Get or create user ID
+      if (storedUserId) {
+        setUserId(storedUserId);
+      } else {
+        const newUserId = generateUUID();
+        setUserId(newUserId);
+        localStorage.setItem('cookie_user_id', newUserId);
+      }
     }
   }, []);
 
@@ -85,13 +87,15 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onPrivacyClick, onCookieP
           .filter(([_, value]) => value)
           .map(([key, _]) => key),
         timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent,
+        userAgent: typeof window !== 'undefined' ? navigator.userAgent : '',
         preferences: acceptedPreferences,
       };
 
       // Save to localStorage
-      localStorage.setItem('cookie_consent', JSON.stringify(consentData));
-      localStorage.setItem('cookie_consent_timestamp', new Date().toISOString());
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cookie_consent', JSON.stringify(consentData));
+        localStorage.setItem('cookie_consent_timestamp', new Date().toISOString());
+      }
 
       // Save to backend
       const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -116,7 +120,9 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onPrivacyClick, onCookieP
     } catch (error) {
       console.error('Error saving cookie consent:', error);
       // Still save locally and hide banner even if API fails
-      localStorage.setItem('cookie_consent', JSON.stringify(preferences));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cookie_consent', JSON.stringify(preferences));
+      }
       setShowBanner(false);
       setShowCustomize(false);
     }
