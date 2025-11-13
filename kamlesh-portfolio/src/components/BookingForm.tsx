@@ -309,11 +309,17 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
       console.log('📥 Response status:', response.status);
       console.log('📥 Response OK:', response.ok);
 
+      // Try to parse response body for debugging
+      const responseText = await response.text();
+      console.log('📥 Response body (raw):', responseText);
+
       if (!response.ok) {
-        throw new Error('Failed to submit booking');
+        console.error('❌ Server error:', responseText);
+        throw new Error(`Failed to submit booking: ${response.status} - ${responseText}`);
       }
 
-      const result = await response.json();
+      const result = JSON.parse(responseText);
+      console.log('✅ Parsed response:', result);
       setSubmitSuccess(true);
 
       setTimeout(() => {
