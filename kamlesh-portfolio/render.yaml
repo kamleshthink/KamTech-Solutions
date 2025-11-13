@@ -10,9 +10,11 @@ services:
     staticPublishPath: ./build
     envVars:
       - key: NODE_VERSION
-        value: 18.17.0
+        value: 18.20.0
       - key: REACT_APP_API_URL
         value: https://kamtech-solutions-backend.onrender.com/api
+      - key: GENERATE_SOURCEMAP
+        value: false
     headers:
       - path: /*
         name: Cache-Control

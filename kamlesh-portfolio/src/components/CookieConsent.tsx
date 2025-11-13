@@ -55,6 +55,8 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onPrivacyClick, onCookieP
 
   // Lock body scroll when customize panel is open
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     if (showCustomize) {
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
@@ -72,10 +74,12 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onPrivacyClick, onCookieP
     }
 
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      document.body.style.top = '';
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+      }
     };
   }, [showCustomize]);
 
