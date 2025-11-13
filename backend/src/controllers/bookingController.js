@@ -82,9 +82,9 @@ exports.submitBooking = async (req, res, next) => {
       uploadedFiles
     });
 
-    // Send email notification to admin
-    try {
-      await transporter.sendMail({
+    // Send email notification to admin (non-blocking - background)
+    setImmediate(() => {
+      transporter.sendMail({
         from: `"KamTech Solutions" <${process.env.EMAIL_USER}>`,
         to: process.env.CONTACT_EMAIL || 'kamleshsharma@gmail.com',
         subject: `🎯 New Project Booking: ${projectType} - ${clientName}`,
@@ -254,15 +254,15 @@ exports.submitBooking = async (req, res, next) => {
           </body>
           </html>
         `
+      }).catch(emailError => {
+        console.error('Email notification error:', emailError);
+        // Continue even if email fails
       });
-    } catch (emailError) {
-      console.error('Email notification error:', emailError);
-      // Continue even if email fails
-    }
+    });
 
-    // Send confirmation email to client
-    try {
-      await transporter.sendMail({
+    // Send confirmation email to client (non-blocking - background)
+    setImmediate(() => {
+      transporter.sendMail({
         from: `"KamTech Solutions" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: '✅ We Received Your Project Booking - KamTech Solutions',
@@ -331,12 +331,12 @@ exports.submitBooking = async (req, res, next) => {
           </body>
           </html>
         `
+      }).catch(emailError => {
+        console.error('Client confirmation email error:', emailError);
       });
-    } catch (emailError) {
-      console.error('Client confirmation email error:', emailError);
-    }
+    });
 
-    // Return success response
+    // Return success response immediately (emails send in background)
     res.status(201).json({
       success: true,
       message: 'Booking submitted successfully! We will contact you within 24 hours.',
