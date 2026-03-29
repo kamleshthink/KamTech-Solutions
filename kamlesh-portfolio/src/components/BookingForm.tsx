@@ -7,7 +7,10 @@ import {
   PhotoIcon,
   VideoCameraIcon,
   CheckCircleIcon,
-  ExclamationCircleIcon
+  ExclamationCircleIcon,
+  UserIcon,
+  BriefcaseIcon,
+  ComputerDesktopIcon
 } from '@heroicons/react/24/outline';
 
 interface BookingFormProps {
@@ -46,6 +49,16 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
       document.body.style.top = '';
     };
   }, [isOpen]);
+
+  const [isDragging, setIsDragging] = useState(false);
+
+  const stepMeta = [
+    { id: 1, label: 'Basic', hint: 'Name, Email, Phone', icon: UserIcon },
+    { id: 2, label: 'Project', hint: 'Project type + budget', icon: BriefcaseIcon },
+    { id: 3, label: 'Tech', hint: 'Platform + features', icon: ComputerDesktopIcon },
+    { id: 4, label: 'Details', hint: 'Scope + requirements', icon: DocumentIcon },
+    { id: 5, label: 'Assets', hint: 'Upload files & brand', icon: PhotoIcon }
+  ];
 
   // Form state
   const [formData, setFormData] = useState({
@@ -236,6 +249,24 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
     }));
   };
 
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files.length > 0) {
+      const filesArray = Array.from(e.dataTransfer.files);
+      setFormData(prev => ({ ...prev, files: [...prev.files, ...filesArray] }));
+    }
+  };
+
   const validateStep = (step: number): boolean => {
     switch (step) {
       case 1:
@@ -415,34 +446,39 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Progress Steps */}
-                <div className="mt-3 sm:mt-4 md:mt-6 flex items-center justify-between">
-                  {[1, 2, 3, 4, 5].map((step) => (
-                    <div key={step} className="flex items-center flex-1">
-                      <div className={`flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full border-2 ${
-                        currentStep >= step ? 'bg-white text-primary-600 border-white' : 'border-white/50 text-white/50'
-                      }`}>
-                        {currentStep > step ? (
-                          <CheckCircleIcon className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                        ) : (
-                          <span className="text-[10px] sm:text-xs md:text-sm font-bold">{step}</span>
-                        )}
-                      </div>
-                      {step < 5 && (
-                        <div className={`flex-1 h-0.5 mx-0.5 sm:mx-1 md:mx-2 ${
-                          currentStep > step ? 'bg-white' : 'bg-white/30'
-                        }`} />
-                      )}
-                    </div>
-                  ))}
-                </div>
+                <div className="mt-3 sm:mt-4 md:mt-6 space-y-3">
+                  <div className="w-full h-2 bg-white/30 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-white transition-all duration-300"
+                      style={{ width: `${((currentStep - 1) / 4) * 100}%` }}
+                    />
+                  </div>
 
-                {/* Step Labels */}
-                <div className="mt-1.5 sm:mt-2 flex justify-between text-[10px] sm:text-xs text-white/80 px-0.5 sm:px-1">
-                  <span className="text-center">Basic</span>
-                  <span className="text-center">Project</span>
-                  <span className="text-center">Tech</span>
-                  <span className="text-center">Details</span>
-                  <span className="text-center">Assets</span>
+                  <div className="grid grid-cols-5 gap-2">
+                    {stepMeta.map(item => {
+                      const done = currentStep > item.id;
+                      const active = currentStep === item.id;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setCurrentStep(item.id)}
+                          className={`group flex flex-col items-center gap-1 p-2 rounded-lg border transition ${
+                            active
+                              ? 'bg-white dark:bg-gray-900 border-white/90'
+                              : done
+                              ? 'bg-white/20 border-white/60'
+                              : 'bg-white/10 border-white/40 hover:bg-white/20'
+                          }`}
+                        >
+                          <div className={`p-1.5 rounded-full ${active ? 'bg-primary-600 text-white' : done ? 'bg-white text-primary-600' : 'bg-white/10 text-white/80'}`}>
+                            <item.icon className="w-4 h-4" />
+                          </div>
+                          <span className="text-[10px] sm:text-xs text-white/90 text-center font-semibold">{item.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 
@@ -874,7 +910,16 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             Upload Assets (Images, Videos, Logos, Documents)
                           </label>
-                          <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-primary-500 transition-colors">
+                          <div
+                            className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+                              isDragging
+                                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                                : 'border-gray-300 dark:border-gray-600 bg-white/5 hover:border-primary-500'
+                            }`}
+                            onDragOver={handleDragOver}
+                            onDragLeave={handleDragLeave}
+                            onDrop={handleDrop}
+                          >
                             <input
                               type="file"
                               multiple
@@ -883,13 +928,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ isOpen, onClose }) => {
                               className="hidden"
                               id="file-upload"
                             />
-                            <label htmlFor="file-upload" className="cursor-pointer">
-                              <CloudArrowUpIcon className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                              <p className="text-sm text-gray-600 dark:text-gray-400">
-                                Click to upload or drag and drop
+                            <label htmlFor="file-upload" className="cursor-pointer block">
+                              <CloudArrowUpIcon className="w-12 h-12 text-primary-600 mx-auto mb-2" />
+                              <p className="text-sm text-gray-700 dark:text-gray-200">
+                                Drag &amp; drop your assets here, or click to browse
                               </p>
-                              <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                                PNG, JPG, PDF, MP4 up to 10MB each
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                PNG, JPG, PDF, MP4, DOCX (max 10MB each)
                               </p>
                             </label>
                           </div>
