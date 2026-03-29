@@ -14,7 +14,7 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import AIAssistantButton from './components/AIAssistantButton';
 import BookingForm from './components/BookingForm';
-import CookieConsent from './components/CookieConsent';
+// CookieConsent temporarily removed per request
 import TermsOfService from './components/TermsOfService';
 import CookiePolicy from './components/CookiePolicy';
 import PrivacyPolicy from './components/PrivacyPolicy';
@@ -58,10 +58,7 @@ const App: React.FC = () => {
           isOpen={isBookingFormOpen}
           onClose={() => setIsBookingFormOpen(false)}
         />
-        <CookieConsent
-          onPrivacyClick={() => setIsPrivacyPolicyOpen(true)}
-          onCookiePolicyClick={() => setIsCookiePolicyOpen(true)}
-        />
+        {/* CookieConsent temporarily removed */}
         <TermsOfService
           isOpen={isTermsOpen}
           onClose={() => setIsTermsOpen(false)}
