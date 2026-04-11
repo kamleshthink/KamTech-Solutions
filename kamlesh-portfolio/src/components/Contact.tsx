@@ -110,10 +110,11 @@ const Contact: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Ready to <span className="gradient-text">Start Your Project?</span>
+            Contact <span className="gradient-text">PragyaTek Solutions</span>
+            <span className="sr-only"> - Web Development Company in Dhanbad, Jharkhand</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-6">
-            Let's transform your idea into reality. Get a free consultation and project quote within 24 hours!
+            Ready to start your web development project? Contact PragyaTek Solutions in Dhanbad, Jharkhand for professional MERN stack development, React applications, and custom software solutions.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <a

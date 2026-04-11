@@ -1,3 +1,41 @@
+# Robots.txt for PragyaTek Solutions
 # https://www.robotstxt.org/robotstxt.html
+
+# Allow all web crawlers to access the site
 User-agent: *
-Disallow:
+Allow: /
+
+# Allow Google and Bing image crawlers
+User-agent: Googlebot-Image
+Allow: /Assets/
+
+User-agent: Bingbot
+Allow: /
+
+# Disallow access to sensitive areas (if any)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+
+# Disallow access to development files
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /build/
+Disallow: /.git/
+
+# Disallow access to log files and temporary files
+Disallow: *.log
+Disallow: *.tmp
+Disallow: *.bak
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://kamtech-solutions.onrender.com/sitemap.xml
+
+# Additional sitemaps for different content types
+Sitemap: https://kamtech-solutions.onrender.com/sitemap-projects.xml
+Sitemap: https://kamtech-solutions.onrender.com/sitemap-services.xml

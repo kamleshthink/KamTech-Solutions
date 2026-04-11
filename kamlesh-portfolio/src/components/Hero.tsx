@@ -106,10 +106,12 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                 <span className="gradient-text">PragyaTek Solutions</span>
+                <span className="sr-only"> - Professional Web Development & IT Solutions Company in Dhanbad, Jharkhand</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl font-medium text-gray-600 dark:text-gray-400 mb-2">
-                Elite Development Agency
+                Leading Web Development & IT Solutions Company
               </p>
+              <h2 className="sr-only">Expert MERN Stack Development, React Applications, Node.js Backend, AI/ML Solutions, Custom Software Development</h2>
             </motion.div>
 
             <motion.div
@@ -125,9 +127,7 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
                 </span>
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
-                We deliver world-class web & mobile applications that drive real business results.
-                From AgriTech platforms serving <strong>10000+ users</strong> to AI systems with <strong>95+% accuracy</strong> -
-                we transform ambitious ideas into market-ready solutions.
+                Professional web development and IT solutions company in Dhanbad, Jharkhand. Specializing in MERN stack development, React applications, Node.js backend, AI/ML solutions, and custom software development. Building scalable web applications, mobile apps, and enterprise software with 5+ years of experience and 100% client satisfaction rate.
               </p>
             </motion.div>
 

@@ -63,10 +63,11 @@ const Projects: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured <span className="gradient-text">Projects</span>
+            Our <span className="gradient-text">Portfolio</span>
+            <span className="sr-only"> - Web Development Projects, Software Solutions, MERN Stack Applications</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            World-class solutions from AgriTech platforms to AI systems - Building products that make real impact
+            Professional web development and software projects delivered by PragyaTek Solutions. From AgriTech platforms to enterprise applications, we build scalable solutions that drive business growth.
           </p>
         </motion.div>
 

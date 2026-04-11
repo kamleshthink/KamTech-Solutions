@@ -137,10 +137,11 @@ const Services: React.FC<ServicesProps> = ({ onBookNowClick }) => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Services & <span className="gradient-text">Expertise</span>
+            Web Development & <span className="gradient-text">IT Services</span>
+            <span className="sr-only"> - MERN Stack, React, Node.js, AI/ML Solutions in Dhanbad, Jharkhand</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Professional development services tailored for startups, agencies, and businesses looking for quality solutions
+            Professional software development services in Dhanbad, Jharkhand. Expert MERN stack development, React applications, Node.js backend, AI/ML solutions, and custom software development for businesses.
           </p>
         </motion.div>
 

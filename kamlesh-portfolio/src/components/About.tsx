@@ -40,9 +40,10 @@ const About: React.FC = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             About <span className="gradient-text">PragyaTek Solutions</span>
+            <span className="sr-only"> - Professional Web Development Company in Dhanbad, Jharkhand</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Elite Development Agency | Building Scalable Solutions | From Startups to Enterprises
+            Leading software development company in Dhanbad, Jharkhand specializing in web development, mobile applications, and AI solutions. Expert MERN stack developers delivering enterprise-grade solutions.
           </p>
         </motion.div>
 
@@ -187,14 +188,13 @@ const About: React.FC = () => {
           >
             <div>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                <strong className="text-gray-900 dark:text-white">PragyaTek Solutions</strong> is a professional software development agency
-                specializing in building scalable, high-performance digital solutions for businesses of all sizes. Our expertise spans across
-                web development, mobile applications, and AI-powered systems that deliver measurable business value.
+                <strong className="text-gray-900 dark:text-white">PragyaTek Solutions</strong> is a premier software development company based in Dhanbad, Jharkhand, specializing in full-stack web development, mobile application development, and AI/ML solutions. With over 5 years of experience in the IT industry, we deliver high-quality, scalable software solutions that drive business growth and digital transformation.
+              </p>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                Our expertise spans across modern web technologies including React.js, Node.js, MongoDB, and cloud platforms like AWS. We have successfully delivered numerous projects for clients across various industries, from AgriTech platforms serving thousands of users to enterprise-grade construction management systems.
               </p>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                We focus on delivering production-ready solutions with clean, maintainable code. Every project is built with security,
-                scalability, and performance in mind. From initial consultation to deployment and maintenance, we ensure complete
-                transparency and client satisfaction at every stage.
+                We focus on delivering production-ready solutions with clean, maintainable code. Every project is built with security, scalability, and performance in mind. From initial consultation to deployment and maintenance, we ensure complete transparency and client satisfaction at every stage of the software development lifecycle.
               </p>
             </div>
 
