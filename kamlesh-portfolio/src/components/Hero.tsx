@@ -75,6 +75,10 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
     <section id="home" className="min-h-screen flex items-center justify-center paper-texture-blue relative overflow-hidden pt-20 sm:pt-24 md:pt-28 lg:pt-32">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+             style={{ backgroundImage: "url('/Assets/pragyatek ui/programming-background-with-person-working-with-codes-computer.jpg')" }}>
+        </div>
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 dark:bg-primary-800 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-bounce-gentle"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 dark:bg-purple-800 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-bounce-gentle" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-200 dark:bg-pink-800 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-bounce-gentle" style={{ animationDelay: '2s' }}></div>

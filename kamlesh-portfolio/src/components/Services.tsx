@@ -38,7 +38,7 @@ const Services: React.FC<ServicesProps> = ({ onBookNowClick }) => {
         "Source code & deployment",
         "3 months support"
       ],
-      priceRange: "₹25,000 - ₹2,00,000+",
+      priceRange: "₹15,000 - ₹1,50,000+",
       turnaround: "2-6 weeks",
       badge: "Most Popular"
     },
@@ -54,7 +54,7 @@ const Services: React.FC<ServicesProps> = ({ onBookNowClick }) => {
         "SEO implementation",
         "Design system"
       ],
-      priceRange: "₹50,000 - ₹5,00,000+",
+      priceRange: "₹10,000 - ₹80,000+",
       turnaround: "1-4 weeks"
     },
     {
@@ -69,7 +69,7 @@ const Services: React.FC<ServicesProps> = ({ onBookNowClick }) => {
         "API documentation",
         "Testing & deployment"
       ],
-      priceRange: "₹75,000 - ₹4,00,000+",
+      priceRange: "₹20,000 - ₹1,00,000+",
       turnaround: "1-4 weeks"
     },
     {
@@ -84,7 +84,7 @@ const Services: React.FC<ServicesProps> = ({ onBookNowClick }) => {
         "Performance metrics",
         "Training notebooks"
       ],
-      priceRange: "₹1,00,000 - ₹6,00,000+",
+      priceRange: "₹50,000 - ₹3,00,000+",
       turnaround: "2-5 weeks",
       badge: "Premium"
     },
@@ -100,7 +100,7 @@ const Services: React.FC<ServicesProps> = ({ onBookNowClick }) => {
         "Order management",
         "Admin dashboard"
       ],
-      priceRange: "₹1,50,000 - ₹10,00,000+",
+      priceRange: "₹50,000 - ₹5,00,000+",
       turnaround: "3-8 weeks"
     },
     {
@@ -115,15 +115,19 @@ const Services: React.FC<ServicesProps> = ({ onBookNowClick }) => {
         "Basic analytics",
         "User feedback system"
       ],
-      priceRange: "₹1,00,000 - ₹8,00,000+",
+      priceRange: "₹30,000 - ₹2,00,000+",
       turnaround: "2-6 weeks",
       badge: "Startup Special"
     }
   ];
 
   return (
-    <section id="services" className="section-padding paper-texture-light">
-      <div className="container-custom">
+    <section id="services" className="section-padding paper-texture-light relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
+           style={{ backgroundImage: "url('/Assets/pragyatek ui/tech support.jpg')" }}>
+      </div>
+      <div className="container-custom relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

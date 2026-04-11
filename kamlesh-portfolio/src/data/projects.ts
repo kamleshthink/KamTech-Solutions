@@ -105,108 +105,9 @@ export const projects: Project[] = [
     stats: { members: "500+", events: "50+", status: "Live", community: "Active" }
   },
 
-  // MACHINE LEARNING & AI PROJECTS
+  // FEATURED CLIENT PROJECTS
   {
     id: 4,
-    title: "Cancer Detection AI System",
-    description: "Advanced deep learning model for early cancer detection using medical imaging. Implements CNN architecture with TensorFlow and Keras for high-accuracy diagnosis. Features image preprocessing, model training, and real-time prediction capabilities.",
-    image: "/Assets/cancer detection model/Screenshot (830).png",
-    technologies: ["Python", "TensorFlow", "Keras", "NumPy", "Pandas", "OpenCV", "Scikit-learn"],
-    githubUrl: "https://github.com/kamleshthink/Cancer-detection-ML-model",
-    category: "ml",
-    stats: { accuracy: "94%", model: "CNN", dataset: "10k+ images" }
-  },
-  {
-    id: 5,
-    title: "AI Chat Assistant",
-    description: "Intelligent conversational AI assistant powered by OpenAI GPT models. Features context-aware responses, natural language understanding, conversation history, and multi-turn dialogue capabilities with modern chat interface.",
-    image: "/Assets/Aichatbot/AI Chatbot – Smart Virtual Assistant.jpg",
-    technologies: ["Python", "OpenAI API", "React", "FastAPI", "PostgreSQL", "WebSockets"],
-    githubUrl: "https://github.com/kamleshthink/ai-chat-assistant",
-    liveUrl: "https://ai-chat-demo.vercel.app",
-    category: "ml"
-  },
-
-  // WEB APPLICATIONS
-  {
-    id: 6,
-    title: "DesiDine - Food Delivery Platform",
-    description: "Full-featured food delivery application with restaurant browsing, real-time order tracking, multiple payment options, and ratings system. Built with React and Express.js featuring responsive mobile design and smooth user experience.",
-    image: "/Assets/desidine food delivery  mobile platform/Foodota - Online Food Delivery WordPress Theme.jpg",
-    technologies: ["React", "Express.js", "MongoDB", "Socket.io", "Stripe", "JWT", "Node.js"],
-    githubUrl: "https://github.com/kamleshthink/DesiDine-food",
-    liveUrl: "https://desidine-demo.vercel.app",
-    category: "web",
-    stats: { commits: "18+", restaurants: "50+", status: "Completed" }
-  },
-  {
-    id: 7,
-    title: "Professional Job Portal",
-    description: "Comprehensive job portal with advanced search, filtering, and application management. Features employer dashboard, candidate profiles, resume uploads, job alerts, and application tracking system. Built for seamless hiring experience.",
-    image: "/Assets/jobportal-free-template.jpg.avif",
-    technologies: ["TypeScript", "React", "Node.js", "MongoDB", "Express", "JWT", "Redux"],
-    githubUrl: "https://github.com/kamleshthink/Jobportalprof",
-    liveUrl: "https://jobportalprof1.netlify.app/",
-    category: "web",
-    stats: { commits: "10+", jobs: "200+", status: "Live" }
-  },
-  {
-    id: 8,
-    title: "GIG - Freelancer Marketplace",
-    description: "Advanced freelancer marketplace platform connecting clients with talented professionals. Features project posting, freelancer profiles, secure escrow payments, rating system, real-time messaging, and AI-powered job matching.",
-    image: "/Assets/freelancer platform ui/Screenshot (822).png",
-    technologies: ["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Stripe", "WebSockets", "Prisma"],
-    githubUrl: "https://github.com/AIconsciousness/gig",
-    liveUrl: "https://jobportalprof1.netlify.app/",
-    category: "web",
-    stats: { status: "In Development", features: "50+", commits: "7+" }
-  },
-  {
-    id: 9,
-    title: "News Portal Platform",
-    description: "Dynamic news aggregation and publishing platform with categorized news sections, search functionality, bookmarking, and user comments. Features real-time updates, responsive design, and optimized performance.",
-    image: "/Assets/satyanews/Screenshot (821).png",
-    technologies: ["React", "Node.js", "MongoDB", "Express", "News API", "Redux", "Socket.io"],
-    githubUrl: "https://github.com/kamleshthink/news-portal",
-    liveUrl: "https://satyanews.netlify.app/",
-    category: "web"
-  },
-  {
-    id: 10,
-    title: "Cryptocurrency Tracker",
-    description: "Real-time cryptocurrency tracking application with live price updates, portfolio management, price alerts, and detailed analytics. Features interactive charts, market data, and support for 100+ cryptocurrencies.",
-    image: "/Assets/crypto.png",
-    technologies: ["React", "TypeScript", "Chart.js", "CoinGecko API", "Tailwind CSS", "Redux"],
-    githubUrl: "https://github.com/kamleshthink/crypto-tracker",
-    liveUrl: "https://crypto-tracker-demo.vercel.app",
-    category: "web"
-  },
-
-  // IoT & HARDWARE PROJECTS
-  {
-    id: 11,
-    title: "Bluetooth Wireless Car",
-    description: "IoT-based wireless car with Bluetooth 4.0 connectivity and custom Android app control. Features real-time command processing, intuitive joystick interface, low latency control (<50ms), 10+ meter range, and advanced power management system.",
-    image: "/Assets/bluetooth controlled car.jpg",
-    technologies: ["Arduino", "Bluetooth HC-05", "Kotlin", "Android Studio", "C++", "IoT"],
-    githubUrl: "https://github.com/kamleshthink/Bluetooth-wireless-car",
-    category: "other",
-    stats: { range: "10m+", latency: "<50ms", battery: "2hrs+" }
-  },
-  {
-    id: 12,
-    title: "Drone Vision System",
-    description: "Computer vision system for autonomous drone navigation and object detection. Implements real-time video processing, obstacle avoidance, and automated flight path planning using OpenCV and deep learning.",
-    image: "/Assets/ChatGPT Image May 20, 2025, 02_13_05 AM.jpg",
-    technologies: ["Python", "OpenCV", "TensorFlow", "Arduino", "Raspberry Pi", "Computer Vision"],
-    githubUrl: "https://github.com/kamleshthink/Dronevision",
-    category: "other",
-    stats: { commits: "5+", features: "Autonomous Flight", status: "Prototype" }
-  },
-
-  // CLIENT PROJECTS - WEB DEVELOPMENT
-  {
-    id: 13,
     title: "Alumniconnect ACEBITS - Alumni Networking Platform",
     description: "Official alumni and student networking platform for Association of Civil Engineers at BIT Sindri. Comprehensive community hub featuring member directories, event management, resource libraries, and collaboration tools for civil engineering professionals.",
     detailedDescription: "Alumniconnect ACEBITS is a dynamic digital platform designed to connect alumni and current students of the Association of Civil Engineers at BIT Sindri. The platform serves as a centralized hub for professional networking, event management, knowledge sharing, and career development. Features include comprehensive member directories with professional profiles, event calendar with registration and announcements, resource library for technical materials and guides, discussion forums for peer collaboration, job board for placement assistance, alumni spotlights, and notification systems. Built with modern web technologies ensuring scalability, security, and optimal user experience across all devices.",
@@ -229,7 +130,7 @@ export const projects: Project[] = [
     stats: { members: "2000+", events: "100+", status: "Live" }
   },
   {
-    id: 14,
+    id: 5,
     title: "Avlokan - Digital Solutions Agency Website",
     description: "Professional digital agency website showcasing web development, mobile app development, and digital transformation services. Features beautiful project portfolio, service displays, client testimonials, and lead capture for B2B client acquisition.",
     detailedDescription: "Avlokan is a professional digital solutions agency website designed to showcase expertise in web development, mobile applications, and digital consulting services. The platform demonstrates agency capabilities through an impressive portfolio of past projects, detailed service descriptions with pricing tiers, client testimonials with ratings, and seamless client inquiry management. Features include responsive design for all devices, animated project galleries, service comparison tools, team member profiles, blog section for thought leadership, contact forms with lead qualification, and integration with CRM systems. The website is optimized for search engines, conversion, and user experience with smooth animations and fast loading times.",
@@ -249,7 +150,7 @@ export const projects: Project[] = [
     stats: { projects: "30+", clients: "50+", success: "98%" }
   },
   {
-    id: 15,
+    id: 6,
     title: "Axiomrise IT Consulting - Enterprise Solutions",
     description: "Enterprise IT consulting company website showcasing managed services, cloud infrastructure, cybersecurity solutions, and digital transformation consulting. Features case studies, client ROI metrics, and expertise demonstrations for enterprise clients.",
     detailedDescription: "Axiomrise IT Consulting is a professional enterprise solutions website designed for B2B decision makers seeking IT consulting and managed services. The platform showcases the company's expertise in cloud infrastructure, cybersecurity, enterprise software development, and digital transformation initiatives. Key features include detailed case studies with measurable ROI improvements, service catalogs with technical specifications, team expertise profiles, compliance certifications display, client success stories, enterprise contact forms, and integration with enterprise sales platforms. The website emphasizes security, reliability, and proven results with documentation, certifications, and industry accolades prominently featured for enterprise credibility.",
@@ -265,5 +166,104 @@ export const projects: Project[] = [
     category: "web",
     featured: true,
     stats: { clients: "100+", projects: "200+", uptime: "99.9%" }
+  },
+
+  // MACHINE LEARNING & AI PROJECTS
+  {
+    id: 7,
+    title: "Cancer Detection AI System",
+    description: "Advanced deep learning model for early cancer detection using medical imaging. Implements CNN architecture with TensorFlow and Keras for high-accuracy diagnosis. Features image preprocessing, model training, and real-time prediction capabilities.",
+    image: "/Assets/cancer detection model/Screenshot (830).png",
+    technologies: ["Python", "TensorFlow", "Keras", "NumPy", "Pandas", "OpenCV", "Scikit-learn"],
+    githubUrl: "https://github.com/kamleshthink/Cancer-detection-ML-model",
+    category: "ml",
+    stats: { accuracy: "94%", model: "CNN", dataset: "10k+ images" }
+  },
+  {
+    id: 8,
+    title: "AI Chat Assistant",
+    description: "Intelligent conversational AI assistant powered by OpenAI GPT models. Features context-aware responses, natural language understanding, conversation history, and multi-turn dialogue capabilities with modern chat interface.",
+    image: "/Assets/Aichatbot/AI Chatbot – Smart Virtual Assistant.jpg",
+    technologies: ["Python", "OpenAI API", "React", "FastAPI", "PostgreSQL", "WebSockets"],
+    githubUrl: "https://github.com/kamleshthink/ai-chat-assistant",
+    liveUrl: "https://ai-chat-demo.vercel.app",
+    category: "ml"
+  },
+
+  // WEB APPLICATIONS
+  {
+    id: 9,
+    title: "DesiDine - Food Delivery Platform",
+    description: "Full-featured food delivery application with restaurant browsing, real-time order tracking, multiple payment options, and ratings system. Built with React and Express.js featuring responsive mobile design and smooth user experience.",
+    image: "/Assets/desidine food delivery  mobile platform/Foodota - Online Food Delivery WordPress Theme.jpg",
+    technologies: ["React", "Express.js", "MongoDB", "Socket.io", "Stripe", "JWT", "Node.js"],
+    githubUrl: "https://github.com/kamleshthink/DesiDine-food",
+    liveUrl: "https://desidine-demo.vercel.app",
+    category: "web",
+    stats: { commits: "18+", restaurants: "50+", status: "Completed" }
+  },
+  {
+    id: 10,
+    title: "Professional Job Portal",
+    description: "Comprehensive job portal with advanced search, filtering, and application management. Features employer dashboard, candidate profiles, resume uploads, job alerts, and application tracking system. Built for seamless hiring experience.",
+    image: "/Assets/jobportal-free-template.jpg.avif",
+    technologies: ["TypeScript", "React", "Node.js", "MongoDB", "Express", "JWT", "Redux"],
+    githubUrl: "https://github.com/kamleshthink/Jobportalprof",
+    liveUrl: "https://jobportalprof1.netlify.app/",
+    category: "web",
+    stats: { commits: "10+", jobs: "200+", status: "Live" }
+  },
+  {
+    id: 11,
+    title: "GIG - Freelancer Marketplace",
+    description: "Advanced freelancer marketplace platform connecting clients with talented professionals. Features project posting, freelancer profiles, secure escrow payments, rating system, real-time messaging, and AI-powered job matching.",
+    image: "/Assets/freelancer platform ui/Screenshot (822).png",
+    technologies: ["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Stripe", "WebSockets", "Prisma"],
+    githubUrl: "https://github.com/AIconsciousness/gig",
+    liveUrl: "https://jobportalprof1.netlify.app/",
+    category: "web",
+    stats: { status: "In Development", features: "50+", commits: "7+" }
+  },
+  {
+    id: 12,
+    title: "News Portal Platform",
+    description: "Dynamic news aggregation and publishing platform with categorized news sections, search functionality, bookmarking, and user comments. Features real-time updates, responsive design, and optimized performance.",
+    image: "/Assets/satyanews/Screenshot (821).png",
+    technologies: ["React", "Node.js", "MongoDB", "Express", "News API", "Redux", "Socket.io"],
+    githubUrl: "https://github.com/kamleshthink/news-portal",
+    liveUrl: "https://satyanews.netlify.app/",
+    category: "web"
+  },
+  {
+    id: 13,
+    title: "Cryptocurrency Tracker",
+    description: "Real-time cryptocurrency tracking application with live price updates, portfolio management, price alerts, and detailed analytics. Features interactive charts, market data, and support for 100+ cryptocurrencies.",
+    image: "/Assets/crypto.png",
+    technologies: ["React", "TypeScript", "Chart.js", "CoinGecko API", "Tailwind CSS", "Redux"],
+    githubUrl: "https://github.com/kamleshthink/crypto-tracker",
+    liveUrl: "https://crypto-tracker-demo.vercel.app",
+    category: "web"
+  },
+
+  // IoT & HARDWARE PROJECTS
+  {
+    id: 14,
+    title: "Bluetooth Wireless Car",
+    description: "IoT-based wireless car with Bluetooth 4.0 connectivity and custom Android app control. Features real-time command processing, intuitive joystick interface, low latency control (<50ms), 10+ meter range, and advanced power management system.",
+    image: "/Assets/bluetooth controlled car.jpg",
+    technologies: ["Arduino", "Bluetooth HC-05", "Kotlin", "Android Studio", "C++", "IoT"],
+    githubUrl: "https://github.com/kamleshthink/Bluetooth-wireless-car",
+    category: "other",
+    stats: { range: "10m+", latency: "<50ms", battery: "2hrs+" }
+  },
+  {
+    id: 15,
+    title: "Drone Vision System",
+    description: "Computer vision system for autonomous drone navigation and object detection. Implements real-time video processing, obstacle avoidance, and automated flight path planning using OpenCV and deep learning.",
+    image: "/Assets/ChatGPT Image May 20, 2025, 02_13_05 AM.jpg",
+    technologies: ["Python", "OpenCV", "TensorFlow", "Arduino", "Raspberry Pi", "Computer Vision"],
+    githubUrl: "https://github.com/kamleshthink/Dronevision",
+    category: "other",
+    stats: { commits: "5+", features: "Autonomous Flight", status: "Prototype" }
   }
 ]; 
