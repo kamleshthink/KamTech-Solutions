@@ -195,6 +195,63 @@ export const consultationsAPI = {
 };
 
 // ====================
+// CLIENTS API
+// ====================
+
+export interface Client {
+  _id: string;
+  name: string;
+  logo?: string;
+  category: string;
+  description?: string;
+  website?: string;
+  featured: boolean;
+  metrics?: {
+    projectsCompleted: number;
+    successRate: number;
+    avgRating: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const clientsAPI = {
+  // Get all clients
+  getAll: (params?: {
+    category?: string;
+    featured?: boolean;
+    limit?: number;
+  }): Promise<ApiResponse<Client[]>> => {
+    const queryParams = new URLSearchParams();
+    if (params?.category) queryParams.append('category', params.category);
+    if (params?.featured !== undefined) queryParams.append('featured', String(params.featured));
+    if (params?.limit) queryParams.append('limit', String(params.limit));
+
+    return apiRequest(`/clients?${queryParams.toString()}`);
+  },
+
+  // Get featured clients
+  getFeatured: (): Promise<ApiResponse<Client[]>> => {
+    return apiRequest('/clients/featured');
+  },
+
+  // Get single client
+  getById: (id: string): Promise<ApiResponse<Client>> => {
+    return apiRequest(`/clients/${id}`);
+  },
+
+  // Get clients by category
+  getByCategory: (category: string): Promise<ApiResponse<Client[]>> => {
+    return apiRequest(`/clients/category/${category}`);
+  },
+
+  // Get client statistics
+  getStats: (): Promise<ApiResponse> => {
+    return apiRequest('/clients/stats/overview');
+  },
+};
+
+// ====================
 // HEALTH CHECK API
 // ====================
 
@@ -209,5 +266,6 @@ export default {
   projects: projectsAPI,
   testimonials: testimonialsAPI,
   consultations: consultationsAPI,
+  clients: clientsAPI,
   health: healthAPI,
 };

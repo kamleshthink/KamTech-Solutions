@@ -7,6 +7,7 @@ import About from './components/About';
 import Services from './components/Services';
 import Process from './components/Process';
 import Projects from './components/Projects';
+import ClientLogos from './components/ClientLogos';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
@@ -43,6 +44,7 @@ const App: React.FC = () => {
           <Services onBookNowClick={() => setIsBookingFormOpen(true)} />
           <Process />
           <Projects />
+          <ClientLogos />
           <Testimonials />
           <FAQ />
           <Contact />

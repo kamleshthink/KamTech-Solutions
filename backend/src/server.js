@@ -34,6 +34,7 @@ const authRoutes = require('./routes/authRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const consultationRoutes = require('./routes/consultationRoutes');
 const cookieConsentRoutes = require('./routes/cookieConsentRoutes');
+const clientRoutes = require('./routes/clientRoutes');
 const { cloudinary } = require('./config/cloudinary');
 
 // Initialize Express app
@@ -102,6 +103,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/consultations', consultationRoutes);
 app.use('/api/cookie-consent', cookieConsentRoutes);
+app.use('/api/clients', clientRoutes);
 
 // 404 handler
 app.use((req, res) => {

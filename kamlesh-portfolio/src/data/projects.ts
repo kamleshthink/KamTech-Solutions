@@ -202,5 +202,68 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/kamleshthink/Dronevision",
     category: "other",
     stats: { commits: "5+", features: "Autonomous Flight", status: "Prototype" }
+  },
+
+  // CLIENT PROJECTS - WEB DEVELOPMENT
+  {
+    id: 13,
+    title: "Alumniconnect ACEBITS - Alumni Networking Platform",
+    description: "Official alumni and student networking platform for Association of Civil Engineers at BIT Sindri. Comprehensive community hub featuring member directories, event management, resource libraries, and collaboration tools for civil engineering professionals.",
+    detailedDescription: "Alumniconnect ACEBITS is a dynamic digital platform designed to connect alumni and current students of the Association of Civil Engineers at BIT Sindri. The platform serves as a centralized hub for professional networking, event management, knowledge sharing, and career development. Features include comprehensive member directories with professional profiles, event calendar with registration and announcements, resource library for technical materials and guides, discussion forums for peer collaboration, job board for placement assistance, alumni spotlights, and notification systems. Built with modern web technologies ensuring scalability, security, and optimal user experience across all devices.",
+    image: "/Assets/Alumniconnect acebit sindri/Screenshot (198).png",
+    gallery: [
+      "/Assets/Alumniconnect acebit sindri/Screenshot (198).png",
+      "/Assets/Alumniconnect acebit sindri/Screenshot (199).png",
+      "/Assets/Alumniconnect acebit sindri/Screenshot (200).png",
+      "/Assets/Alumniconnect acebit sindri/Screenshot (201).png",
+      "/Assets/Alumniconnect acebit sindri/Screenshot (202).png",
+      "/Assets/Alumniconnect acebit sindri/Screenshot (209).png",
+      "/Assets/Alumniconnect acebit sindri/Screenshot (210).png",
+      "/Assets/Alumniconnect acebit sindri/Screenshot (211).png",
+      "/Assets/Alumniconnect acebit sindri/Screenshot (212).png"
+    ],
+    technologies: ["React", "Next.js", "TypeScript", "Node.js", "Express", "MongoDB", "JWT", "Socket.io", "Tailwind CSS"],
+    liveUrl: "https://alumniconnect.acebits.in",
+    category: "web",
+    featured: true,
+    stats: { members: "2000+", events: "100+", status: "Live" }
+  },
+  {
+    id: 14,
+    title: "Avlokan - Digital Solutions Agency Website",
+    description: "Professional digital agency website showcasing web development, mobile app development, and digital transformation services. Features beautiful project portfolio, service displays, client testimonials, and lead capture for B2B client acquisition.",
+    detailedDescription: "Avlokan is a professional digital solutions agency website designed to showcase expertise in web development, mobile applications, and digital consulting services. The platform demonstrates agency capabilities through an impressive portfolio of past projects, detailed service descriptions with pricing tiers, client testimonials with ratings, and seamless client inquiry management. Features include responsive design for all devices, animated project galleries, service comparison tools, team member profiles, blog section for thought leadership, contact forms with lead qualification, and integration with CRM systems. The website is optimized for search engines, conversion, and user experience with smooth animations and fast loading times.",
+    image: "/Assets/Avlokan ace bit sindri/Screenshot (217).png",
+    gallery: [
+      "/Assets/Avlokan ace bit sindri/Screenshot (217).png",
+      "/Assets/Avlokan ace bit sindri/Screenshot (218).png",
+      "/Assets/Avlokan ace bit sindri/Screenshot (219).png",
+      "/Assets/Avlokan ace bit sindri/Screenshot (220).png",
+      "/Assets/Avlokan ace bit sindri/Screenshot (221).png",
+      "/Assets/Avlokan ace bit sindri/Screenshot (222).png",
+      "/Assets/Avlokan ace bit sindri/Screenshot (223).png"
+    ],
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Node.js", "Express", "MongoDB", "Stripe"],
+    category: "web",
+    featured: true,
+    stats: { projects: "30+", clients: "50+", success: "98%" }
+  },
+  {
+    id: 15,
+    title: "Axiomrise IT Consulting - Enterprise Solutions",
+    description: "Enterprise IT consulting company website showcasing managed services, cloud infrastructure, cybersecurity solutions, and digital transformation consulting. Features case studies, client ROI metrics, and expertise demonstrations for enterprise clients.",
+    detailedDescription: "Axiomrise IT Consulting is a professional enterprise solutions website designed for B2B decision makers seeking IT consulting and managed services. The platform showcases the company's expertise in cloud infrastructure, cybersecurity, enterprise software development, and digital transformation initiatives. Key features include detailed case studies with measurable ROI improvements, service catalogs with technical specifications, team expertise profiles, compliance certifications display, client success stories, enterprise contact forms, and integration with enterprise sales platforms. The website emphasizes security, reliability, and proven results with documentation, certifications, and industry accolades prominently featured for enterprise credibility.",
+    image: "/Assets/Axiomrise it consulting company/Screenshot (213).png",
+    gallery: [
+      "/Assets/Axiomrise it consulting company/Screenshot (213).png",
+      "/Assets/Axiomrise it consulting company/Screenshot (214).png",
+      "/Assets/Axiomrise it consulting company/Screenshot (215).png",
+      "/Assets/Axiomrise it consulting company/Screenshot (216).png",
+      "/Assets/Axiomrise it consulting company/image.png"
+    ],
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "Stripe", "AWS"],
+    category: "web",
+    featured: true,
+    stats: { clients: "100+", projects: "200+", uptime: "99.9%" }
   }
 ]; 

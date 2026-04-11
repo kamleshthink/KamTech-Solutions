@@ -77,4 +77,14 @@ export interface SocialLink {
 
 export interface Theme {
   mode: 'light' | 'dark';
-} 
+}
+
+export interface Client {
+  id: number;
+  name: string;
+  logo: string;
+  category: string;
+  description?: string;
+  website?: string;
+  featured?: boolean;
+}

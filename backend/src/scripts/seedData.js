@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Project = require('../models/Project');
 const Testimonial = require('../models/Testimonial');
 const Admin = require('../models/Admin');
+const Client = require('../models/Client');
 
 // Connect to MongoDB
 const connectDB = async () => {
@@ -212,6 +213,91 @@ const testimonials = [
   }
 ];
 
+// Sample Clients Data
+const clients = [
+  {
+    name: "Achhadam",
+    logo: "/Assets/logo/achhadam-logo.png",
+    category: "AgriTech",
+    description: "Revolutionary agriculture technology platform",
+    website: "https://achhadam.com",
+    featured: true,
+    metrics: {
+      projectsCompleted: 1,
+      successRate: 100,
+      avgRating: 5
+    },
+    tags: ["agriculture", "startup", "tech"]
+  },
+  {
+    name: "Ramsethu Construction",
+    logo: "/Assets/logo/",
+    category: "Construction Engineering",
+    description: "Professional engineering solutions provider",
+    featured: true,
+    metrics: {
+      projectsCompleted: 1,
+      successRate: 100,
+      avgRating: 5
+    },
+    tags: ["construction", "engineering", "enterprise"]
+  },
+  {
+    name: "ACEBITS - BIT Sindri",
+    logo: "/Assets/logo/",
+    category: "Professional Community",
+    description: "Association of Civil Engineers community platform",
+    website: "https://acebits.in",
+    featured: true,
+    metrics: {
+      projectsCompleted: 1,
+      successRate: 100,
+      avgRating: 5
+    },
+    tags: ["community", "education", "networking"]
+  },
+  {
+    name: "Alumniconnect ACEBITS",
+    logo: "/Assets/Alumniconnect acebit sindri/alumniconnect logo.png",
+    category: "Community Platform",
+    description: "Alumni and student networking hub for BIT Sindri",
+    website: "https://alumniconnect.acebits.in",
+    featured: true,
+    metrics: {
+      projectsCompleted: 1,
+      successRate: 100,
+      avgRating: 5
+    },
+    tags: ["alumni", "networking", "education"]
+  },
+  {
+    name: "Avlokan",
+    logo: "/Assets/Avlokan ace bit sindri/avlokan logo.jpg",
+    category: "Digital Agency",
+    description: "Digital solutions and web development services",
+    featured: true,
+    metrics: {
+      projectsCompleted: 1,
+      successRate: 98,
+      avgRating: 4.8
+    },
+    tags: ["agency", "web-development", "digital"]
+  },
+  {
+    name: "Axiomrise IT Consulting",
+    logo: "/Assets/Axiomrise it consulting company/axiom logo.webp",
+    category: "IT Consulting",
+    description: "Enterprise IT solutions and digital transformation",
+    featured: true,
+    metrics: {
+      projectsCompleted: 1,
+      successRate: 99,
+      avgRating: 4.9
+    },
+    tags: ["consulting", "enterprise", "it"]
+  }
+];
+
 // Seed function
 const seedDatabase = async () => {
   try {
@@ -220,6 +306,7 @@ const seedDatabase = async () => {
     console.log('🗑️  Clearing existing data...');
     await Project.deleteMany({});
     await Testimonial.deleteMany({});
+    await Client.deleteMany({});
 
     console.log('📝 Seeding projects...');
     const createdProjects = await Project.insertMany(projects);
@@ -228,6 +315,10 @@ const seedDatabase = async () => {
     console.log('💬 Seeding testimonials...');
     const createdTestimonials = await Testimonial.insertMany(testimonials);
     console.log(`✅ ${createdTestimonials.length} testimonials seeded successfully`);
+
+    console.log('🏢 Seeding clients...');
+    const createdClients = await Client.insertMany(clients);
+    console.log(`✅ ${createdClients.length} clients seeded successfully`);
 
     // Create default admin if doesn't exist
     console.log('👤 Checking for admin user...');

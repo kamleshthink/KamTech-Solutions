@@ -162,26 +162,33 @@
     background-size: 100% 100%, 35px 35px, 35px 35px, 100% 100%;
   }
 
-  /* Hand-drawn sketch background for About section */
+  /* Clean academic background for About section */
   .hand-drawn-bg {
-    background-color: #f1f5f9;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 4px, #e2e8f0 4px, #e2e8f0 5px),
-      repeating-linear-gradient(90deg, transparent, transparent 4px, #e2e8f0 4px, #e2e8f0 5px),
-      radial-gradient(circle at 15% 25%, rgba(148, 163, 184, 0.1) 0%, transparent 40%),
-      radial-gradient(circle at 85% 75%, rgba(148, 163, 184, 0.08) 0%, transparent 40%);
-    background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4f8 100%);
+    background-attachment: fixed;
     position: relative;
+    overflow: hidden;
+  }
+
+  .hand-drawn-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
+    pointer-events: none;
   }
 
   .dark .hand-drawn-bg {
-    background-color: #0f1419;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 4px, #1e293b 4px, #1e293b 5px),
-      repeating-linear-gradient(90deg, transparent, transparent 4px, #1e293b 4px, #1e293b 5px),
-      radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
-    background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
+    background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
+    background-attachment: fixed;
+  }
+
+  .dark .hand-drawn-bg::before {
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
   }
 
   /* Highlight section animation for Book Now button */
