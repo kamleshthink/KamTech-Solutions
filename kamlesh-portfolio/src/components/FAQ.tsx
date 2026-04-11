@@ -60,8 +60,12 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="section-padding paper-texture-blue">
-      <div className="container-custom">
+    <section id="faq" className="section-padding paper-texture-blue relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
+           style={{ backgroundImage: "url('/Assets/pragyatek ui/5632165_2962489.jpg')" }}>
+      </div>
+      <div className="container-custom relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

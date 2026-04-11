@@ -46,6 +46,78 @@ const About: React.FC = () => {
           </p>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4 mb-14"
+        >
+          <a href="#projects" className="group rounded-3xl border border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-950/90 p-6 shadow-xl hover:-translate-y-1 transition-transform duration-300">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-primary-100 text-primary-700">
+                <span className="text-2xl">🌾</span>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">Achhadam</p>
+                <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">AgriTech Platform</h3>
+              </div>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Connected 10,000+ farmers, enabling ₹20L+ in verified agricultural transactions with real-time price discovery.
+            </p>
+            <div className="mt-5 text-sm font-semibold text-primary-600 group-hover:text-primary-700">View Achhadam →</div>
+          </a>
+
+          <a href="#projects" className="group rounded-3xl border border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-950/90 p-6 shadow-xl hover:-translate-y-1 transition-transform duration-300">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-100 text-slate-900 dark:bg-slate-900/80 dark:text-slate-200">
+                <span className="text-2xl">🏗️</span>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">Ramsethu</p>
+                <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">Construction Workflow</h3>
+              </div>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Managed over ₹3.5Cr+ worth of construction project data, schedules and vendor coordination with enterprise reliability.
+            </p>
+            <div className="mt-5 text-sm font-semibold text-primary-600 group-hover:text-primary-700">Explore Ramsethu →</div>
+          </a>
+
+          <a href="#projects" className="group rounded-3xl border border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-950/90 p-6 shadow-xl hover:-translate-y-1 transition-transform duration-300">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-200">
+                <span className="text-2xl">👥</span>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">ACEBITS</p>
+                <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">Community Platform</h3>
+              </div>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Delivered a professional alumni experience serving 500+ active users with 99.9% uptime and secure member engagement.
+            </p>
+            <div className="mt-5 text-sm font-semibold text-primary-600 group-hover:text-primary-700">See ACEBITS →</div>
+          </a>
+
+          <a href="#projects" className="group rounded-3xl border border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-950/90 p-6 shadow-xl hover:-translate-y-1 transition-transform duration-300">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-cyan-100 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-200">
+                <span className="text-2xl">🧩</span>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">Axiomrise</p>
+                <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">Enterprise Launch</h3>
+              </div>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Scaled complex business systems with polished UI, strong infrastructure and enterprise-ready delivery for construction clients.
+            </p>
+            <div className="mt-5 text-sm font-semibold text-primary-600 group-hover:text-primary-700">Review Axiomrise →</div>
+          </a>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content - Image */}
           <motion.div
@@ -61,7 +133,7 @@ const About: React.FC = () => {
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-1">
                 <div className="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
                   {/* Professional Development Image */}
-                  <div className="relative overflow-hidden rounded-xl">
+                  <div className="relative overflow-hidden rounded-xl mb-6">
                     <img
                       src="/Assets/pragyatek ui/hands-typing-laptop-top-view.jpg"
                       alt="Professional Development Work"
@@ -74,41 +146,38 @@ const About: React.FC = () => {
                     </div>
                   </div>
 
-                    {/* Tech Stack Icons */}
-                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                      {['React', 'Node.js', 'MongoDB', 'TypeScript', 'AWS', 'Docker'].map((tech) => (
-                        <div key={tech} className="px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-md sm:rounded-lg text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 shadow-md">
-                          {tech}
-                        </div>
-                      ))}
-                    </div>
+                  {/* Tech Stack Icons */}
+                  <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6">
+                    {['React', 'Node.js', 'MongoDB', 'TypeScript', 'AWS', 'Docker'].map((tech) => (
+                      <div key={tech} className="px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-md sm:rounded-lg text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 shadow-md">
+                        {tech}
+                      </div>
+                    ))}
+                  </div>
 
-                    {/* Trust Badges */}
-                    <div className="flex justify-center gap-3 sm:gap-4 md:gap-6 pt-2 sm:pt-4">
-                      <div className="text-center">
-                        <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">🏆</div>
-                        <div className="text-xs font-medium text-gray-600 dark:text-gray-400">Top</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">⚡</div>
-                        <div className="text-xs font-medium text-gray-600 dark:text-gray-400">Fast</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">🔒</div>
-                        <div className="text-xs font-medium text-gray-600 dark:text-gray-400">NDA</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">💯</div>
-                        <div className="text-xs font-medium text-gray-600 dark:text-gray-400">100%</div>
-                      </div>
+                  {/* Trust Badges */}
+                  <div className="flex justify-center gap-3 sm:gap-4 md:gap-6 pt-2 sm:pt-4">
+                    <div className="text-center">
+                      <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">🏆</div>
+                      <div className="text-xs font-medium text-gray-600 dark:text-gray-400">Top</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">⚡</div>
+                      <div className="text-xs font-medium text-gray-600 dark:text-gray-400">Fast</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">🔒</div>
+                      <div className="text-xs font-medium text-gray-600 dark:text-gray-400">NDA</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">💯</div>
+                      <div className="text-xs font-medium text-gray-600 dark:text-gray-400">100%</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
-
-          {/* Right Content - Text */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -117,44 +186,15 @@ const About: React.FC = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                About PragyaTek Solutions
-              </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
                 <strong className="text-gray-900 dark:text-white">PragyaTek Solutions</strong> is a professional software development agency
                 specializing in building scalable, high-performance digital solutions for businesses of all sizes. Our expertise spans across
                 web development, mobile applications, and AI-powered systems that deliver measurable business value.
               </p>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                <strong className="text-gray-900 dark:text-white">Proven Track Record:</strong>
-              </p>
-              <div className="space-y-2 mb-4 ml-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-green-600 dark:text-green-400 text-xl flex-shrink-0">🌾</span>
-                  <div>
-                    <strong className="text-gray-900 dark:text-white">Achhadam(Agriculture)</strong>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">AgriTech platform connecting 10000+ farmers, facilitating ₹20L+ in transactions</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-orange-600 dark:text-orange-400 text-xl flex-shrink-0">🏗️</span>
-                  <div>
-                    <strong className="text-gray-900 dark:text-white">Ramsethu Construction</strong>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Project management system handling ₹3.5Cr+ worth of construction projects</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-blue-600 dark:text-blue-400 text-xl flex-shrink-0">👥</span>
-                  <div>
-                    <strong className="text-gray-900 dark:text-white">ACEBITS(community Platform)</strong>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Professional networking platform serving 500+ users with 99.9% uptime</p>
-                  </div>
-                </div>
-              </div>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                <strong className="text-gray-900 dark:text-white">Our Approach:</strong> We focus on delivering production-ready solutions
-                with clean, maintainable code. Every project is built with security, scalability, and performance in mind. From initial
-                consultation to deployment and maintenance, we ensure complete transparency and client satisfaction at every stage.
+                We focus on delivering production-ready solutions with clean, maintainable code. Every project is built with security,
+                scalability, and performance in mind. From initial consultation to deployment and maintenance, we ensure complete
+                transparency and client satisfaction at every stage.
               </p>
             </div>
 

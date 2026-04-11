@@ -73,8 +73,12 @@ const Process: React.FC = () => {
   ];
 
   return (
-    <section id="process" className="section-padding paper-texture-purple">
-      <div className="container-custom">
+    <section id="process" className="section-padding paper-texture-purple relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
+           style={{ backgroundImage: "url('/Assets/pragyatek ui/4832005_2526393.jpg')" }}>
+      </div>
+      <div className="container-custom relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

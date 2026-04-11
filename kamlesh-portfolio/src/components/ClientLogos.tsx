@@ -92,8 +92,12 @@ const ClientLogos: React.FC = () => {
   );
 
   return (
-    <section id="clients" className="section-padding paper-texture-light">
-      <div className="container-custom">
+    <section id="clients" className="section-padding paper-texture-light relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
+           style={{ backgroundImage: "url('/Assets/pragyatek ui/25001136_7045130.jpg')" }}>
+      </div>
+      <div className="container-custom relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

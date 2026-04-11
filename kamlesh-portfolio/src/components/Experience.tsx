@@ -9,8 +9,12 @@ import {
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="section-padding bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
-      <div className="container-custom">
+    <section id="experience" className="section-padding bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
+           style={{ backgroundImage: "url('/Assets/pragyatek ui/9581061_37153.jpg')" }}>
+      </div>
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

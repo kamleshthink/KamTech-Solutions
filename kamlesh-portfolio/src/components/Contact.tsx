@@ -95,11 +95,12 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding paper-texture-gradient relative">
+    <section id="contact" className="section-padding paper-texture-gradient relative overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
-           style={{ backgroundImage: "url('/Assets/pragyatek ui/marketing automation.jpg')" }}>
+      <div className="absolute inset-0 bg-cover bg-no-repeat opacity-10"
+           style={{ backgroundImage: "url('/Assets/pragyatek ui/marketing automation.jpg')", backgroundPosition: 'center 28%', backgroundSize: 'cover' }}>
       </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
       <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

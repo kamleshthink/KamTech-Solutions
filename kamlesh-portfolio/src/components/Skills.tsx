@@ -54,8 +54,12 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="section-padding bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
-      <div className="container-custom">
+    <section id="skills" className="section-padding bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
+           style={{ backgroundImage: "url('/Assets/pragyatek ui/9378193_33918.jpg')" }}>
+      </div>
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
