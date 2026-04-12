@@ -107,7 +107,7 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section id="testimonials" className="section-padding paper-texture-light relative">
+    <section id="testimonials" className="section-padding paper-texture-light relative" style={{ fontFamily: "'Comic Sans MS', 'Marker Felt', cursive, sans-serif" }}>
       {/* Background Image */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
            style={{ backgroundImage: "url('/Assets/pragyatek ui/22343897_Man and digital era algorithm of AI.jpg')" }}>
@@ -154,18 +154,18 @@ const Testimonials: React.FC = () => {
               </div>
 
               {/* Feedback */}
-              <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 text-center leading-relaxed mb-6 font-medium">
+              <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-200 text-center leading-relaxed mb-6 font-medium" style={{ fontFamily: "'Caveat', 'Brush Script MT', cursive", fontStyle: 'italic', fontWeight: 600 }}>
                 "{current.feedback}"
               </p>
 
               {/* Business Results */}
               {current.businessResults && (
-                <div className="mb-8 p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-200 dark:border-green-800">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <span className="text-2xl">📊</span>
-                    <h4 className="font-bold text-green-800 dark:text-green-300">Business Impact:</h4>
+                <div className="mb-8 p-6 bg-white dark:bg-gray-700 rounded-2xl border-2 border-gray-400 dark:border-gray-500">
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <span className="text-3xl">✓</span>
+                    <h4 className="font-bold text-gray-800 dark:text-gray-100 text-lg" style={{ fontFamily: "'Caveat', 'Brush Script MT', cursive", fontStyle: 'italic' }}>Results:</h4>
                   </div>
-                  <p className="text-center text-green-700 dark:text-green-400 font-semibold">
+                  <p className="text-center text-gray-700 dark:text-gray-200 font-semibold text-lg" style={{ fontFamily: "'Caveat', 'Brush Script MT', cursive", fontStyle: 'italic' }}>
                     {current.businessResults}
                   </p>
                 </div>

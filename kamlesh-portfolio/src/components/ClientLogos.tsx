@@ -132,8 +132,8 @@ const ClientLogos: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16"
         >
           {[
-            { label: 'Clients Served', value: '50+' },
-            { label: 'Projects Delivered', value: '200+' },
+            { label: 'Clients Served', value: '15+' },
+            { label: 'Projects Delivered', value: '100+' },
             { label: 'Success Rate', value: '98%' },
             { label: 'Avg. Rating', value: '4.9★' },
           ].map((stat, idx) => (

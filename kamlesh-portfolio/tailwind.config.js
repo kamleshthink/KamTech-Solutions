@@ -34,6 +34,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+        handwriting: ['Caveat', 'cursive'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
