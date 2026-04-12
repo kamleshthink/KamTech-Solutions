@@ -91,7 +91,7 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
                 <span className="sr-only"> - Professional Web Development & IT Solutions Company in Dhanbad, Jharkhand</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl font-medium text-gray-600 dark:text-gray-400 mb-2">
-                Leading Web Development & IT Solutions Company
+                <span className="bg-yellow-300/70 dark:bg-yellow-400/60 px-1 py-0.5 rounded skew-x-[-2deg] inline-block">Leading Web Development & IT Solutions Company</span>
               </p>
               <h2 className="sr-only">Expert MERN Stack Development, React Applications, Node.js Backend, AI/ML Solutions, Custom Software Development</h2>
             </motion.div>
