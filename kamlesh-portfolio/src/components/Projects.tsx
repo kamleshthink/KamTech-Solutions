@@ -177,6 +177,16 @@ const Projects: React.FC = () => {
                     )}
                   </div>
 
+                  {project.logo && (
+                    <div className="mb-4 flex justify-center lg:justify-start">
+                      <img
+                        src={project.logo}
+                        alt={`${project.title} logo`}
+                        className="h-16 w-auto object-contain rounded-xl border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900 p-2"
+                      />
+                    </div>
+                  )}
+
                   <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
                     {project.description}
                   </p>
@@ -267,44 +277,6 @@ const Projects: React.FC = () => {
         </AnimatePresence>
 
         {/* Projects Summary */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Project Statistics
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { label: 'Total Projects', value: projects.length.toString(), icon: '📁' },
-                { label: 'Web Apps', value: projects.filter(p => p.category === 'web').length.toString(), icon: '🌐' },
-                { label: 'Mobile Apps', value: projects.filter(p => p.category === 'mobile').length.toString(), icon: '📱' },
-                { label: 'ML Projects', value: projects.filter(p => p.category === 'ml').length.toString(), icon: '🤖' }
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="text-center"
-                >
-                  <div className="text-3xl mb-2">{stat.icon}</div>
-                  <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-gray-600 dark:text-gray-400 font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       {/* Project Modal */}

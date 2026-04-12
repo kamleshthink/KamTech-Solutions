@@ -272,6 +272,8 @@ export const projects: Project[] = [
     description: "Advanced satellite-based monitoring system for detecting land subsidence and providing timely warnings in Jharia Coalfield. Combines AI/ML analysis of satellite imagery, real-time mobile alerts, and web dashboard for authorities. Serves as critical warning system for thousands of lives and properties at risk.",
     detailedDescription: "JhariaWatch addresses the critical challenge of underground coal fires and mine subsidence in India's largest coking coal field. The system integrates satellite imagery analysis using machine learning models to detect and track ground deformation patterns. The comprehensive platform includes: AI-powered satellite image processing for subsidence detection, real-time mobile app for field teams and residents with location-based alerts, web dashboard for government authorities with historical analysis and risk mapping, predictive modeling for proactive warnings, integration with IoT sensors for ground-level validation, and automated reporting system. The system has been deployed to monitor critical mining areas and has successfully detected early signs of subsidence, enabling preventive action.",
     image: "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (230).png",
+    logo: "/Assets/Jhariyawatch coal mine subsidence monitoring system/jhariyawatch logo.png",
+    liveUrl: "https://jhariyawatch.onrender.com/",
     gallery: [
       "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (230).png",
       "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (231).png",

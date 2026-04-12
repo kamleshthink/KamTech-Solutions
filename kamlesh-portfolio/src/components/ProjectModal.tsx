@@ -218,6 +218,13 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                       <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                         Project Overview
                       </h3>
+                      {project.logo && (
+                        <img
+                          src={project.logo}
+                          alt={`${project.title} logo`}
+                          className="h-16 object-contain mb-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900 p-2"
+                        />
+                      )}
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
                         {project.detailedDescription || project.description}
                       </p>
@@ -275,34 +282,6 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
 
                     {/* Right Column */}
                     <div>
-                      {/* Stats */}
-                      {project.stats && Object.keys(project.stats).filter(k => k !== 'commits').length > 0 && (
-                        <div className="mb-6">
-                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                            Project Statistics
-                          </h4>
-                          <div className="grid grid-cols-2 gap-3">
-                            {Object.entries(project.stats)
-                              .filter(([key]) => key !== 'commits')
-                              .map(([key, value], index) => (
-                                <motion.div
-                                  key={index}
-                                  initial={{ opacity: 0, y: 20 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: index * 0.1 }}
-                                  className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800"
-                                >
-                                  <div className="text-2xl font-bold text-green-700 dark:text-green-400 mb-1">
-                                    {String(value)}
-                                  </div>
-                                  <div className="text-sm text-green-600 dark:text-green-500 font-medium capitalize">
-                                    {key.replace(/([A-Z])/g, ' $1').trim()}
-                                  </div>
-                                </motion.div>
-                              ))}
-                          </div>
-                        </div>
-                      )}
 
                       {/* Key Features */}
                       <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
