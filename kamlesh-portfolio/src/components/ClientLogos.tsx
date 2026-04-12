@@ -170,9 +170,8 @@ const ClientLogos: React.FC = () => {
 
           <motion.div
             variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
+            initial="visible"
+            animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {projectClients.map((client, idx) => (
@@ -181,19 +180,27 @@ const ClientLogos: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* Testimonial Quote */}
+        {/* Client Success Story */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-8 md:p-12 rounded-2xl border border-purple-200 dark:border-purple-800 text-center"
+          className="bg-white dark:bg-gray-800 p-8 md:p-12 rounded-xl border-2 border-gray-300 dark:border-gray-600 text-center relative"
         >
-          <p className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-4 leading-relaxed">
-            "We believe in building long-term relationships with our clients. Our success is measured by their success."
+          {/* Decorative quotation mark */}
+          <div className="text-6xl text-gray-300 dark:text-gray-600 mb-2">"</div>
+          
+          <p className="text-lg md:text-xl text-gray-800 dark:text-gray-200 mb-6 leading-relaxed font-medium">
+            Our clients trust us because we deliver real results. We focus on understanding their needs and building solutions that drive genuine business impact.
           </p>
-          <p className="text-gray-600 dark:text-gray-400 font-medium">
-            — Kamlesh Sharma, Founder & CTO
+          
+          <div className="flex justify-center mb-4">
+            <div className="h-1 w-16 bg-gray-400 dark:bg-gray-600 rounded-full"></div>
+          </div>
+          
+          <p className="text-gray-600 dark:text-gray-400 font-semibold">
+            — Kamlesh Sharma, Founder & CTO, PragyaTek Solutions
           </p>
         </motion.div>
       </div>
