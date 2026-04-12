@@ -6,10 +6,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 
   /* Custom Scrollbar Styles */

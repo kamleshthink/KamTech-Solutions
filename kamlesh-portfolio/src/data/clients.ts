@@ -5,7 +5,7 @@ export const clients: Client[] = [
   {
     id: 1,
     name: "Achhadam",
-    logo: "/Assets/logo/achhadam-logo.png",
+    logo: "/Assets/Achhadamproject3/achhadam logo.png",
     category: "AgriTech",
     description: "Revolutionary agriculture technology platform",
     website: "https://achhadam.com",
@@ -14,7 +14,7 @@ export const clients: Client[] = [
   {
     id: 2,
     name: "Ramsethu Construction",
-    logo: "/Assets/logo/",
+    logo: "/Assets/ramsetuconstructionproject1/ramsethu construction logo.png",
     category: "Construction Engineering",
     description: "Professional engineering solutions provider",
     featured: true
@@ -43,8 +43,8 @@ export const clients: Client[] = [
     id: 5,
     name: "Avlokan",
     logo: "/Assets/Avlokan ace bit sindri/avlokan logo.jpg",
-    category: "Digital Agency",
-    description: "Digital solutions and web development services",
+    category: "Annual Event Website",
+    description: "Annual event website for ACEBITS at BIT Sindri, showcasing event details, registration, and sponsor highlights.",
     featured: true
   },
   {

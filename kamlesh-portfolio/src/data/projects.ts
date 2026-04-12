@@ -131,9 +131,9 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    title: "Avlokan - Digital Solutions Agency Website",
-    description: "Professional digital agency website showcasing web development, mobile app development, and digital transformation services. Features beautiful project portfolio, service displays, client testimonials, and lead capture for B2B client acquisition.",
-    detailedDescription: "Avlokan is a professional digital solutions agency website designed to showcase expertise in web development, mobile applications, and digital consulting services. The platform demonstrates agency capabilities through an impressive portfolio of past projects, detailed service descriptions with pricing tiers, client testimonials with ratings, and seamless client inquiry management. Features include responsive design for all devices, animated project galleries, service comparison tools, team member profiles, blog section for thought leadership, contact forms with lead qualification, and integration with CRM systems. The website is optimized for search engines, conversion, and user experience with smooth animations and fast loading times.",
+    title: "Avlokan - ACEBITS Annual Event Website",
+    description: "Official annual event website for ACEBITS at BIT Sindri. Features event details, registration, team highlights, sponsor showcases, and fast mobile-first performance for student audiences.",
+    detailedDescription: "Avlokan is the official annual event website for the Association of Civil Engineers at BIT Sindri (ACEBITS). Designed to showcase event schedules, guest speakers, sponsor information, student activities, and live updates, the platform provides a modern, engaging experience for attendees and participants. Built for performance and easy navigation, the website includes responsive event pages, registration workflows, photo galleries, speaker bios, and social media integration to promote the annual ACEBITS event.",
     image: "/Assets/Avlokan ace bit sindri/Screenshot (217).png",
     gallery: [
       "/Assets/Avlokan ace bit sindri/Screenshot (217).png",

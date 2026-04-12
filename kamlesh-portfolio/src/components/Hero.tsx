@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
-  ArrowDownIcon,
   RocketLaunchIcon,
-  EyeIcon,
-  DocumentTextIcon,
   CurrencyRupeeIcon,
   UsersIcon,
   CheckCircleIcon,
@@ -55,21 +52,6 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
       }
     }
   }, [text, currentIndex, isDeleting, words]);
-
-     const handleDownloadResume = () => {
-     // Add resume download functionality
-     const link = document.createElement('a');
-     link.href = '/Assets/kamli res.pdf';
-     link.download = 'Kamlesh_Sharma_Resume.pdf';
-     link.click();
-   };
-
-  const handleScrollToAbout = () => {
-    const aboutSection = document.querySelector('#about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center paper-texture-blue relative overflow-hidden pt-20 sm:pt-24 md:pt-28 lg:pt-32">
@@ -160,37 +142,42 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
                 {
                   value: '₹5.6 Lakh',
                   label: 'Project Revenue',
-                  description: 'FY 2025, audited',
+                  description: 'FY 2025 audited',
                   performance: '20% CAGR',
-                  bar: 52,
+                  bar: 65,
                   color: 'from-emerald-500 to-teal-400',
-                  icon: CurrencyRupeeIcon
+                  icon: CurrencyRupeeIcon,
+                  note: 'Based on client billing and verified project invoices.'
                 },
                 {
                   value: '12.6K',
                   label: 'Active Users (MAU)',
-                  description: 'SaaS + Enterprise users',
+                  description: 'SaaS + enterprise customers',
                   performance: 'Avg session 7m',
-                  bar: 70,
+                  bar: 72,
                   color: 'from-blue-500 to-cyan-500',
-                  icon: UsersIcon
-                },                {
+                  icon: UsersIcon,
+                  note: 'Measured across monthly active sessions from live deployments.'
+                },
+                {
                   value: '95%',
                   label: 'Delivery Rate',
                   description: 'QA-approved across 23 sprints',
                   performance: '8h mean resolution',
-                  bar: 95,
+                  bar: 88,
                   color: 'from-yellow-500 to-amber-500',
-                  icon: CheckCircleIcon
+                  icon: CheckCircleIcon,
+                  note: 'On-time delivery rate tracked from sprint completion data.'
                 },
                 {
                   value: '17h',
                   label: 'Proposal Turnaround',
                   description: 'Initial response SLA',
                   performance: '100% compliance',
-                  bar: 92,
+                  bar: 90,
                   color: 'from-purple-500 to-fuchsia-500',
-                  icon: ClockIcon
+                  icon: ClockIcon,
+                  note: 'Average response time for client proposals and consultations.'
                 }
               ].map((stat, index) => (
                 <div key={index} className="bg-white/90 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-700 p-3 rounded-2xl shadow-lg hover:-translate-y-0.5 transform transition-all duration-300 text-center">
@@ -209,7 +196,7 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
                   </div>
 
                   <div className="mt-3 text-xs text-slate-500 dark:text-slate-400">
-                    Verified metric through internal analytics and client reports.
+                    {stat.note}
                   </div>
                 </div>
               ))}
@@ -463,22 +450,6 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.button
-            onClick={handleScrollToAbout}
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <ArrowDownIcon className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );
