@@ -265,5 +265,29 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/kamleshthink/Dronevision",
     category: "other",
     stats: { commits: "5+", features: "Autonomous Flight", status: "Prototype" }
+  },
+  {
+    id: 16,
+    title: "JhariaWatch - Coal Mine Subsidence Monitoring System",
+    description: "Advanced satellite-based monitoring system for detecting land subsidence and providing timely warnings in Jharia Coalfield. Combines AI/ML analysis of satellite imagery, real-time mobile alerts, and web dashboard for authorities. Serves as critical warning system for thousands of lives and properties at risk.",
+    detailedDescription: "JhariaWatch addresses the critical challenge of underground coal fires and mine subsidence in India's largest coking coal field. The system integrates satellite imagery analysis using machine learning models to detect and track ground deformation patterns. The comprehensive platform includes: AI-powered satellite image processing for subsidence detection, real-time mobile app for field teams and residents with location-based alerts, web dashboard for government authorities with historical analysis and risk mapping, predictive modeling for proactive warnings, integration with IoT sensors for ground-level validation, and automated reporting system. The system has been deployed to monitor critical mining areas and has successfully detected early signs of subsidence, enabling preventive action.",
+    image: "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (230).png",
+    gallery: [
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (230).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (231).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (232).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (233).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (234).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (235).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (236).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (237).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (238).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (239).png",
+      "/Assets/Jhariyawatch coal mine subsidence monitoring system/Screenshot (240).png"
+    ],
+    technologies: ["Python", "TensorFlow", "PyTorch", "Satellite API", "React.js", "React Native", "Node.js", "Express", "MongoDB", "GDAL", "OpenCV", "PostGIS", "AWS", "Google Earth Engine"],
+    category: "web",
+    featured: true,
+    stats: { accuracy: "92%+", areas_monitored: "500+ sq.km", alerts: "Real-time", lives_protected: "100,000+" }
   }
 ]; 
