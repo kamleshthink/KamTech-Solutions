@@ -59,125 +59,119 @@ exports.submitContact = async (req, res, next) => {
       projectType,
       urgency,
       ipAddress,
-      // Prepare asynchronous tasks: email notification and Telegram notification
-      const emailTask = async () => {
-        try {
-          const transporter = getEmailTransporter();
+      userAgent
+    });
 
-          const mailOptions = {
-            from: process.env.EMAIL_FROM,
-            to: process.env.CONTACT_EMAIL,
-            subject: `New Contact Form Submission: ${subject}`,
-            html: `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                <h2 style="color: #3B82F6;">New Contact Form Submission</h2>
+    // Asynchronous email task
+    (async () => {
+      try {
+        const transporter = getEmailTransporter();
 
-                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                  <h3 style="margin-top: 0; color: #333;">Contact Details</h3>
-                  <p><strong>Name:</strong> ${name}</p>
-                  <p><strong>Email:</strong> ${email}</p>
-                  ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
-                  <p><strong>Subject:</strong> ${subject}</p>
-                </div>
+        const mailOptions = {
+          from: process.env.EMAIL_FROM,
+          to: process.env.CONTACT_EMAIL,
+          subject: `New Contact Form Submission: ${subject}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #3B82F6;">New Contact Form Submission</h2>
 
-                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                  <h3 style="margin-top: 0; color: #333;">Project Information</h3>
-                  ${projectType ? `<p><strong>Project Type:</strong> ${projectType}</p>` : ''}
-                  ${projectBudget ? `<p><strong>Budget:</strong> ${projectBudget}</p>` : ''}
-                  ${urgency ? `<p><strong>Urgency:</strong> ${urgency}</p>` : ''}
-                </div>
-
-                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                  <h3 style="margin-top: 0; color: #333;">Message</h3>
-                  <p style="white-space: pre-wrap;">${message}</p>
-                </div>
-
-                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
-                  <p>Submitted at: ${new Date().toLocaleString()}</p>
-                  <p>IP Address: ${ipAddress}</p>
-                </div>
+              <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin-top: 0; color: #333;">Contact Details</h3>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
+                <p><strong>Subject:</strong> ${subject}</p>
               </div>
-            `
-          };
 
-          await transporter.sendMail(mailOptions);
-
-          const userMailOptions = {
-            from: process.env.EMAIL_FROM,
-            to: email,
-            subject: 'Thank you for contacting Kamlesh Sharma',
-            html: `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                <h2 style="color: #3B82F6;">Thank You for Reaching Out!</h2>
-
-                <p>Hi ${name},</p>
-
-                <p>Thank you for contacting me. I've received your message and will get back to you as soon as possible, typically within 24-48 hours.</p>
-
-                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                  <h3 style="margin-top: 0;">Your Message Summary</h3>
-                  <p><strong>Subject:</strong> ${subject}</p>
-                  <p><strong>Message:</strong></p>
-                  <p style="white-space: pre-wrap;">${message}</p>
-                </div>
-
-                <p>In the meantime, feel free to:</p>
-                <ul>
-                  <li>Check out my portfolio: <a href="https://achhadam.com">https://achhadam.com</a></li>
-                  <li>Connect on LinkedIn: <a href="https://www.linkedin.com/in/kamlesh-sharmathink">Kamlesh Sharma</a></li>
-                  <li>View my GitHub: <a href="https://github.com/kamleshthink">@kamleshthink</a></li>
-                </ul>
-
-                <p>Best regards,<br><strong>Kamlesh Sharma</strong><br>Full Stack Developer | MERN Stack Specialist</p>
-
-                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
-                  <p>This is an automated confirmation email. Please do not reply to this email.</p>
-                </div>
+              <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin-top: 0; color: #333;">Project Information</h3>
+                ${projectType ? `<p><strong>Project Type:</strong> ${projectType}</p>` : ''}
+                ${projectBudget ? `<p><strong>Budget:</strong> ${projectBudget}</p>` : ''}
+                ${urgency ? `<p><strong>Urgency:</strong> ${urgency}</p>` : ''}
               </div>
-            `
-          };
 
-          await transporter.sendMail(userMailOptions);
-        } catch (emailError) {
-          console.error('Email sending failed:', emailError);
-        }
-      };
+              <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin-top: 0; color: #333;">Message</h3>
+                <p style="white-space: pre-wrap;">${message}</p>
+              </div>
 
-      const telegramTask = async () => {
-        try {
-          const token = process.env.TELEGRAM_BOT_TOKEN;
-          const chatId = process.env.TELEGRAM_CHAT_ID;
-          if (!token || !chatId) {
-            return;
-          }
+              <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
+                <p>Submitted at: ${new Date().toLocaleString()}</p>
+                <p>IP Address: ${ipAddress}</p>
+              </div>
+            </div>
+          `
+        };
 
-          // Construct a readable message for Telegram
-          const messageText = `New contact from ${name} (${email})\nSubject: ${subject}\nPhone: ${phone || 'N/A'}\nProject: ${projectType || 'N/A'}\nBudget: ${projectBudget || 'N/A'}\n\nMessage:\n${message}`;
+        await transporter.sendMail(mailOptions);
 
-          // Use safeFetch to send Telegram notification
-          await safeFetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text: messageText })
-          });
-        } catch (err) {
-          console.error('Telegram notification failed:', err);
-        }
-      };
+        const userMailOptions = {
+          from: process.env.EMAIL_FROM,
+          to: email,
+          subject: 'Thank you for contacting Kamlesh Sharma',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #3B82F6;">Thank You for Reaching Out!</h2>
 
-      // Fire-and-forget notifications so response is fast
-      emailTask();
-      telegramTask();
+              <p>Hi ${name},</p>
 
-      res.status(201).json({
-        success: true,
-        message: 'Thank you for your message! I will get back to you soon.',
-        data: {
-          id: contact._id,
-          name: contact.name,
-          email: contact.email
-        }
-      });
+              <p>Thank you for contacting me. I've received your message and will get back to you as soon as possible, typically within 24-48 hours.</p>
+
+              <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin-top: 0;">Your Message Summary</h3>
+                <p><strong>Subject:</strong> ${subject}</p>
+                <p><strong>Message:</strong></p>
+                <p style="white-space: pre-wrap;">${message}</p>
+              </div>
+
+              <p>In the meantime, feel free to:</p>
+              <ul>
+                <li>Check out my portfolio: <a href="https://achhadam.com">https://achhadam.com</a></li>
+                <li>Connect on LinkedIn: <a href="https://www.linkedin.com/in/kamlesh-sharmathink">Kamlesh Sharma</a></li>
+                <li>View my GitHub: <a href="https://github.com/kamleshthink">@kamleshthink</a></li>
+              </ul>
+
+              <p>Best regards,<br><strong>Kamlesh Sharma</strong><br>Full Stack Developer | MERN Stack Specialist</p>
+
+              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
+                <p>This is an automated confirmation email. Please do not reply to this email.</p>
+              </div>
+            </div>
+          `
+        };
+
+        await transporter.sendMail(userMailOptions);
+      } catch (emailError) {
+        console.error('Email sending failed:', emailError);
+      }
+    })();
+
+    // Asynchronous Telegram task
+    (async () => {
+      try {
+        const token = process.env.TELEGRAM_BOT_TOKEN;
+        const chatId = process.env.TELEGRAM_CHAT_ID;
+        if (!token || !chatId) return;
+
+        const messageText = `New contact from ${name} (${email})\nSubject: ${subject}\nPhone: ${phone || 'N/A'}\nProject: ${projectType || 'N/A'}\nBudget: ${projectBudget || 'N/A'}\n\nMessage:\n${message}`;
+
+        await safeFetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: chatId, text: messageText })
+        });
+      } catch (err) {
+        console.error('Telegram notification failed:', err);
+      }
+    })();
+
+    // Respond immediately
+    res.status(201).json({
+      success: true,
+      message: 'Thank you for your message! I will get back to you soon.',
+      data: {
+        id: contact._id,
+        name: contact.name,
         email: contact.email
       }
     });
