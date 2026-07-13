@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   XMarkIcon,
@@ -17,6 +17,9 @@ interface ProjectModalProps {
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isImageLoading, setIsImageLoading] = useState(true);
+
+  const gallery = project?.gallery || [];
+  const hasGallery = gallery.length > 0;
 
   useEffect(() => {
     if (isOpen) {
@@ -46,6 +49,16 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
     };
   }, [isOpen]);
 
+  const handlePrevImage = useCallback(() => {
+    setIsImageLoading(true);
+    setCurrentImageIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1));
+  }, [gallery.length]);
+
+  const handleNextImage = useCallback(() => {
+    setIsImageLoading(true);
+    setCurrentImageIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1));
+  }, [gallery.length]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen || !project?.gallery) return;
@@ -61,22 +74,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, currentImageIndex, project]);
+  }, [isOpen, project, handlePrevImage, handleNextImage, onClose]);
 
   if (!project) return null;
-
-  const gallery = project.gallery || [];
-  const hasGallery = gallery.length > 0;
-
-  const handlePrevImage = () => {
-    setIsImageLoading(true);
-    setCurrentImageIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1));
-  };
-
-  const handleNextImage = () => {
-    setIsImageLoading(true);
-    setCurrentImageIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1));
-  };
 
   const handleThumbnailClick = (index: number) => {
     setIsImageLoading(true);

@@ -261,7 +261,7 @@ export const healthAPI = {
   },
 };
 
-export default {
+const api = {
   contact: contactAPI,
   projects: projectsAPI,
   testimonials: testimonialsAPI,
@@ -269,3 +269,5 @@ export default {
   clients: clientsAPI,
   health: healthAPI,
 };
+
+export default api;

@@ -12,21 +12,21 @@ interface HeroProps {
   onBookNowClick: () => void;
 }
 
+const HERO_WORDS = [
+  'Elite Full-Stack Development Agency',
+  'Your Trusted Tech Partner',
+  'AgriTech & ML Solutions Expert',
+  'Enterprise Web Applications',
+  'Scaling Startups to Success'
+];
+
 const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
   const [text, setText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  
-  const words = [
-    'Elite Full-Stack Development Agency',
-    'Your Trusted Tech Partner',
-    'AgriTech & ML Solutions Expert',
-    'Enterprise Web Applications',
-    'Scaling Startups to Success'
-  ];
 
   useEffect(() => {
-    const currentWord = words[currentIndex];
+    const currentWord = HERO_WORDS[currentIndex];
     
     if (!isDeleting) {
       if (text.length < currentWord.length) {
@@ -48,10 +48,10 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
         return () => clearTimeout(timeout);
       } else {
         setIsDeleting(false);
-        setCurrentIndex((prev) => (prev + 1) % words.length);
+        setCurrentIndex((prev) => (prev + 1) % HERO_WORDS.length);
       }
     }
-  }, [text, currentIndex, isDeleting, words]);
+  }, [text, currentIndex, isDeleting]);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center paper-texture-blue relative overflow-hidden pt-20 sm:pt-24 md:pt-28 lg:pt-32">
