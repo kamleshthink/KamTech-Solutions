@@ -54,12 +54,20 @@ if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY) {
 app.use(helmet()); // Security headers
 
 // CORS configuration - Allow multiple origins
+const extraOrigins = process.env.FRONTEND_URLS
+  ? process.env.FRONTEND_URLS.split(',').map((url) => url.trim()).filter(Boolean)
+  : [];
+
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
   'https://kamtech-solutions.onrender.com',
-  process.env.FRONTEND_URL
+  'https://pragyateksolutions.chakravega.com',
+  process.env.FRONTEND_URL,
+  ...extraOrigins
 ].filter(Boolean); // Remove undefined values
+
+console.log('🔧 Allowed CORS origins:', allowedOrigins);
 
 app.use(cors({
   origin: function (origin, callback) {
