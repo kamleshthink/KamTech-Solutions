@@ -2,16 +2,101 @@ const Booking = require('../models/Booking');
 const { deleteFromCloudinary } = require('../config/cloudinary');
 const nodemailer = require('nodemailer');
 
-// Email transporter configuration
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-  port: process.env.EMAIL_PORT || 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+const safeFetch = async (...args) => {
+  if (typeof fetch !== 'undefined') return fetch(...args);
+  try {
+    const nodeFetch = require('node-fetch');
+    return nodeFetch(...args);
+  } catch (err) {
+    console.error('Fetch is not available and node-fetch is not installed. Telegram notifications will not be sent.', err);
+    throw err;
   }
-});
+};
+
+const createBookingTransporter = ({ port, secure }) => {
+  const transporterOptions = {
+    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+    port,
+    secure,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    },
+    tls: {
+      rejectUnauthorized: false,
+      minVersion: 'TLSv1.2'
+    },
+    connectionTimeout: process.env.EMAIL_CONNECTION_TIMEOUT ? parseInt(process.env.EMAIL_CONNECTION_TIMEOUT, 10) : 30000,
+    greetingTimeout: process.env.EMAIL_GREETING_TIMEOUT ? parseInt(process.env.EMAIL_GREETING_TIMEOUT, 10) : 20000,
+    socketTimeout: process.env.EMAIL_SOCKET_TIMEOUT ? parseInt(process.env.EMAIL_SOCKET_TIMEOUT, 10) : 30000
+  };
+
+  if (!secure) {
+    transporterOptions.requireTLS = true;
+  }
+
+  return nodemailer.createTransport(transporterOptions);
+};
+
+const getBookingTransporter = () => {
+  const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
+  const secureEnv = typeof process.env.EMAIL_SECURE === 'string'
+    ? process.env.EMAIL_SECURE.toLowerCase() === 'true'
+    : undefined;
+  const secure = secureEnv !== undefined ? secureEnv : port === 465;
+
+  return createBookingTransporter({ port, secure });
+};
+
+const sendBookingMail = async (mailOptions) => {
+  const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
+  const secureEnv = typeof process.env.EMAIL_SECURE === 'string'
+    ? process.env.EMAIL_SECURE.toLowerCase() === 'true'
+    : undefined;
+  const secure = secureEnv !== undefined ? secureEnv : port === 465;
+
+  const transporter = createBookingTransporter({ port, secure });
+  console.log('🔧 Booking mail transport:', { host: process.env.EMAIL_HOST, port, secure });
+
+  try {
+    return await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Booking mail send failed:', error);
+    if (!secure && error && error.code === 'ETIMEDOUT') {
+      console.log('🔧 Retrying booking mail with fallback port 465 and secure=true');
+      const fallbackTransporter = createBookingTransporter({ port: 465, secure: true });
+      return await fallbackTransporter.sendMail(mailOptions);
+    }
+    throw error;
+  }
+};
+
+const sendBookingTelegramNotification = async (bookingData) => {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId) {
+    return;
+  }
+
+  const messageText = `New booking received from ${bookingData.clientName} (${bookingData.email})\n` +
+    `Phone: ${bookingData.phone || 'N/A'}\n` +
+    `Company: ${bookingData.companyName || 'N/A'}\n` +
+    `Project: ${bookingData.projectType || 'N/A'}\n` +
+    `Budget: ${bookingData.budget || 'N/A'}\n` +
+    `Timeline: ${bookingData.projectTimeline || 'N/A'}\n\n` +
+    `Message:\n${bookingData.projectDescription || 'N/A'}`;
+
+  try {
+    await safeFetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text: messageText })
+    });
+  } catch (err) {
+    console.error('Booking Telegram notification failed:', err);
+  }
+};
 
 // @desc    Submit booking form
 // @route   POST /api/bookings
@@ -84,7 +169,13 @@ exports.submitBooking = async (req, res, next) => {
 
     // Send email notification to admin (non-blocking - background)
     setImmediate(() => {
-      transporter.sendMail({
+      console.log('🔧 Booking transporter config:', {
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
+        secure: process.env.EMAIL_SECURE,
+        user: process.env.EMAIL_USER ? process.env.EMAIL_USER.replace(/(.{2}).+(@.+)/, '$1****$2') : null
+      });
+      sendBookingMail({
         from: `"KamTech Solutions" <${process.env.EMAIL_USER}>`,
         to: process.env.CONTACT_EMAIL || 'kamleshsharma@gmail.com',
         subject: `🎯 New Project Booking: ${projectType} - ${clientName}`,
@@ -260,9 +351,30 @@ exports.submitBooking = async (req, res, next) => {
       });
     });
 
+    // Send Telegram notification on booking
+    setImmediate(() => {
+      sendBookingTelegramNotification({
+        clientName,
+        email,
+        phone,
+        companyName,
+        projectType,
+        budget,
+        projectTimeline,
+        projectDescription
+      });
+    });
+
     // Send confirmation email to client (non-blocking - background)
     setImmediate(() => {
-      transporter.sendMail({
+      const transporter = getBookingTransporter();
+      console.log('🔧 Booking confirmation transporter config:', {
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
+        secure: process.env.EMAIL_SECURE,
+        user: process.env.EMAIL_USER ? process.env.EMAIL_USER.replace(/(.{2}).+(@.+)/, '$1****$2') : null
+      });
+      sendBookingMail({
         from: `"KamTech Solutions" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: '✅ We Received Your Project Booking - KamTech Solutions',

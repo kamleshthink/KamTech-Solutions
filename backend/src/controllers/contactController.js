@@ -15,13 +15,7 @@ const safeFetch = (...args) => {
 };
 
 // Email configuration
-const getEmailTransporter = () => {
-  const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
-  const secureEnv = typeof process.env.EMAIL_SECURE === 'string'
-    ? process.env.EMAIL_SECURE.toLowerCase() === 'true'
-    : undefined;
-  const secure = secureEnv !== undefined ? secureEnv : port === 465;
-
+const createEmailTransporter = ({ port, secure }) => {
   const transporterOptions = {
     host: process.env.EMAIL_HOST,
     port,
@@ -45,6 +39,39 @@ const getEmailTransporter = () => {
   }
 
   return nodemailer.createTransport(transporterOptions);
+};
+
+const getEmailTransporter = () => {
+  const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
+  const secureEnv = typeof process.env.EMAIL_SECURE === 'string'
+    ? process.env.EMAIL_SECURE.toLowerCase() === 'true'
+    : undefined;
+  const secure = secureEnv !== undefined ? secureEnv : port === 465;
+
+  return createEmailTransporter({ port, secure });
+};
+
+const sendEmailWithFallback = async (mailOptions) => {
+  const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
+  const secureEnv = typeof process.env.EMAIL_SECURE === 'string'
+    ? process.env.EMAIL_SECURE.toLowerCase() === 'true'
+    : undefined;
+  const secure = secureEnv !== undefined ? secureEnv : port === 465;
+
+  const transporter = createEmailTransporter({ port, secure });
+  console.log('🔧 Contact mail transport:', { host: process.env.EMAIL_HOST, port, secure });
+
+  try {
+    return await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Primary contact mail send failed:', error);
+    if (secure && error && error.code === 'ETIMEDOUT') {
+      console.log('🔧 Retrying contact mail using fallback port 587 with STARTTLS');
+      const fallbackTransporter = createEmailTransporter({ port: 587, secure: false });
+      return await fallbackTransporter.sendMail(mailOptions);
+    }
+    throw error;
+  }
 };
 
 // @desc    Submit contact form
@@ -93,8 +120,12 @@ exports.submitContact = async (req, res, next) => {
           user: process.env.EMAIL_USER ? process.env.EMAIL_USER.replace(/(.{2}).+(@.+)/, '$1****$2') : null
         });
 
-        const verifyResult = await transporter.verify();
-        console.log('🔧 SMTP verify result:', verifyResult);
+        try {
+          const verifyResult = await transporter.verify();
+          console.log('🔧 SMTP verify result:', verifyResult);
+        } catch (verifyError) {
+          console.warn('⚠️ Primary SMTP verify failed, continuing to fallback if needed:', verifyError);
+        }
 
         const mailOptions = {
           from: process.env.EMAIL_FROM,
@@ -132,7 +163,7 @@ exports.submitContact = async (req, res, next) => {
           `
         };
 
-        await transporter.sendMail(mailOptions);
+        await sendEmailWithFallback(mailOptions);
 
         const userMailOptions = {
           from: process.env.EMAIL_FROM,
@@ -169,7 +200,7 @@ exports.submitContact = async (req, res, next) => {
           `
         };
 
-        await transporter.sendMail(userMailOptions);
+        await sendEmailWithFallback(userMailOptions);
       } catch (emailError) {
         console.error('Email sending failed:', emailError);
       }
