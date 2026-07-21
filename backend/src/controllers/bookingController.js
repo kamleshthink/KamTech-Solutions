@@ -62,8 +62,13 @@ const sendBookingMail = async (mailOptions) => {
     return await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error('Booking mail send failed:', error);
-    if (!secure && error && error.code === 'ETIMEDOUT') {
-      console.log('🔧 Retrying booking mail with fallback port 465 and secure=true');
+    if (error && error.code === 'ETIMEDOUT') {
+      if (secure) {
+        console.log('🔧 Booking mail timeout on secure 465, retrying with port 587 and STARTTLS');
+        const fallbackTransporter = createBookingTransporter({ port: 587, secure: false });
+        return await fallbackTransporter.sendMail(mailOptions);
+      }
+      console.log('🔧 Booking mail timeout on non-secure 587, retrying with port 465 and secure=true');
       const fallbackTransporter = createBookingTransporter({ port: 465, secure: true });
       return await fallbackTransporter.sendMail(mailOptions);
     }
