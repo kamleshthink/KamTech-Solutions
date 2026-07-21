@@ -23,9 +23,13 @@ const getEmailTransporter = () => {
     host: process.env.EMAIL_HOST,
     port,
     secure,
+    requireTLS: true,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
+    },
+    tls: {
+      rejectUnauthorized: false
     },
     // Short timeouts so failures don't block the request for too long
     connectionTimeout: process.env.EMAIL_CONNECTION_TIMEOUT ? parseInt(process.env.EMAIL_CONNECTION_TIMEOUT, 10) : 10000,
