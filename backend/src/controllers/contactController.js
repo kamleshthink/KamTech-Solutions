@@ -71,6 +71,16 @@ exports.submitContact = async (req, res, next) => {
       try {
         const transporter = getEmailTransporter();
 
+        console.log('🔧 SMTP transporter config:', {
+          host: process.env.EMAIL_HOST,
+          port: process.env.EMAIL_PORT,
+          secure: process.env.EMAIL_SECURE,
+          user: process.env.EMAIL_USER ? process.env.EMAIL_USER.replace(/(.{2}).+(@.+)/, '$1****$2') : null
+        });
+
+        const verifyResult = await transporter.verify();
+        console.log('🔧 SMTP verify result:', verifyResult);
+
         const mailOptions = {
           from: process.env.EMAIL_FROM,
           to: process.env.CONTACT_EMAIL,
