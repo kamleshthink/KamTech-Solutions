@@ -17,25 +17,34 @@ const safeFetch = (...args) => {
 // Email configuration
 const getEmailTransporter = () => {
   const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
-  const secure = process.env.EMAIL_SECURE === 'true' || port === 465;
+  const secureEnv = typeof process.env.EMAIL_SECURE === 'string'
+    ? process.env.EMAIL_SECURE.toLowerCase() === 'true'
+    : undefined;
+  const secure = secureEnv !== undefined ? secureEnv : port === 465;
 
-  return nodemailer.createTransport({
+  const transporterOptions = {
     host: process.env.EMAIL_HOST,
     port,
     secure,
-    requireTLS: true,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
     },
     tls: {
-      rejectUnauthorized: false
+      rejectUnauthorized: false,
+      minVersion: 'TLSv1.2'
     },
     // Short timeouts so failures don't block the request for too long
-    connectionTimeout: process.env.EMAIL_CONNECTION_TIMEOUT ? parseInt(process.env.EMAIL_CONNECTION_TIMEOUT, 10) : 10000,
-    greetingTimeout: process.env.EMAIL_GREETING_TIMEOUT ? parseInt(process.env.EMAIL_GREETING_TIMEOUT, 10) : 10000,
-    socketTimeout: process.env.EMAIL_SOCKET_TIMEOUT ? parseInt(process.env.EMAIL_SOCKET_TIMEOUT, 10) : 20000
-  });
+    connectionTimeout: process.env.EMAIL_CONNECTION_TIMEOUT ? parseInt(process.env.EMAIL_CONNECTION_TIMEOUT, 10) : 30000,
+    greetingTimeout: process.env.EMAIL_GREETING_TIMEOUT ? parseInt(process.env.EMAIL_GREETING_TIMEOUT, 10) : 20000,
+    socketTimeout: process.env.EMAIL_SOCKET_TIMEOUT ? parseInt(process.env.EMAIL_SOCKET_TIMEOUT, 10) : 30000
+  };
+
+  if (!secure) {
+    transporterOptions.requireTLS = true;
+  }
+
+  return nodemailer.createTransport(transporterOptions);
 };
 
 // @desc    Submit contact form
@@ -74,7 +83,7 @@ exports.submitContact = async (req, res, next) => {
         console.log('🔧 SMTP transporter config:', {
           host: process.env.EMAIL_HOST,
           port: process.env.EMAIL_PORT,
-          secure: process.env.EMAIL_SECURE,
+          secure,
           user: process.env.EMAIL_USER ? process.env.EMAIL_USER.replace(/(.{2}).+(@.+)/, '$1****$2') : null
         });
 

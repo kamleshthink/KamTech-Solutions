@@ -260,8 +260,9 @@ mongorestore --uri="mongodb://localhost:27017/kamlesh-portfolio" ./backup/kamles
 | `NODE_ENV` | Environment | `development` or `production` |
 | `MONGODB_URI` | MongoDB connection string | `mongodb://localhost:27017/portfolio` |
 | `JWT_SECRET` | Secret key for JWT | Random strong string |
-| `EMAIL_HOST` | SMTP host | `smtp.gmail.com` |
-| `EMAIL_PORT` | SMTP port | `587` |
+| `EMAIL_HOST` | SMTP host | `smtp.gmail.com` or `smtp.hostinger.com` |
+| `EMAIL_PORT` | SMTP port | `587` or `465` |
+| `EMAIL_SECURE` | Use secure SSL mode | `true` for port `465`, `false` for port `587` |
 | `EMAIL_USER` | Email address | `your-email@gmail.com` |
 | `EMAIL_PASS` | Email password/app password | Your app password |
 | `CONTACT_EMAIL` | Email to receive contact forms | `kamlesh@achhadam.com` |
