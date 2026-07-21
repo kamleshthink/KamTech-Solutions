@@ -78,12 +78,18 @@ exports.submitContact = async (req, res, next) => {
     // Asynchronous email task
     (async () => {
       try {
+        const transportPort = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
+        const secureEnv = typeof process.env.EMAIL_SECURE === 'string'
+          ? process.env.EMAIL_SECURE.toLowerCase() === 'true'
+          : undefined;
+        const transportSecure = secureEnv !== undefined ? secureEnv : transportPort === 465;
+
         const transporter = getEmailTransporter();
 
         console.log('🔧 SMTP transporter config:', {
           host: process.env.EMAIL_HOST,
           port: process.env.EMAIL_PORT,
-          secure,
+          secure: transportSecure,
           user: process.env.EMAIL_USER ? process.env.EMAIL_USER.replace(/(.{2}).+(@.+)/, '$1****$2') : null
         });
 
